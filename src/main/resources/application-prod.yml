@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://db.shutterapp.pl:3301/spring_prod
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: spring_prod_user
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: false

@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://db.shutterapp.pl:3301/spring_dev
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: spring_dev_user
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+#    properties:
+#      javax:
+#        persistence:
+#          schema-generation:
+#            create-source: metadata
+#            scripts:
+#              action: create
+#              create-target: database_create.sql
