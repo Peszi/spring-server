@@ -18,7 +18,7 @@ public class UserRestController {
 //
 //    @GetMapping
 //    @RequestMapping("/{name}")
-//    public ResponseEntity<User> getUser(@PathParam("name") String name) {
+//    public ResponseEntity<UserDTO> getUser(@PathParam("name") String name) {
 //        return ResponseEntity.ok(this.userRepository.findByName(name));
 //    }
 
