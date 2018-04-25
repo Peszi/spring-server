@@ -1,5 +1,7 @@
 package com.shutter.springserver.configuration;
 
+import com.shutter.springserver.handler.CustomAccessDeniedHandler;
+import com.shutter.springserver.handler.CustomAuthenticationEntryPoint;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,10 +27,6 @@ import javax.sql.DataSource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    @Qualifier("dataSource")
-    DataSource dataSource;
-
-    @Autowired
     PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -37,10 +35,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
-//        auth.userDetailsService(userDetailsService).jdbcAuthentication().dataSource(dataSource)
-//                .passwordEncoder(passwordEncoder)
-//                .usersByUsernameQuery("SELECT `email`,`passwordHash`,`active` FROM `users` WHERE `email`=?")
-//                .authoritiesByUsernameQuery("SELECT `email`,'USER' FROM `users` WHERE `email`=?");
     }
 
     @Override
@@ -55,8 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .anyRequest()
                     .denyAll()
                 .and()
-                    .formLogin()
-                .disable();
+                    .formLogin().disable();
     }
 
     @Bean
@@ -64,3 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 }
+//        auth.userDetailsService(userDetailsService).jdbcAuthentication().dataSource(dataSource)
+//                .passwordEncoder(passwordEncoder)
+//                .usersByUsernameQuery("SELECT `email`,`passwordHash`,`active` FROM `users` WHERE `email`=?")
+//                .authoritiesByUsernameQuery("SELECT `email`,'USER' FROM `users` WHERE `email`=?");

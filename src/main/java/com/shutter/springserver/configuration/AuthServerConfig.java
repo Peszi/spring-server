@@ -1,5 +1,7 @@
 package com.shutter.springserver.configuration;
 
+import com.shutter.springserver.handler.CustomAccessDeniedHandler;
+import com.shutter.springserver.handler.CustomAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -36,6 +38,12 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+//
+//    @Autowired
+//    CustomAccessDeniedHandler accessDeniedHandler;
+//
+//    @Autowired
+//    CustomAuthenticationEntryPoint authenticationEntryPoint;
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
@@ -50,8 +58,8 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .withClient("frontendClientId")
                     .secret(passwordEncoder.encode("frontendClientSecret"))
                     .authorizedGrantTypes("password", "authorization_code", "refresh_token")
-                    .accessTokenValiditySeconds(120)
-                    .refreshTokenValiditySeconds(600)
+                    .accessTokenValiditySeconds(1200)
+                    .refreshTokenValiditySeconds(3600 * 24)
                 .scopes("read", "write");
     }
 

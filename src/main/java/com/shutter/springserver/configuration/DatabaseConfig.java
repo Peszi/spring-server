@@ -13,8 +13,8 @@ import javax.sql.DataSource;
 @Configuration
 public class DatabaseConfig {
 
-    @Autowired
-    private Environment env;
+//    @Autowired
+//    private Environment env;
 
 //    @Bean
 //    public DataSource myDataSource() {
