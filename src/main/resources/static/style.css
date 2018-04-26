@@ -1,0 +1,32 @@
+body {
+    font-family: Verdana,Geneva, sans-serif;
+    background-color: #efefef;
+}
+
+/* list */
+
+ul {
+    margin: 6px;
+    padding: 0;
+    list-style-type: none;
+}
+
+ul {
+    font-size: small;
+}
+
+form {
+    margin: 6px;
+    padding: 0;
+}
+
+input {
+    margin: 4px;
+    padding: 4px;
+    font-size: medium;
+}
+
+.inputField {
+    margin: 0;
+    padding: 8px;
+}

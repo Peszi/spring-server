@@ -7,14 +7,14 @@ import java.util.List;
 
 public class UserData extends User {
 
-    private int id;
+    private long id;
 
-    public UserData(int id, String email, String password, boolean active, List<GrantedAuthority> authorities) {
+    public UserData(long id, String email, String password, boolean active, List<GrantedAuthority> authorities) {
         super(email, password, active, true, true, true, authorities);
         this.id = id;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 }
