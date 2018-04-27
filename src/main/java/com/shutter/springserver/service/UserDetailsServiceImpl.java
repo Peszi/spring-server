@@ -34,7 +34,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Optional<User> user = this.userRepository.findByEmail(username);
         if (!user.isPresent())
             throw new UsernameNotFoundException("User does not exists!");
-        return new UserData(user.get().getId(), user.get().getEmail(), user.get().getPassword(), user.get().isActive(), this.getAuthoritiesList(user.get().getRoles()));
+        return new UserData(user.get().getId(), user.get().getName(), user.get().getEmail(), user.get().getPassword(), user.get().isActive(), this.getAuthoritiesList(user.get().getRoles()));
     }
 
     private List<GrantedAuthority> getAuthoritiesList(Collection<Role> roles) {

@@ -1,11 +1,11 @@
 package com.shutter.springserver.repository;
 
+import com.shutter.springserver.model.Room;
 import com.shutter.springserver.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByName(String name);
-    Optional<User> findByEmail(String email);
+public interface RoomRepository extends JpaRepository<Room, Long> {
+    Optional<Room> findRoomByHost(User host);
 }

@@ -1,4 +1,4 @@
-package com.shutter.springserver.mapper;
+package com.shutter.springserver.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

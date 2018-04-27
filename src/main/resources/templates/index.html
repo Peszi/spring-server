@@ -6,7 +6,7 @@
     <link href="../static/style.css" th:href="@{/style.css}" rel="stylesheet" />
 </head>
 <body>
-<!--/*@thymesVar id="userDTO" type="com.shutter.springserver.mapper.UserDTO"*/-->
+<!--/*@thymesVar id="userDTO" type="com.shutter.springserver.data.UserDTO"*/-->
     <form id="registerForm" action="#" th:action="@{/register}" th:object="${userDTO}" method="post" >
         <input type="text" th:field="*{nickname}" placeholder="nickname" />
         <input type="text" th:field="*{email}" placeholder="email" />

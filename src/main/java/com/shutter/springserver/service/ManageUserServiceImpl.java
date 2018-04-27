@@ -1,13 +1,25 @@
 package com.shutter.springserver.service;
 
-import com.shutter.springserver.mapper.UserDTO;
+import com.shutter.springserver.data.BasicUserDTO;
+import com.shutter.springserver.data.RoomsListDTO;
+import com.shutter.springserver.data.UserDTO;
+import com.shutter.springserver.data.UserData;
+import com.shutter.springserver.exception.UserAlreadyExistsException;
+import com.shutter.springserver.exception.ServerFailureException;
+import com.shutter.springserver.exception.UserNotFoundException;
+import com.shutter.springserver.mapper.UserMapper;
+import com.shutter.springserver.model.Role;
 import com.shutter.springserver.model.User;
 import com.shutter.springserver.repository.RoleRepository;
 import com.shutter.springserver.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ManageUserServiceImpl implements ManageUserService {
@@ -16,31 +28,48 @@ public class ManageUserServiceImpl implements ManageUserService {
     private RoleRepository roleRepository;
 
     private PasswordEncoder passwordEncoder;
+    private UserMapper userMapper;
 
-    public ManageUserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+    public ManageUserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, UserMapper userMapper) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.userMapper = userMapper;
     }
 
+    @Transactional
     @Override
-    public String registerUser(UserDTO userDTO) {
-        if (this.userRepository.findByEmail(userDTO.getEmail()).isPresent())
-            return "Email in use " + userDTO.getEmail() + "!";
-        if (this.userRepository.findByName(userDTO.getNickname()).isPresent())
-            return "Nickname already taken !";
+    public void registerUser(UserDTO userData) {
+        if (this.userRepository.findByEmail(userData.getEmail()).isPresent())
+            throw new UserAlreadyExistsException(userData.getEmail());
+        if (this.userRepository.findByName(userData.getNickname()).isPresent())
+            throw new UserAlreadyExistsException(userData.getNickname());
+        Optional<Role> defaultRole = this.roleRepository.findById(1L);
+        if (!defaultRole.isPresent())
+            throw new ServerFailureException("no default user role found!");
         User user = new User();
-        user.setName(userDTO.getNickname());
-        user.setEmail(userDTO.getEmail());
-        user.setPassword(this.passwordEncoder.encode(userDTO.getPassword()));
-        user.setRoles(Arrays.asList(roleRepository.findById(1L).get()));
+        user.setName(userData.getNickname());
+        user.setEmail(userData.getEmail());
+        user.setPassword(this.passwordEncoder.encode(userData.getPassword()));
+        user.setRoles(Arrays.asList(defaultRole.get()));//
         user.setActive(true);
         this.userRepository.save(user);
-        return "Successfully registered!";
+    }
+
+    @Transactional
+    @Override
+    public void deleteUser(UserData userData) {
+        Optional<User> user = this.userRepository.findById(userData.getId());
+        if (!user.isPresent())
+            throw new UserNotFoundException(userData.getUsername());
+        this.userRepository.delete(user.get());
     }
 
     @Override
-    public String deleteUser() { // TODO removing account
-        return "";
+    public List<BasicUserDTO> getAllUsers() {
+        return this.userRepository.findAll()
+                .stream()
+                .map(this.userMapper::userToBasicUserDTO)
+                .collect(Collectors.toList());
     }
 }

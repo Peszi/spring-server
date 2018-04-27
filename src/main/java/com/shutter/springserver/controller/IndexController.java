@@ -1,6 +1,6 @@
 package com.shutter.springserver.controller;
 
-import com.shutter.springserver.mapper.UserDTO;
+import com.shutter.springserver.data.UserDTO;
 import com.shutter.springserver.service.ManageUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -34,8 +34,10 @@ public class IndexController {
         model.addAttribute(userDTO);
         if (binding.hasErrors())
             model.addAttribute("messages", this.getFieldErrorMessage(binding.getFieldErrors()));
-        else
-            model.addAttribute("messages", new String[] {this.manageUserService.registerUser(userDTO)});
+        else {
+            this.manageUserService.registerUser(userDTO);
+            model.addAttribute("messages", new String[]{"Success!"});
+        }
         return "index";
     }
 
