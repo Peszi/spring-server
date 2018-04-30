@@ -1,6 +1,6 @@
 package com.shutter.springserver.controller;
 
-import com.shutter.springserver.data.UserDTO;
+import com.shutter.springserver.dto.UserDTO;
 import com.shutter.springserver.service.ManageUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

@@ -1,8 +1,7 @@
 package com.shutter.springserver.service;
 
-import com.shutter.springserver.data.BasicUserDTO;
-import com.shutter.springserver.data.RoomsListDTO;
-import com.shutter.springserver.data.UserDTO;
+import com.shutter.springserver.dto.BasicUserDTO;
+import com.shutter.springserver.dto.UserDTO;
 import com.shutter.springserver.data.UserData;
 import com.shutter.springserver.exception.UserAlreadyExistsException;
 import com.shutter.springserver.exception.ServerFailureException;

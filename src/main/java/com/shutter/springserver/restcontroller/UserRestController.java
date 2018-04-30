@@ -1,6 +1,6 @@
 package com.shutter.springserver.restcontroller;
 
-import com.shutter.springserver.data.UserDTO;
+import com.shutter.springserver.dto.UserDTO;
 import com.shutter.springserver.data.UserData;
 import com.shutter.springserver.service.ManageUserService;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,7 @@
 package com.shutter.springserver.restcontroller;
 
-import com.shutter.springserver.data.RoomDTO;
-import com.shutter.springserver.data.RoomsListDTO;
+import com.shutter.springserver.dto.RoomDTO;
+import com.shutter.springserver.dto.RoomsListDTO;
 import com.shutter.springserver.data.UserData;
 import com.shutter.springserver.service.ManageRoomService;
 import org.springframework.http.ResponseEntity;

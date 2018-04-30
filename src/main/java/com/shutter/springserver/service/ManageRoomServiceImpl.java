@@ -1,12 +1,11 @@
 package com.shutter.springserver.service;
 
-import com.shutter.springserver.data.RoomDTO;
-import com.shutter.springserver.data.RoomsListDTO;
+import com.shutter.springserver.dto.RoomDTO;
+import com.shutter.springserver.dto.RoomsListDTO;
 import com.shutter.springserver.data.UserData;
 import com.shutter.springserver.mapper.RoomMapper;
 import com.shutter.springserver.model.Room;
 import com.shutter.springserver.model.User;
-import com.shutter.springserver.repository.RoomRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

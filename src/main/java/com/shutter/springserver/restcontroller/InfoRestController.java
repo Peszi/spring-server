@@ -1,7 +1,6 @@
 package com.shutter.springserver.restcontroller;
 
-import com.shutter.springserver.data.BasicUserDTO;
-import com.shutter.springserver.mapper.UserMapper;
+import com.shutter.springserver.dto.BasicUserDTO;
 import com.shutter.springserver.service.ManageUserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +14,9 @@ import java.util.List;
 public class InfoRestController {
 
     private ManageUserService manageUserService;
-    private UserMapper userMapper;
 
-    public InfoRestController(ManageUserService manageUserService, UserMapper userMapper) {
+    public InfoRestController(ManageUserService manageUserService) {
         this.manageUserService = manageUserService;
-        this.userMapper = userMapper;
     }
 
     @GetMapping

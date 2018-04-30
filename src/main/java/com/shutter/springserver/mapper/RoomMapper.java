@@ -1,6 +1,7 @@
 package com.shutter.springserver.mapper;
 
-import com.shutter.springserver.data.RoomDTO;
+import com.shutter.springserver.dto.FullRoomDTO;
+import com.shutter.springserver.dto.RoomDTO;
 import com.shutter.springserver.model.Room;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -11,8 +12,10 @@ public interface RoomMapper {
 
     RoomMapper INSTANCE = Mappers.getMapper(RoomMapper.class);
 
+    @Mapping(source = "isStarted", target = "started")
     RoomDTO roomToRoomDTO(Room room);
 
-//    @Mapping(source = "users", target = "usersList")
-//    FullRoomDTO roomToFullRoomDTO(Room room);
+    @Mapping(source = "isStarted", target = "started")
+    @Mapping(source = "users", target = "usersList")
+    FullRoomDTO roomToFullRoomDTO(Room room);
 }
