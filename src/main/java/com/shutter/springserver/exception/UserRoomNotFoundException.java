@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class UserRoomNotFoundException extends RuntimeException {
 
     public UserRoomNotFoundException() {
-        super("User isn't in any room!");
+        super("User isn't in any roomId!");
     }
 
     public UserRoomNotFoundException(String message) {

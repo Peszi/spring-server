@@ -41,7 +41,7 @@ public class ManageRoomServiceImpl implements ManageRoomService {
 
     @Override
     public RoomsListDTO getAllRooms(UserData userData) {
-        boolean hasRoom = this.userService.getUser(userData).hasRoom();
+        boolean hasRoom = this.userService.getUser(userData).hasTeam();
         return new RoomsListDTO(hasRoom, this.roomService.getAllRooms()
                 .stream()
                 .map(this.roomMapper::roomToRoomDTO)

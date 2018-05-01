@@ -16,6 +16,6 @@ public class FullRoomDTO {
     private boolean isStarted;
     private int usersCount;
 
-    private Set<BasicUserDTO> usersList;
+//    private Set<BasicUserDTO> usersList;
 
 }

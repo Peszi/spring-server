@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class UserRoomExistsException extends RuntimeException {
 
     public UserRoomExistsException() {
-        super("User already in this room!");
+        super("User already in this roomId!");
     }
 
     public UserRoomExistsException(long roomId) {
-        super("User already in another room! (" + roomId + ")");
+        super("User already in another roomId! (" + roomId + ")");
     }
 
 }

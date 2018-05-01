@@ -28,7 +28,7 @@ public class GameServiceImpl implements GameService {
 
         // TODO game setup
         this.gamesList.put(room.getId(), new GameServerImpl());
-        room.getUsers().stream().forEach(user -> this.usersList.put(user.getId(), room.getId()));
+//        roomId.getUsers().stream().forEach(user -> this.usersList.put(user.getId(), roomId.getId()));
     }
 
     @Override

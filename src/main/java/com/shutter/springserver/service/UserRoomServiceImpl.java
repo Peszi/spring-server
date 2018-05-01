@@ -31,43 +31,46 @@ public class UserRoomServiceImpl implements UserRoomService {
     @Transactional
     @Override
     public RoomDTO joinRoom(UserData userData, long roomId) {
-        final Room room = this.roomService.getRoomById(roomId);
-        User user = this.userService.getUser(userData);
-        if (user.hasRoom()) {
-            if (user.getRoom().getId() == roomId)
-                throw new UserRoomExistsException();
-            throw new UserRoomExistsException(roomId);
-        } // Not we've got the user existing, without room, and requested room exists
-        user.setRoom(room);
-        this.userService.fetchUser(user);
-        return this.roomMapper.roomToRoomDTO(room);
+//        final Room roomId = this.roomService.getRoomById(roomId);
+//        User user = this.userService.getUser(userData);
+//        if (user.hasTeam()) {
+//            if (user.getRoomId().getId() == roomId)
+//                throw new UserRoomExistsException();
+//            throw new UserRoomExistsException(roomId);
+//        } // Not we've got the user existing, without roomId, and requested roomId exists
+//        user.setRoomId(roomId);
+//        this.userService.fetchUser(user);
+//        return this.roomMapper.roomToRoomDTO(roomId);
+        return null;
     }
 
     @Transactional
     @Override
     public void leaveRoom(UserData userData) {
-        User user = this.userService.getUser(userData);
-        if (!user.hasRoom())
-            throw new UserRoomNotFoundException();
-        user.setRoom(null);
-        this.userService.fetchUser(user);
+//        User user = this.userService.getUser(userData);
+//        if (!user.hasTeam())
+//            throw new UserRoomNotFoundException();
+//        user.setRoomId(null);
+//        this.userService.fetchUser(user);
     }
 
     @Override
     public FullRoomDTO getRoom(UserData userData) {
-        User user = this.userService.getUser(userData);
-        if (!user.hasRoom())
-            throw new RoomNotFoundException();
-        return this.roomMapper.roomToFullRoomDTO(user.getRoom());
+//        User user = this.userService.getUser(userData);
+//        if (!user.hasTeam())
+//            throw new RoomNotFoundException();
+//        return this.roomMapper.roomToFullRoomDTO(user.getRoomId());
+        return null;
     }
 
     @Override
     public Room getHostRoom(UserData userData) {
-        User user = this.userService.getUser(userData);
-        if (!user.hasRoom())
-            throw new RoomNotFoundException();
-        if (user.getRoom().getHostId() != userData.getId())
-            throw new UserRoomNotFoundException("User is not a host!");
-        return user.getRoom();
+//        User user = this.userService.getUser(userData);
+//        if (!user.hasTeam())
+//            throw new RoomNotFoundException();
+//        if (user.getRoomId().getHostId() != userData.getId())
+//            throw new UserRoomNotFoundException("User is not a host!");
+//        return user.getRoomId();
+        return null;
     }
 }

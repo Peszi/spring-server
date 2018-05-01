@@ -30,7 +30,7 @@ public class RoomServiceImpl implements RoomService {
         Room room = new Room();
         room.setHost(user);
         room.setIsStarted(false);
-        room.addUser(user);
+//        roomId.addUser(user); TODO
         this.roomRepository.save(room);
         return room;
     }

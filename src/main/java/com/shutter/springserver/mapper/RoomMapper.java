@@ -16,6 +16,6 @@ public interface RoomMapper {
     RoomDTO roomToRoomDTO(Room room);
 
     @Mapping(source = "isStarted", target = "started")
-    @Mapping(source = "users", target = "usersList")
+//    @Mapping(source = "users", target = "usersList") TODO
     FullRoomDTO roomToFullRoomDTO(Room room);
 }

@@ -3,7 +3,9 @@ package com.shutter.springserver.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -25,21 +27,19 @@ public class Room {
 //    @CreationTimestamp
 //    private Date createdAt;
 
-    @OneToMany(mappedBy = "room", cascade = CascadeType.MERGE)
-    private Set<User> users = new HashSet<>();
+    @OneToMany(mappedBy = "roomId", cascade = CascadeType.MERGE)
+    private List<Team> teams = new ArrayList<>();
 
-    public void addUser(User user) {
-        this.users.add(user);
-        user.setRoom(this);;
+    public void addUser(User user, int teamId) {
+        this.teams.get(teamId).addUser(user);
     }
 
-    public void removeUser(User user) {
-        user.setRoom(null);
-        this.users.remove(user);
+    public void removeUser(User user, int teamId) {
+        this.teams.get(teamId).removeUser(user);
     }
 
     public int getUsersCount() {
-        return this.users.size();
+        return this.teams.size();
     }
 
     public long getHostId() {

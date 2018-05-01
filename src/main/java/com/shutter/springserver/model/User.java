@@ -29,17 +29,16 @@ public class User {
     private boolean deleted;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "room_id")
-    private Room room;
+//    @JoinColumn(name = "team_id")
+    @JoinColumns({@JoinColumn(name = "team_id", referencedColumnName = "id"), @JoinColumn(name = "roomId", referencedColumnName = "roomId")})
+    private Team team;
 
-    public boolean hasRoom() {
-        return (this.room != null) ? true : false;
+    public boolean hasTeam() {
+        return (this.team != null) ? true : false;
     }
 
     @Override

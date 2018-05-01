@@ -28,7 +28,7 @@ public class UserRoomRestController {
     @DeleteMapping
     public ResponseEntity<String> leaveRoom(@AuthenticationPrincipal UserData userData) { // TODO check game status
         this.userRoomService.leaveRoom(userData);
-        return ResponseEntity.ok("User left the room!");
+        return ResponseEntity.ok("User left the roomId!");
     }
 
     @GetMapping
