@@ -1,36 +1,53 @@
 package com.shutter.springserver.restcontroller;
 
+import com.shutter.springserver.dto.FullRoomDTO;
 import com.shutter.springserver.dto.RoomDTO;
-import com.shutter.springserver.dto.RoomsListDTO;
 import com.shutter.springserver.data.UserData;
-import com.shutter.springserver.service.ManageRoomService;
+import com.shutter.springserver.dto.RoomsListDTO;
+import com.shutter.springserver.service.room.UserRoomService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/rooms")
+@RequestMapping("/api")
 public class RoomRestController {
 
-    private ManageRoomService manageRoomService;
+    private UserRoomService userRoomService;
 
-    public RoomRestController(ManageRoomService manageRoomService) {
-        this.manageRoomService = manageRoomService;
+    public RoomRestController(UserRoomService userRoomService) {
+        this.userRoomService = userRoomService;
     }
 
-    @PostMapping
+    @PostMapping("/room")
     public ResponseEntity<RoomDTO> createRoom(@AuthenticationPrincipal UserData userData) {
-        return ResponseEntity.ok(this.manageRoomService.createRoom(userData));
+        return ResponseEntity.ok(this.userRoomService.createRoom(userData));
     }
 
-    @DeleteMapping
-    public ResponseEntity<?> deleteRoom(@AuthenticationPrincipal UserData userData) {
-        this.manageRoomService.deleteRoom(userData);
-        return ResponseEntity.ok("Room successfully deleted!");
+    @PostMapping("/room/team/{teamId}")
+    public ResponseEntity<String> changeTeam(@AuthenticationPrincipal UserData userData, @PathVariable long teamId) {
+        this.userRoomService.changeTeam(userData, teamId);
+        return ResponseEntity.ok("User succesfully changed the room!");
     }
 
-    @GetMapping
+    @GetMapping("/room")
+    public ResponseEntity<FullRoomDTO> getUserRoom(@AuthenticationPrincipal UserData userData) {
+        return ResponseEntity.ok(this.userRoomService.getRoom(userData));
+    }
+
+    @GetMapping("/rooms")
     public ResponseEntity<RoomsListDTO> getAllRooms(@AuthenticationPrincipal UserData userData) {
-        return ResponseEntity.ok(this.manageRoomService.getAllRooms(userData));
+        return ResponseEntity.ok(this.userRoomService.getAllRooms(userData));
+    }
+
+    @PostMapping("/rooms/{roomId}")
+    public ResponseEntity<RoomDTO> joinRoom(@PathVariable("roomId") long roomId, @AuthenticationPrincipal UserData userData) { // TODO check game status
+        return ResponseEntity.ok(this.userRoomService.joinRoom(userData, roomId));
+    }
+
+    @DeleteMapping("/rooms")
+    public ResponseEntity<String> leaveRoom(@AuthenticationPrincipal UserData userData) { // TODO check game status
+        this.userRoomService.leaveRoom(userData);
+        return ResponseEntity.ok("User left the roomId!");
     }
 }

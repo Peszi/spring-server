@@ -1,7 +1,7 @@
-package com.shutter.springserver.restcontroller;
+package com.shutter.springserver.restcontroller.util;
 
 import com.shutter.springserver.dto.BasicUserDTO;
-import com.shutter.springserver.service.ManageUserService;
+import com.shutter.springserver.service.user.ManageUserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

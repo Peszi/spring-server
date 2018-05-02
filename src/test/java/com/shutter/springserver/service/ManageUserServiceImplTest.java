@@ -2,14 +2,16 @@ package com.shutter.springserver.service;
 
 import com.shutter.springserver.dto.UserDTO;
 import com.shutter.springserver.data.UserData;
-import com.shutter.springserver.exception.UserAlreadyExistsException;
+import com.shutter.springserver.exception.AlreadyExistsException;
+import com.shutter.springserver.exception.NotFoundException;
 import com.shutter.springserver.exception.ServerFailureException;
-import com.shutter.springserver.exception.UserNotFoundException;
 import com.shutter.springserver.mapper.UserMapper;
 import com.shutter.springserver.model.Role;
 import com.shutter.springserver.model.User;
 import com.shutter.springserver.repository.RoleRepository;
 import com.shutter.springserver.repository.UserRepository;
+import com.shutter.springserver.service.user.ManageUserService;
+import com.shutter.springserver.service.user.ManageUserServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -59,7 +61,7 @@ public class ManageUserServiceImplTest {
         verify(userRepository, times(1)).save(any(User.class));
     }
 
-    @Test(expected = UserAlreadyExistsException.class)
+    @Test(expected = AlreadyExistsException.class)
     public void registerUserExceptionAEE() {
         // Given
         UserDTO userDTO = new UserDTO("name", "name@email.com", "123456");
@@ -72,7 +74,7 @@ public class ManageUserServiceImplTest {
         verify(userRepository, never()).save(any(User.class));
     }
 
-    @Test(expected = UserAlreadyExistsException.class)
+    @Test(expected = AlreadyExistsException.class)
     public void registerUserExceptionAEU() {
         // Given
         UserDTO userDTO = new UserDTO("name", "name@email.com", "123456");
@@ -109,7 +111,7 @@ public class ManageUserServiceImplTest {
         verify(userRepository, times(1)).delete(any(User.class));
     }
 
-    @Test(expected = UserNotFoundException.class)
+    @Test(expected = NotFoundException.class)
     public void deleteUserExceptionNotExists() {
         // Given
         UserData userData = new UserData(1L, "name","name@email.com", "", true, new ArrayList<>());

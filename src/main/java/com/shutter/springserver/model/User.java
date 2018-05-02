@@ -16,10 +16,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique=true)
+    @Column(unique = true)
     private String name;
 
-    @Column(unique=true)
+    @Column(unique = true)
     private String email;
 
     private String password;
@@ -33,13 +33,21 @@ public class User {
     private Collection<Role> roles = new ArrayList<>();
 
     @ManyToOne
-//    @JoinColumn(name = "team_id")
-    @JoinColumns({@JoinColumn(name = "team_id", referencedColumnName = "id"), @JoinColumn(name = "roomId", referencedColumnName = "roomId")})
+    @JoinColumn(name = "team_id")
+//    @JoinColumns({@JoinColumn(name = "team_alias", referencedColumnName = "alias"), @JoinColumn(name = "roomId", referencedColumnName = "roomId")})
     private Team team;
 
     public boolean hasTeam() {
         return (this.team != null) ? true : false;
     }
+
+//    public void addTeam(Team team) {
+//        team.addUser(this);
+//    }
+//
+//    public void removeTeam(Team team) {
+//        team.addUser(this);
+//    }
 
     @Override
     public boolean equals(Object o) {

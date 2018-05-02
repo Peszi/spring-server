@@ -6,6 +6,6 @@ import java.io.Serializable;
 
 @Data
 public class TeamPK implements Serializable {
-    Integer id;
+    String alias;
     Long roomId;
 }

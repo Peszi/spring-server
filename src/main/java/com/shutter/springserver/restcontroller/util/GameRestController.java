@@ -1,11 +1,10 @@
-package com.shutter.springserver.restcontroller;
+package com.shutter.springserver.restcontroller.util;
 
 import com.shutter.springserver.data.UserGameData;
 import com.shutter.springserver.dto.GameDTO;
 import com.shutter.springserver.dto.RoomDTO;
 import com.shutter.springserver.data.UserData;
-import com.shutter.springserver.service.ManageGameService;
-import com.shutter.springserver.service.ManageGameServiceImpl;
+import com.shutter.springserver.service.game.ManageGameService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;

@@ -1,9 +1,9 @@
-package com.shutter.springserver.service;
+package com.shutter.springserver.service.game;
 
 import com.shutter.springserver.data.UserData;
 import com.shutter.springserver.data.UserGameData;
 import com.shutter.springserver.dto.GameDTO;
-import com.shutter.springserver.model.Room;
+import com.shutter.springserver.service.room.UserRoomService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,8 +19,8 @@ public class ManageGameServiceImpl implements ManageGameService {
 
     @Override
     public void startGame(UserData userData) {
-        final Room room = this.userRoomService.getHostRoom(userData);
-        this.gameService.addGame(room);
+//        final RoomService room = this.userRoomService.getHostRoom(userData);
+//        this.gameService.addGame(room);
     }
 
     @Override
@@ -33,4 +33,14 @@ public class ManageGameServiceImpl implements ManageGameService {
         return this.gameService.getGameData(userId, userGameData);
     }
 
+
+//    @Override
+//    public RoomService getHostRoom(UserData userData) {
+//        User user = this.userService.getUser(userData);
+//        if (!user.hasTeam() || !user.getTeam().hasRoom())
+//            throw new NotFoundException("RoomService");
+//        if (user.getTeam().validateAndGetByHost().getHostId() != userData.getId())
+//            throw new BadRequestException("User is not a host!");
+//        return user.getTeam().validateAndGetByHost();
+//    }
 }

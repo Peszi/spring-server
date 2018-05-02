@@ -1,12 +1,11 @@
-package com.shutter.springserver.service;
+package com.shutter.springserver.service.user;
 
 import com.shutter.springserver.data.UserData;
-import com.shutter.springserver.exception.UserNotFoundException;
+import com.shutter.springserver.exception.NotFoundException;
 import com.shutter.springserver.model.User;
 import com.shutter.springserver.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
 @Service
@@ -27,7 +26,7 @@ public class UserServiceImpl implements UserService {
     public User getUser(UserData userData) {
         Optional<User> user = this.userRepository.findById(userData.getId());
         if (!user.isPresent())
-            throw new UserNotFoundException(userData.getUsername());
+            throw new NotFoundException("User " + userData.getUsername());
         return user.get();
     }
 }

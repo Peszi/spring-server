@@ -1,8 +1,7 @@
-package com.shutter.springserver.service;
+package com.shutter.springserver.service.game;
 
 import com.shutter.springserver.data.UserGameData;
 import com.shutter.springserver.dto.GameDTO;
-import com.shutter.springserver.service.GameServer;
 
 public class GameServerImpl implements GameServer {
 

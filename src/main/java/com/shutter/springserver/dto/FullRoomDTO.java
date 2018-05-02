@@ -4,18 +4,17 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
-@NoArgsConstructor
-@EqualsAndHashCode
 public class FullRoomDTO {
 
     private long id;
     private long hostId;
     private boolean isStarted;
-    private int usersCount;
+    private int teamsCount;
 
-//    private Set<BasicUserDTO> usersList;
+    private List<TeamDTO> teamsList;
 
 }

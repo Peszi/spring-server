@@ -9,32 +9,35 @@ import java.util.Set;
 
 @Data
 @Entity
-@IdClass(TeamPK.class)
-@Table(name = "teams")
+//@IdClass(TeamPK.class)
+@Table(name = "teams", uniqueConstraints={
+        @UniqueConstraint(columnNames = {"room_id", "alias"})
+})
 public class Team {
 
     @Id
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @ManyToOne
-    @Id
-    @JoinColumn(name="roomId")
-    private Room roomId;
+//    @Id
+    @JoinColumn(name="room_id")
+    private Room room;
+
+//    @Id
+    @Column(length = 32)
+    private String alias;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.MERGE)
     private Set<User> users = new HashSet<>();
 
-    @Column(length = 32)
-    private String alias;
-
     public boolean hasRoom() {
-//        return (this.roomId != null) ? true : false;
-        return false;
+        return (this.room != null) ? true : false;
     }
 
     public void addUser(User user) {
         this.users.add(user);
-        user.setTeam(this);;
+        user.setTeam(this);
     }
 
     public void removeUser(User user) {
@@ -42,4 +45,16 @@ public class Team {
         this.users.remove(user);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Team team = (Team) o;
+        return id != null ? id.equals(team.id) : team.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
 }

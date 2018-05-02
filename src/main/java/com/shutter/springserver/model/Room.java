@@ -1,12 +1,11 @@
 package com.shutter.springserver.model;
 
+import com.shutter.springserver.data.GameType;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @Entity
@@ -23,22 +22,28 @@ public class Room {
 
     private Boolean isStarted;
 
+    @Enumerated(EnumType.ORDINAL)
+    private GameType gameType;
+
 //    @Column(nullable = false, updatable = false)
 //    @CreationTimestamp
 //    private Date createdAt;
 
-    @OneToMany(mappedBy = "roomId", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
+    @OrderBy("id ASC")
     private List<Team> teams = new ArrayList<>();
 
-    public void addUser(User user, int teamId) {
-        this.teams.get(teamId).addUser(user);
+    public void addTeam(Team team) {
+        this.teams.add(team);
+        team.setRoom(this);
     }
 
-    public void removeUser(User user, int teamId) {
-        this.teams.get(teamId).removeUser(user);
+    public void removeTeam(Team team) {
+        team.setRoom(null);
+        this.teams.remove(team);
     }
 
-    public int getUsersCount() {
+    public int getTeamsCount() {
         return this.teams.size();
     }
 

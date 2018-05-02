@@ -1,11 +1,11 @@
-package com.shutter.springserver.service;
+package com.shutter.springserver.service.user;
 
 import com.shutter.springserver.dto.BasicUserDTO;
 import com.shutter.springserver.dto.UserDTO;
 import com.shutter.springserver.data.UserData;
-import com.shutter.springserver.exception.UserAlreadyExistsException;
+import com.shutter.springserver.exception.BadRequestException;
+import com.shutter.springserver.exception.NotFoundException;
 import com.shutter.springserver.exception.ServerFailureException;
-import com.shutter.springserver.exception.UserNotFoundException;
 import com.shutter.springserver.mapper.UserMapper;
 import com.shutter.springserver.model.Role;
 import com.shutter.springserver.model.User;
@@ -40,9 +40,9 @@ public class ManageUserServiceImpl implements ManageUserService {
     @Override
     public void registerUser(UserDTO userData) {
         if (this.userRepository.findByEmail(userData.getEmail()).isPresent())
-            throw new UserAlreadyExistsException(userData.getEmail());
+            throw new BadRequestException(userData.getEmail() + " already registered!");
         if (this.userRepository.findByName(userData.getNickname()).isPresent())
-            throw new UserAlreadyExistsException(userData.getNickname());
+            throw new BadRequestException(userData.getNickname()+ " already registered!");
         Optional<Role> defaultRole = this.roleRepository.findById(1L);
         if (!defaultRole.isPresent())
             throw new ServerFailureException("no default user role found!");
@@ -60,7 +60,7 @@ public class ManageUserServiceImpl implements ManageUserService {
     public void deleteUser(UserData userData) {
         Optional<User> user = this.userRepository.findById(userData.getId());
         if (!user.isPresent())
-            throw new UserNotFoundException(userData.getUsername());
+            throw new NotFoundException(userData.getUsername());
         this.userRepository.delete(user.get());
     }
 

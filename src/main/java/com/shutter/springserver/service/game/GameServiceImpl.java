@@ -1,10 +1,9 @@
-package com.shutter.springserver.service;
+package com.shutter.springserver.service.game;
 
-import com.shutter.springserver.data.UserData;
 import com.shutter.springserver.data.UserGameData;
 import com.shutter.springserver.dto.GameDTO;
+import com.shutter.springserver.exception.NotFoundException;
 import com.shutter.springserver.exception.ServerFailureException;
-import com.shutter.springserver.exception.UserGameNotFoundException;
 import com.shutter.springserver.model.Room;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -39,7 +38,7 @@ public class GameServiceImpl implements GameService {
     public GameDTO getGameData(long userId, UserGameData userData) {
         Long gameId = this.usersList.get(userId);
         if (gameId == null)
-            throw new UserGameNotFoundException();
+            throw new NotFoundException("Game");
         GameServer gameServer = this.gamesList.get(gameId);
         if (gameServer == null)
             throw new ServerFailureException("user game is null :(");

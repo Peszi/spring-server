@@ -1,4 +1,4 @@
-package com.shutter.springserver.service;
+package com.shutter.springserver.service.user;
 
 import com.shutter.springserver.dto.BasicUserDTO;
 import com.shutter.springserver.dto.UserDTO;

@@ -19,4 +19,4 @@ spring:
               create-target: database_create.sql
 security:
   oauth2:
-    tokenValidity: 7200
+    tokenValidity: 720000

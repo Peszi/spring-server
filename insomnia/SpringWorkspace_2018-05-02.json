@@ -1,0 +1,512 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2018-05-02T14:01:26.768Z",
+	"__export_source": "insomnia.desktop.app:v5.16.1",
+	"resources": [
+		{
+			"_id": "wrk_28c1bb24ebbe4ff3b2743ccc8d35fc23",
+			"created": 1523440229297,
+			"description": "",
+			"modified": 1523440229297,
+			"name": "SpringWorkspace",
+			"parentId": null,
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_a5283fb0af63441a8775a82a0ecfe065",
+			"color": null,
+			"created": 1523440229472,
+			"data": {},
+			"isPrivate": false,
+			"modified": 1523440229472,
+			"name": "New Environment",
+			"parentId": "wrk_28c1bb24ebbe4ff3b2743ccc8d35fc23",
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_78fb5629438d4efcb05c40ad62a40878",
+			"cookies": [
+				{
+					"creation": "2018-04-11T09:51:21.771Z",
+					"domain": "localhost",
+					"hostOnly": true,
+					"httpOnly": true,
+					"id": "8374401148618533",
+					"key": "JSESSIONID",
+					"lastAccessed": "2018-04-11T09:54:24.862Z",
+					"path": "/",
+					"value": "D26C187020FDC1A727B9EB43938C84D5"
+				}
+			],
+			"created": 1523440229479,
+			"modified": 1523440464863,
+			"name": "Default Jar",
+			"parentId": "wrk_28c1bb24ebbe4ff3b2743ccc8d35fc23",
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "fld_86ea9ee6944f4eb3a6bf5776d46efded",
+			"created": 1523607812609,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1523607812610,
+			"modified": 1523607812609,
+			"name": "Manage",
+			"parentId": "wrk_28c1bb24ebbe4ff3b2743ccc8d35fc23",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_ebae8c1ecbe34797aa78bc15f323760a",
+			"created": 1523619012506,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1523619012506,
+			"modified": 1524822357046,
+			"name": "UserRoom",
+			"parentId": "wrk_28c1bb24ebbe4ff3b2743ccc8d35fc23",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_af31407abcee47b28537f5f8801908d1",
+			"created": 1525246763699,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1524567995097,
+			"modified": 1525246768925,
+			"name": "HostRoom",
+			"parentId": "wrk_28c1bb24ebbe4ff3b2743ccc8d35fc23",
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_147d6a9e1bf74b219e5e6b690b8a7a4b",
+			"authentication": {},
+			"body": {},
+			"created": 1523607804114,
+			"description": "",
+			"headers": [
+				{
+					"disabled": true,
+					"id": "pair_4edc40c7e1b5405bafa303e52b56bd55",
+					"name": "Accept-Language",
+					"value": "pl-PL"
+				},
+				{
+					"disabled": true,
+					"id": "pair_e9ebb411af394a4fb98f2cedb331035f",
+					"name": "Accept-Language",
+					"value": "en-US"
+				},
+				{
+					"disabled": true,
+					"id": "pair_46cc2e2ac06545979ca6a80e74fbb896",
+					"name": "Accept-Language",
+					"value": "dasdas"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1523565924994,
+			"method": "POST",
+			"modified": 1524837818187,
+			"name": "Register",
+			"parameters": [
+				{
+					"id": "pair_2ff42a75eab54ceb812301dea252e617",
+					"name": "email",
+					"value": "admin@email.com"
+				},
+				{
+					"id": "pair_9d3ca52c11b1400780b41688a65b6a69",
+					"name": "nickname",
+					"value": "Admin"
+				},
+				{
+					"disabled": false,
+					"id": "pair_5f2fe932566d48a2a05285e5be32f623",
+					"name": "password",
+					"value": "123456"
+				}
+			],
+			"parentId": "fld_86ea9ee6944f4eb3a6bf5776d46efded",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/register",
+			"_type": "request"
+		},
+		{
+			"_id": "req_6be55e68d5494d3a91d2d585e659dd3c",
+			"authentication": {},
+			"body": {},
+			"created": 1523607840620,
+			"description": "",
+			"headers": [
+				{
+					"disabled": false,
+					"id": "pair_4edc40c7e1b5405bafa303e52b56bd55",
+					"name": "Authorization",
+					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1523565924919,
+			"method": "DELETE",
+			"modified": 1525255414716,
+			"name": "Delete",
+			"parameters": [],
+			"parentId": "fld_86ea9ee6944f4eb3a6bf5776d46efded",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/delete",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b1ee9188e46b4685b2c83837cc220c56",
+			"authentication": {},
+			"body": {},
+			"created": 1524568002823,
+			"description": "",
+			"headers": [
+				{
+					"disabled": false,
+					"id": "pair_486797da1b53447c9024cd2d62a8f24e",
+					"name": "Authorization",
+					"value": "Basic bW9iaWxlQ2xpZW50SWQ6bW9iaWxlU2VjcmV0"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1523589803158,
+			"method": "POST",
+			"modified": 1525242369255,
+			"name": "Login",
+			"parameters": [
+				{
+					"id": "pair_eee6ef1bfce34004ac5636a6839f3bc7",
+					"name": "grant_type",
+					"value": "password"
+				},
+				{
+					"id": "pair_65e67d13f07448b081c2f142384bad14",
+					"name": "username",
+					"value": "admin@email.com"
+				},
+				{
+					"id": "pair_c95745f0adcf4c41a9676dbe8832e329",
+					"name": "password",
+					"value": "123456"
+				}
+			],
+			"parentId": "fld_86ea9ee6944f4eb3a6bf5776d46efded",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/oauth/token",
+			"_type": "request"
+		},
+		{
+			"_id": "req_34d122840c5e4c77bcaa3e34ca02b488",
+			"authentication": {},
+			"body": {},
+			"created": 1523619005922,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9211c8b6b74841bea14c044ba9aec03f",
+					"name": "Authorization",
+					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1523619009364,
+			"method": "POST",
+			"modified": 1525260934827,
+			"name": "CreateRoom",
+			"parameters": [],
+			"parentId": "fld_ebae8c1ecbe34797aa78bc15f323760a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/room",
+			"_type": "request"
+		},
+		{
+			"_id": "req_735b2144d3a3406a821c263ec4742df1",
+			"authentication": {},
+			"body": {},
+			"created": 1523622057877,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_441210e6fb0f4762a25ff1dfdb24aac9",
+					"name": "Authorization",
+					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1523619009314,
+			"method": "GET",
+			"modified": 1525260880740,
+			"name": "GetRoom",
+			"parameters": [],
+			"parentId": "fld_ebae8c1ecbe34797aa78bc15f323760a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/room",
+			"_type": "request"
+		},
+		{
+			"_id": "req_874493e2f7714eb9b37569f0c657932f",
+			"authentication": {},
+			"body": {},
+			"created": 1523623251340,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_ecb7de193c234da1a0b06e9d6a1f6294",
+					"name": "Authorization",
+					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1523619009189,
+			"method": "GET",
+			"modified": 1525255679864,
+			"name": "GetAllRooms",
+			"parameters": [],
+			"parentId": "fld_ebae8c1ecbe34797aa78bc15f323760a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/rooms",
+			"_type": "request"
+		},
+		{
+			"_id": "req_af4b459701644f82b65b208befbe25c7",
+			"authentication": {},
+			"body": {},
+			"created": 1523860814457,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_801c691c1bad404097e64cefbd067f4a",
+					"name": "Authorization",
+					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1523619009264,
+			"method": "POST",
+			"modified": 1525260897018,
+			"name": "JoinRoom",
+			"parameters": [
+				{
+					"id": "pair_2a95022e72104d1f8311909b0f1fcc14",
+					"name": "roomId",
+					"value": "1"
+				}
+			],
+			"parentId": "fld_ebae8c1ecbe34797aa78bc15f323760a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/rooms/7",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b46f25b06cac40b5b91a798ff85a7368",
+			"authentication": {},
+			"body": {},
+			"created": 1524824247434,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_801c691c1bad404097e64cefbd067f4a",
+					"name": "Authorization",
+					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1523619009239,
+			"method": "DELETE",
+			"modified": 1525260901461,
+			"name": "LeaveRoom",
+			"parameters": [
+				{
+					"id": "pair_2a95022e72104d1f8311909b0f1fcc14",
+					"name": "roomId",
+					"value": "1"
+				}
+			],
+			"parentId": "fld_ebae8c1ecbe34797aa78bc15f323760a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/rooms",
+			"_type": "request"
+		},
+		{
+			"_id": "req_dff59e21cc0d4a2fa3027e632de1aac0",
+			"authentication": {},
+			"body": {},
+			"created": 1525265787094,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9211c8b6b74841bea14c044ba9aec03f",
+					"name": "Authorization",
+					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1523619009339,
+			"method": "POST",
+			"modified": 1525268146416,
+			"name": "ChangeTeam",
+			"parameters": [],
+			"parentId": "fld_ebae8c1ecbe34797aa78bc15f323760a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/room/team/15",
+			"_type": "request"
+		},
+		{
+			"_id": "req_53b0e51c36e34709a4e679f34dc1b505",
+			"authentication": {},
+			"body": {},
+			"created": 1523619981848,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_c43e535d0d974e3690d10e37e1ce0322",
+					"name": "Authorization",
+					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1524567995034.5,
+			"method": "DELETE",
+			"modified": 1525255863740,
+			"name": "FinishGame",
+			"parameters": [
+				{
+					"id": "pair_543bf8ce54f2441c95dcc7ade46b246e",
+					"name": "key",
+					"value": "46497aa546a328012d180cba6ffd4c3a50e004d5167a20ae1cd64d6948c72865"
+				}
+			],
+			"parentId": "fld_af31407abcee47b28537f5f8801908d1",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/room/host/game",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b8daadeac2514d2290ca7563abb27e41",
+			"authentication": {},
+			"body": {},
+			"created": 1525097222711,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_ecb7de193c234da1a0b06e9d6a1f6294",
+					"name": "Authorization",
+					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1524567995084.5,
+			"method": "POST",
+			"modified": 1525261306239,
+			"name": "StartGame",
+			"parameters": [],
+			"parentId": "fld_af31407abcee47b28537f5f8801908d1",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/room/host/game",
+			"_type": "request"
+		},
+		{
+			"_id": "req_9670d17015374b48967f111e9aab113d",
+			"authentication": {},
+			"body": {},
+			"created": 1525251148245,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9211c8b6b74841bea14c044ba9aec03f",
+					"name": "Authorization",
+					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1524567995134.5,
+			"method": "POST",
+			"modified": 1525268813391,
+			"name": "AddTeam",
+			"parameters": [],
+			"parentId": "fld_af31407abcee47b28537f5f8801908d1",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/room/host/team/Beta6",
+			"_type": "request"
+		},
+		{
+			"_id": "req_048d4a756c814d3a91d370aa3cab225a",
+			"authentication": {},
+			"body": {},
+			"created": 1525251474679,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9211c8b6b74841bea14c044ba9aec03f",
+					"name": "Authorization",
+					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1524567995109.5,
+			"method": "DELETE",
+			"modified": 1525269107281,
+			"name": "RemoveTeam",
+			"parameters": [],
+			"parentId": "fld_af31407abcee47b28537f5f8801908d1",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/room/host/team/24",
+			"_type": "request"
+		}
+	]
+}

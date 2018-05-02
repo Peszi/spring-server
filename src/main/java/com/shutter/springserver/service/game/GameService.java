@@ -1,4 +1,4 @@
-package com.shutter.springserver.service;
+package com.shutter.springserver.service.game;
 
 import com.shutter.springserver.data.UserData;
 import com.shutter.springserver.data.UserGameData;
