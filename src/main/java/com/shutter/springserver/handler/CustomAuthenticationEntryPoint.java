@@ -7,7 +7,7 @@ package com.shutter.springserver.handler;
 //    @Override
 //    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
 //        System.err.println("commence" + request.getRemoteAddr() + authException.getMessage());
-//        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//        response.setDied(HttpServletResponse.SC_UNAUTHORIZED);
 //        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 //        response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
 //        try {

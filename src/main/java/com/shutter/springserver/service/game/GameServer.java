@@ -1,10 +1,11 @@
 package com.shutter.springserver.service.game;
 
 import com.shutter.springserver.data.UserGameData;
-import com.shutter.springserver.dto.GameDTO;
+import com.shutter.springserver.data.game.GameData;
+import com.shutter.springserver.model.Room;
 
 public interface GameServer {
-    void updateGame();
-    void updateUser(UserGameData userGameData);
-    GameDTO getUserData();
+    void setup(Room room);
+    void updateGame(float deltaTime);
+    GameData updateUser(long userId, UserGameData userGameData);
 }

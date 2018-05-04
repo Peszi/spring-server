@@ -1,10 +1,17 @@
 package com.shutter.springserver.restcontroller;
 
+import com.shutter.springserver.data.GameType;
 import com.shutter.springserver.data.UserData;
+import com.shutter.springserver.dto.ZoneControlDTO;
+import com.shutter.springserver.dto.ZoneDTO;
+import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.service.room.HostRoomService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/room/host/")
@@ -34,15 +41,26 @@ public class HostRestController {
         return ResponseEntity.ok("Team successfully removed!");
     }
 
-    @PostMapping("/game")
-    public ResponseEntity<String> startGame(@AuthenticationPrincipal UserData userData) {
-        this.hostService.startGame(userData);
-        return ResponseEntity.ok("Team successfully created!");
+    @PostMapping("/mode/{gameMode}")
+    public ResponseEntity<String> changeMode(@AuthenticationPrincipal UserData userData, @PathVariable int gameMode) {
+        GameType gameType = GameType.fromInteger(gameMode);
+        this.hostService.changeGameMode(userData, gameType);
+        return ResponseEntity.ok("Game mode changed to " + gameType.name() + "!");
     }
 
-    @DeleteMapping("/game")
-    public ResponseEntity<String> finishGame(@AuthenticationPrincipal UserData userData) { // TODO
-        this.hostService.finishGame(userData);
-        return ResponseEntity.ok("Team successfully removed!");
+    @PostMapping("/zone")
+    public ResponseEntity<String> changeLocation(@AuthenticationPrincipal UserData userData, @Valid @ModelAttribute ZoneDTO mainZone, BindingResult result) {
+        if (result.hasErrors())
+            throw new BadRequestException(result.getFieldError().getField() + " " + result.getFieldError().getDefaultMessage());
+        this.hostService.changeGameLocation(userData, mainZone);
+        return ResponseEntity.ok("Game location changed!");
+    }
+
+    @PostMapping("/zoneControl")
+    public ResponseEntity<String> changeZoneControlPrefs(@AuthenticationPrincipal UserData userData, @Valid @ModelAttribute ZoneControlDTO zoneControlData, BindingResult result) {
+        if (result.hasErrors())
+            throw new BadRequestException(result.getFieldError().getField() + " " + result.getFieldError().getDefaultMessage());
+        this.hostService.changeZoneControlData(userData, zoneControlData);
+        return ResponseEntity.ok("Game prefs changed!");
     }
 }

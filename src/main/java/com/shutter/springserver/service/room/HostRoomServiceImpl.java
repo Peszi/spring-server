@@ -1,32 +1,32 @@
 package com.shutter.springserver.service.room;
 
+import com.shutter.springserver.data.GameType;
 import com.shutter.springserver.data.UserData;
+import com.shutter.springserver.dto.ZoneControlDTO;
+import com.shutter.springserver.dto.ZoneDTO;
 import com.shutter.springserver.exception.AlreadyExistsException;
 import com.shutter.springserver.exception.BadRequestException;
-import com.shutter.springserver.exception.NotFoundException;
 import com.shutter.springserver.model.Room;
 import com.shutter.springserver.model.Team;
 import com.shutter.springserver.model.User;
-import com.shutter.springserver.repository.TeamRepository;
+import com.shutter.springserver.service.TeamService;
 import com.shutter.springserver.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Slf4j
 @Service
 public class HostRoomServiceImpl implements HostRoomService {
 
     private UserService userService;
+    private TeamService teamService;
     private RoomService roomService;
-    private TeamRepository teamRepository;
 
-    public HostRoomServiceImpl(UserService userService, RoomService roomService, TeamRepository teamRepository) {
+    public HostRoomServiceImpl(UserService userService, TeamService teamService, RoomService roomService) {
         this.userService = userService;
+        this.teamService = teamService;
         this.roomService = roomService;
-        this.teamRepository = teamRepository;
     }
 
     @Override
@@ -39,8 +39,9 @@ public class HostRoomServiceImpl implements HostRoomService {
     @Transactional
     @Override
     public void addTeam(UserData userData, String alias) {
-        final User user = this.userService.getUser(userData);
+        final User user = this.userService.validateAndGetUser(userData);
         final Room room = this.roomService.validateAndGetByHost(user);
+        this.roomService.validateNotInGame(room);
         if (room.getTeams().stream().anyMatch(team -> team.getAlias().equalsIgnoreCase(alias)))
             throw new AlreadyExistsException("Team '" + alias + "'");
         Team team = new Team();
@@ -52,29 +53,49 @@ public class HostRoomServiceImpl implements HostRoomService {
     @Transactional
     @Override
     public void removeTeam(UserData userData, long teamId) {
-        Room room = this.roomService.validateAndGetByHost(this.userService.getUser(userData));
-        final Optional<Team> optTeam = this.teamRepository.findById(teamId);
-        if (!optTeam.isPresent() || !optTeam.get().hasRoom() || (room.getId() != optTeam.get().getRoom().getId()))
-            throw new NotFoundException("Team");
+        Room room = this.roomService.validateAndGetByHost(this.userService.validateAndGetUser(userData));
+        Team team = this.teamService.validateAndGetTeamById(teamId);
+        this.roomService.validateNotInGame(room);
+        if (room.getId() != team.getRoom().getId())
+            throw new BadRequestException("Incorrect team id!");
         if (room.getTeamsCount() <= 1)
             throw new BadRequestException("There need to be at least one team!");
-        if (optTeam.get().getUsers().size() > 0)
+        if (team.getUsers().size() > 0)
             throw new BadRequestException("This team is not empty!");
 //        this.teamRepository.delete(optTeam.get());
-        room.removeTeam(optTeam.get());
+        room.removeTeam(team);
+        this.roomService.save(room);
+    }
+
+    // Room
+
+    @Override
+    public void changeGameMode(UserData userData, GameType gameType) {
+        Room room = this.roomService.validateAndGetByHost(this.userService.validateAndGetUser(userData));
+        this.roomService.validateNotInGame(room);
+        room.setGameType(gameType);
         this.roomService.save(room);
     }
 
     @Override
-    public void startGame(UserData userData) {
-        // TODO implement
+    public void changeGameLocation(UserData userData, ZoneDTO mainZone) {
+        Room room = this.roomService.validateAndGetByHost(this.userService.validateAndGetUser(userData));
+        this.roomService.validateNotInGame(room);
+        room.getMainZone().setZoneData(mainZone);
+        this.roomService.save(room);
     }
 
-    @Transactional
+    // Battle Royal
+
+    // Zone Control
+
     @Override
-    public void finishGame(UserData userData) {
-        final Room room = this.roomService.validateAndGetByHost(this.userService.getUser(userData));
-        this.roomService.delete(room);
+    public void changeZoneControlData(UserData userData, ZoneControlDTO zoneControlData) {
+        Room room = this.roomService.validateAndGetByHost(this.userService.validateAndGetUser(userData));
+        this.roomService.validateNotInGame(room);
+        if (room.getGameType() != GameType.ZONE_CONTROL)
+            throw new BadRequestException("Wrong game mode " + room.getGameType().name() + "!");
+        room.getZoneControl().setData(zoneControlData);
+        this.roomService.save(room);
     }
-
 }

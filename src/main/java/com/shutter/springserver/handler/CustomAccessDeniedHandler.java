@@ -7,7 +7,7 @@ package com.shutter.springserver.handler;
 //    @Override
 //    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e) {
 //        System.err.println("HERE" + request.getRemoteAddr() + e.getMessage());
-//        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//        response.setDied(HttpServletResponse.SC_UNAUTHORIZED);
 //        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 //        response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
 //        try {

@@ -35,6 +35,10 @@ public class Team {
         return (this.room != null) ? true : false;
     }
 
+    public boolean hasUsers() {
+        return !this.users.isEmpty();
+    }
+
     public void addUser(User user) {
         this.users.add(user);
         user.setTeam(this);
@@ -43,6 +47,10 @@ public class Team {
     public void removeUser(User user) {
         user.setTeam(null);
         this.users.remove(user);
+    }
+
+    public int getUsersCount() {
+        return this.users.size();
     }
 
     @Override

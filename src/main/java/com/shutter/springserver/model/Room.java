@@ -16,20 +16,29 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(targetEntity = User.class)
-    @JoinColumn(name="host_id")
+    @OneToOne
+    @JoinColumn(name = "host_id")
     private User host;
 
+    @Column(name = "game_started")
     private Boolean isStarted;
 
     @Enumerated(EnumType.ORDINAL)
     private GameType gameType;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "zone_id")
+    private Zone mainZone;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "zone_control_id", referencedColumnName = "id")
+    private ModeZoneControl zoneControl;
+
 //    @Column(nullable = false, updatable = false)
 //    @CreationTimestamp
 //    private Date createdAt;
 
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("id ASC")
     private List<Team> teams = new ArrayList<>();
 
@@ -49,6 +58,12 @@ public class Room {
 
     public long getHostId() {
         return this.host.getId();
+    }
+
+    public Zone getMainZone() {
+        if (this.mainZone == null)
+            this.mainZone = new Zone();
+        return this.mainZone;
     }
 
     @Override

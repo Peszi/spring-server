@@ -41,12 +41,12 @@ public class RoomRestController {
     }
 
     @PostMapping("/rooms/{roomId}")
-    public ResponseEntity<RoomDTO> joinRoom(@PathVariable("roomId") long roomId, @AuthenticationPrincipal UserData userData) { // TODO check game status
+    public ResponseEntity<RoomDTO> joinRoom(@PathVariable("roomId") long roomId, @AuthenticationPrincipal UserData userData) { // TODO check game died
         return ResponseEntity.ok(this.userRoomService.joinRoom(userData, roomId));
     }
 
     @DeleteMapping("/rooms")
-    public ResponseEntity<String> leaveRoom(@AuthenticationPrincipal UserData userData) { // TODO check game status
+    public ResponseEntity<String> leaveRoom(@AuthenticationPrincipal UserData userData) { // TODO check game died
         this.userRoomService.leaveRoom(userData);
         return ResponseEntity.ok("User left the roomId!");
     }

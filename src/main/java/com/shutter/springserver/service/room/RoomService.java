@@ -9,8 +9,10 @@ import java.util.Optional;
 public interface RoomService {
     void save(Room room);
     void delete(Room room);
+    void validateNotInGame(Room room);
     Room validateAndGetByHost(User user);
     Room validateAndGetById(long roomId);
+    void removeEmptyTeams(Room room);
     Optional<Room> getRoom(User user);
     List<Room> getAllRooms();
 }
