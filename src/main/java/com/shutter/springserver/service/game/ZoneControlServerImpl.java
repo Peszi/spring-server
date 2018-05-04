@@ -35,6 +35,7 @@ public class ZoneControlServerImpl implements GameServer {
 
     @Override
     public void setup(Room room) {
+        this.gameStatus.setup(room);
         this.teamsData.clear();
         for (int i = 0; i < room.getTeams().size(); i++) {
             Team team = room.getTeams().get(i);

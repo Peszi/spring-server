@@ -1,5 +1,7 @@
 package com.shutter.springserver.data.status;
 
+import com.shutter.springserver.data.game.ZoneData;
+import com.shutter.springserver.model.Room;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,10 +11,16 @@ import lombok.Setter;
 public class GameStatus {
 
     private float gameTime;
-    private boolean inQueue;
+    private boolean inGame;
+
+    private ZoneData gameZone;
 
     public GameStatus() {
-        this.inQueue = true;
+        this.gameZone = new ZoneData();
+    }
+
+    public void setup(Room room) {
+        this.gameZone.setup(room.getMainZone());
     }
 
     public void updateTime(float deltaTime) {
