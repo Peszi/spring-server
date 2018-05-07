@@ -1,7 +1,7 @@
 {
 	"_type": "export",
 	"__export_format": 3,
-	"__export_date": "2018-05-02T14:01:26.768Z",
+	"__export_date": "2018-05-07T14:00:04.420Z",
 	"__export_source": "insomnia.desktop.app:v5.16.1",
 	"resources": [
 		{
@@ -79,6 +79,17 @@
 			"_type": "request_group"
 		},
 		{
+			"_id": "fld_4ef6e65dfe8247be84606b1a23a5a192",
+			"created": 1525416802183,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1525416802183,
+			"modified": 1525416802183,
+			"name": "Game",
+			"parentId": "wrk_28c1bb24ebbe4ff3b2743ccc8d35fc23",
+			"_type": "request_group"
+		},
+		{
 			"_id": "req_147d6a9e1bf74b219e5e6b690b8a7a4b",
 			"authentication": {},
 			"body": {},
@@ -107,18 +118,18 @@
 			"isPrivate": false,
 			"metaSortKey": -1523565924994,
 			"method": "POST",
-			"modified": 1524837818187,
+			"modified": 1525438896405,
 			"name": "Register",
 			"parameters": [
 				{
 					"id": "pair_2ff42a75eab54ceb812301dea252e617",
 					"name": "email",
-					"value": "admin@email.com"
+					"value": "john@email.com"
 				},
 				{
 					"id": "pair_9d3ca52c11b1400780b41688a65b6a69",
 					"name": "nickname",
-					"value": "Admin"
+					"value": "John"
 				},
 				{
 					"disabled": false,
@@ -182,7 +193,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1523589803158,
 			"method": "POST",
-			"modified": 1525242369255,
+			"modified": 1525692107801,
 			"name": "Login",
 			"parameters": [
 				{
@@ -193,7 +204,7 @@
 				{
 					"id": "pair_65e67d13f07448b081c2f142384bad14",
 					"name": "username",
-					"value": "admin@email.com"
+					"value": "john@email.com"
 				},
 				{
 					"id": "pair_c95745f0adcf4c41a9676dbe8832e329",
@@ -220,13 +231,13 @@
 				{
 					"id": "pair_9211c8b6b74841bea14c044ba9aec03f",
 					"name": "Authorization",
-					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
+					"value": "Bearer 29aa36d6-550b-4098-843c-04bd942f8dd0"
 				}
 			],
 			"isPrivate": false,
 			"metaSortKey": -1523619009364,
 			"method": "POST",
-			"modified": 1525260934827,
+			"modified": 1525700375276,
 			"name": "CreateRoom",
 			"parameters": [],
 			"parentId": "fld_ebae8c1ecbe34797aa78bc15f323760a",
@@ -304,28 +315,22 @@
 				{
 					"id": "pair_801c691c1bad404097e64cefbd067f4a",
 					"name": "Authorization",
-					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
+					"value": "Bearer ea8a5a91-2be3-4ee3-88c3-cd524d3b36a1"
 				}
 			],
 			"isPrivate": false,
 			"metaSortKey": -1523619009264,
 			"method": "POST",
-			"modified": 1525260897018,
+			"modified": 1525692122135,
 			"name": "JoinRoom",
-			"parameters": [
-				{
-					"id": "pair_2a95022e72104d1f8311909b0f1fcc14",
-					"name": "roomId",
-					"value": "1"
-				}
-			],
+			"parameters": [],
 			"parentId": "fld_ebae8c1ecbe34797aa78bc15f323760a",
 			"settingDisableRenderRequestBody": false,
 			"settingEncodeUrl": true,
 			"settingRebuildPath": true,
 			"settingSendCookies": true,
 			"settingStoreCookies": true,
-			"url": "http://localhost:8080/api/rooms/7",
+			"url": "http://localhost:8080/api/rooms/33",
 			"_type": "request"
 		},
 		{
@@ -378,7 +383,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1523619009339,
 			"method": "POST",
-			"modified": 1525268146416,
+			"modified": 1525688033490,
 			"name": "ChangeTeam",
 			"parameters": [],
 			"parentId": "fld_ebae8c1ecbe34797aa78bc15f323760a",
@@ -387,69 +392,7 @@
 			"settingRebuildPath": true,
 			"settingSendCookies": true,
 			"settingStoreCookies": true,
-			"url": "http://localhost:8080/api/room/team/15",
-			"_type": "request"
-		},
-		{
-			"_id": "req_53b0e51c36e34709a4e679f34dc1b505",
-			"authentication": {},
-			"body": {},
-			"created": 1523619981848,
-			"description": "",
-			"headers": [
-				{
-					"id": "pair_c43e535d0d974e3690d10e37e1ce0322",
-					"name": "Authorization",
-					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
-				}
-			],
-			"isPrivate": false,
-			"metaSortKey": -1524567995034.5,
-			"method": "DELETE",
-			"modified": 1525255863740,
-			"name": "FinishGame",
-			"parameters": [
-				{
-					"id": "pair_543bf8ce54f2441c95dcc7ade46b246e",
-					"name": "key",
-					"value": "46497aa546a328012d180cba6ffd4c3a50e004d5167a20ae1cd64d6948c72865"
-				}
-			],
-			"parentId": "fld_af31407abcee47b28537f5f8801908d1",
-			"settingDisableRenderRequestBody": false,
-			"settingEncodeUrl": true,
-			"settingRebuildPath": true,
-			"settingSendCookies": true,
-			"settingStoreCookies": true,
-			"url": "http://localhost:8080/api/room/host/game",
-			"_type": "request"
-		},
-		{
-			"_id": "req_b8daadeac2514d2290ca7563abb27e41",
-			"authentication": {},
-			"body": {},
-			"created": 1525097222711,
-			"description": "",
-			"headers": [
-				{
-					"id": "pair_ecb7de193c234da1a0b06e9d6a1f6294",
-					"name": "Authorization",
-					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
-				}
-			],
-			"isPrivate": false,
-			"metaSortKey": -1524567995084.5,
-			"method": "POST",
-			"modified": 1525261306239,
-			"name": "StartGame",
-			"parameters": [],
-			"parentId": "fld_af31407abcee47b28537f5f8801908d1",
-			"settingDisableRenderRequestBody": false,
-			"settingEncodeUrl": true,
-			"settingRebuildPath": true,
-			"settingSendCookies": true,
-			"settingStoreCookies": true,
-			"url": "http://localhost:8080/api/room/host/game",
+			"url": "http://localhost:8080/api/room/team/64",
 			"_type": "request"
 		},
 		{
@@ -468,7 +411,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1524567995134.5,
 			"method": "POST",
-			"modified": 1525268813391,
+			"modified": 1525692256108,
 			"name": "AddTeam",
 			"parameters": [],
 			"parentId": "fld_af31407abcee47b28537f5f8801908d1",
@@ -477,7 +420,7 @@
 			"settingRebuildPath": true,
 			"settingSendCookies": true,
 			"settingStoreCookies": true,
-			"url": "http://localhost:8080/api/room/host/team/Beta6",
+			"url": "http://localhost:8080/api/room/host/team/Beta2",
 			"_type": "request"
 		},
 		{
@@ -496,7 +439,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1524567995109.5,
 			"method": "DELETE",
-			"modified": 1525269107281,
+			"modified": 1525428062761,
 			"name": "RemoveTeam",
 			"parameters": [],
 			"parentId": "fld_af31407abcee47b28537f5f8801908d1",
@@ -505,7 +448,263 @@
 			"settingRebuildPath": true,
 			"settingSendCookies": true,
 			"settingStoreCookies": true,
-			"url": "http://localhost:8080/api/room/host/team/24",
+			"url": "http://localhost:8080/api/room/host/team/50",
+			"_type": "request"
+		},
+		{
+			"_id": "req_01364b5671ac48e58084822ad9b57fc2",
+			"authentication": {},
+			"body": {},
+			"created": 1525416814640,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9211c8b6b74841bea14c044ba9aec03f",
+					"name": "Authorization",
+					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1524567995059.5,
+			"method": "POST",
+			"modified": 1525424006550,
+			"name": "ChangeMode",
+			"parameters": [],
+			"parentId": "fld_af31407abcee47b28537f5f8801908d1",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/room/host/mode/1",
+			"_type": "request"
+		},
+		{
+			"_id": "req_4c60f5e46ef041a787734152f5f3d4f4",
+			"authentication": {},
+			"body": {},
+			"created": 1525418420097,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9211c8b6b74841bea14c044ba9aec03f",
+					"name": "Authorization",
+					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1524093502211.75,
+			"method": "POST",
+			"modified": 1525674426541,
+			"name": "ChangeLocation",
+			"parameters": [
+				{
+					"id": "pair_182bed19e7684d47b5e050ff7fa58299",
+					"name": "zoneLongitude",
+					"value": "13"
+				},
+				{
+					"id": "pair_5b1a06d450fc478bb14a9f0c54a1a8e4",
+					"name": "zoneLatitude",
+					"value": "28"
+				},
+				{
+					"id": "pair_87b3e2d69b7e457eb645d388ee95102a",
+					"name": "zoneRadius",
+					"value": "6"
+				}
+			],
+			"parentId": "fld_af31407abcee47b28537f5f8801908d1",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/room/host/zone",
+			"_type": "request"
+		},
+		{
+			"_id": "req_537148865c00452ea6a30c81d84a1f48",
+			"authentication": {},
+			"body": {},
+			"created": 1525423818552,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9211c8b6b74841bea14c044ba9aec03f",
+					"name": "Authorization",
+					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1523856255787.875,
+			"method": "POST",
+			"modified": 1525424110566,
+			"name": "ChangeZoneControl",
+			"parameters": [
+				{
+					"id": "pair_182bed19e7684d47b5e050ff7fa58299",
+					"name": "pointsLimit",
+					"value": "5000"
+				},
+				{
+					"id": "pair_5b1a06d450fc478bb14a9f0c54a1a8e4",
+					"name": "timeLimit",
+					"value": "12000"
+				},
+				{
+					"id": "pair_87b3e2d69b7e457eb645d388ee95102a",
+					"name": "zoneCapacity",
+					"value": "500"
+				}
+			],
+			"parentId": "fld_af31407abcee47b28537f5f8801908d1",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/room/host/zoneControl",
+			"_type": "request"
+		},
+		{
+			"_id": "req_53b0e51c36e34709a4e679f34dc1b505",
+			"authentication": {},
+			"body": {},
+			"created": 1523619981848,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_c43e535d0d974e3690d10e37e1ce0322",
+					"name": "Authorization",
+					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1525416802183,
+			"method": "DELETE",
+			"modified": 1525419378486,
+			"name": "FinishGame",
+			"parameters": [],
+			"parentId": "fld_4ef6e65dfe8247be84606b1a23a5a192",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/room/game",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b8daadeac2514d2290ca7563abb27e41",
+			"authentication": {},
+			"body": {},
+			"created": 1525097222711,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_ecb7de193c234da1a0b06e9d6a1f6294",
+					"name": "Authorization",
+					"value": "Bearer 9ad56c6c-0890-4b5f-8173-4998c712ebf3"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1525416802233,
+			"method": "POST",
+			"modified": 1525419383400,
+			"name": "StartGame",
+			"parameters": [],
+			"parentId": "fld_4ef6e65dfe8247be84606b1a23a5a192",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/room/game",
+			"_type": "request"
+		},
+		{
+			"_id": "req_4bd5aea87af944cebaf2f7f2a405ad4a",
+			"authentication": {},
+			"body": {},
+			"created": 1525430395693,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_ecb7de193c234da1a0b06e9d6a1f6294",
+					"name": "Authorization",
+					"value": " Bearer 84dc5752-5634-4b4b-85bd-737011e0fe94"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1525416802133,
+			"method": "GET",
+			"modified": 1525692207169,
+			"name": "GetGameData",
+			"parameters": [],
+			"parentId": "fld_4ef6e65dfe8247be84606b1a23a5a192",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/room/game",
+			"_type": "request"
+		},
+		{
+			"_id": "req_7873c84387d842f4b184845e04e2b54f",
+			"authentication": {},
+			"body": {},
+			"created": 1525679872558,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_ecb7de193c234da1a0b06e9d6a1f6294",
+					"name": "Authorization",
+					"value": " Bearer 84dc5752-5634-4b4b-85bd-737011e0fe94"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1525416802145.5,
+			"method": "POST",
+			"modified": 1525692175864,
+			"name": "SetDied",
+			"parameters": [],
+			"parentId": "fld_4ef6e65dfe8247be84606b1a23a5a192",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/room/game/died",
+			"_type": "request"
+		},
+		{
+			"_id": "req_c5fddbe62e2347a6afe6be3aa7000b12",
+			"authentication": {},
+			"body": {},
+			"created": 1525689191168,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_ecb7de193c234da1a0b06e9d6a1f6294",
+					"name": "Authorization",
+					"value": " Bearer 84dc5752-5634-4b4b-85bd-737011e0fe94"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1525416802170.5,
+			"method": "POST",
+			"modified": 1525692183112,
+			"name": "SetReady",
+			"parameters": [],
+			"parentId": "fld_4ef6e65dfe8247be84606b1a23a5a192",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8080/api/room/game/ready",
 			"_type": "request"
 		}
 	]
