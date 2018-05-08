@@ -1,7 +1,7 @@
 package com.shutter.springserver.model;
 
 import com.shutter.springserver.constants.ZoneControlConstants;
-import com.shutter.springserver.dto.ZoneControlDTO;
+import com.shutter.springserver.attribute.ZoneControlDTO;
 import lombok.Data;
 
 import javax.persistence.*;

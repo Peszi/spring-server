@@ -1,4 +1,4 @@
-package com.shutter.springserver.data;
+package com.shutter.springserver.key;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;

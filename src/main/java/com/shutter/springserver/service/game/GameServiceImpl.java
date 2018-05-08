@@ -1,6 +1,6 @@
 package com.shutter.springserver.service.game;
 
-import com.shutter.springserver.data.UserGameData;
+import com.shutter.springserver.key.UserGameData;
 import com.shutter.springserver.data.game.GameData;
 import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.exception.NotFoundException;

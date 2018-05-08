@@ -1,9 +1,9 @@
 package com.shutter.springserver.service.room;
 
-import com.shutter.springserver.data.GameType;
+import com.shutter.springserver.key.GameType;
 import com.shutter.springserver.dto.FullRoomDTO;
 import com.shutter.springserver.dto.RoomDTO;
-import com.shutter.springserver.data.UserData;
+import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.dto.RoomsListDTO;
 import com.shutter.springserver.exception.AlreadyExistsException;
 import com.shutter.springserver.exception.BadRequestException;

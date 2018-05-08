@@ -1,8 +1,8 @@
 package com.shutter.springserver.service.user;
 
 import com.shutter.springserver.dto.BasicUserDTO;
-import com.shutter.springserver.dto.UserDTO;
-import com.shutter.springserver.data.UserData;
+import com.shutter.springserver.attribute.UserDTO;
+import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.exception.NotFoundException;
 import com.shutter.springserver.exception.ServerFailureException;

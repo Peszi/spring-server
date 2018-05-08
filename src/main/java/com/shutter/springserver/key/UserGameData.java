@@ -1,4 +1,4 @@
-package com.shutter.springserver.data;
+package com.shutter.springserver.key;
 
 public class UserGameData {
     private long longitude;

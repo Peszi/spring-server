@@ -1,7 +1,7 @@
 package com.shutter.springserver.restcontroller;
 
-import com.shutter.springserver.dto.UserDTO;
-import com.shutter.springserver.data.UserData;
+import com.shutter.springserver.attribute.UserDTO;
+import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.service.user.ManageUserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

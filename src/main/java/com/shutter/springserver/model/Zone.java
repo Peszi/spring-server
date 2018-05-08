@@ -1,7 +1,7 @@
 package com.shutter.springserver.model;
 
 import com.shutter.springserver.constants.RoomConstants;
-import com.shutter.springserver.dto.ZoneDTO;
+import com.shutter.springserver.attribute.ZoneDTO;
 import lombok.Data;
 
 import javax.persistence.*;

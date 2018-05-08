@@ -2,9 +2,8 @@ package com.shutter.springserver.service.room;
 
 import com.shutter.springserver.dto.FullRoomDTO;
 import com.shutter.springserver.dto.RoomDTO;
-import com.shutter.springserver.data.UserData;
+import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.dto.RoomsListDTO;
-import com.shutter.springserver.model.Room;
 
 public interface UserRoomService {
     RoomDTO createRoom(UserData userData);

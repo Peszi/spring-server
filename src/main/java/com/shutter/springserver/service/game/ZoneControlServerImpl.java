@@ -1,11 +1,11 @@
 package com.shutter.springserver.service.game;
 
-import com.shutter.springserver.data.UserGameData;
+import com.shutter.springserver.key.UserGameData;
 import com.shutter.springserver.data.game.GameData;
 import com.shutter.springserver.data.game.GameTeamData;
 import com.shutter.springserver.data.game.GameUserData;
 import com.shutter.springserver.data.status.GameStatus;
-import com.shutter.springserver.dto.ZoneControlDTO;
+import com.shutter.springserver.attribute.ZoneControlDTO;
 import com.shutter.springserver.exception.ServerFailureException;
 import com.shutter.springserver.model.Room;
 import com.shutter.springserver.model.Team;

@@ -1,14 +1,12 @@
 package com.shutter.springserver.service.user;
 
-import com.shutter.springserver.data.UserData;
+import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.exception.NotFoundException;
 import com.shutter.springserver.exception.ServerFailureException;
 import com.shutter.springserver.model.User;
 import com.shutter.springserver.repository.UserRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {

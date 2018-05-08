@@ -1,9 +1,9 @@
 package com.shutter.springserver.service.room;
 
-import com.shutter.springserver.data.GameType;
-import com.shutter.springserver.data.UserData;
-import com.shutter.springserver.dto.ZoneControlDTO;
-import com.shutter.springserver.dto.ZoneDTO;
+import com.shutter.springserver.key.GameType;
+import com.shutter.springserver.key.UserData;
+import com.shutter.springserver.attribute.ZoneControlDTO;
+import com.shutter.springserver.attribute.ZoneDTO;
 
 public interface HostRoomService {
     void kickUser(UserData userData, long userId);

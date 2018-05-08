@@ -1,11 +1,12 @@
 package com.shutter.springserver.restcontroller;
 
-import com.shutter.springserver.data.GameType;
-import com.shutter.springserver.data.UserData;
-import com.shutter.springserver.dto.ZoneControlDTO;
-import com.shutter.springserver.dto.ZoneDTO;
+import com.shutter.springserver.key.GameType;
+import com.shutter.springserver.key.UserData;
+import com.shutter.springserver.attribute.ZoneControlDTO;
+import com.shutter.springserver.attribute.ZoneDTO;
 import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.service.room.HostRoomService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/room/host/")
 public class HostRestController {
@@ -50,6 +52,7 @@ public class HostRestController {
 
     @PostMapping("/zone")
     public ResponseEntity<String> changeLocation(@AuthenticationPrincipal UserData userData, @Valid @ModelAttribute ZoneDTO mainZone, BindingResult result) {
+        log.warn(mainZone.toString());
         if (result.hasErrors())
             throw new BadRequestException(result.getFieldError().getField() + " " + result.getFieldError().getDefaultMessage());
         this.hostService.changeGameLocation(userData, mainZone);

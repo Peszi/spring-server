@@ -1,6 +1,6 @@
 package com.shutter.springserver.service.user;
 
-import com.shutter.springserver.data.UserData;
+import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.model.Role;
 import com.shutter.springserver.model.User;
 import com.shutter.springserver.repository.UserRepository;

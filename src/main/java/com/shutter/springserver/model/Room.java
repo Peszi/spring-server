@@ -1,8 +1,7 @@
 package com.shutter.springserver.model;
 
-import com.shutter.springserver.data.GameType;
+import com.shutter.springserver.key.GameType;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.*;

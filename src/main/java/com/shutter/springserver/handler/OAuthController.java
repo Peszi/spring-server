@@ -1,5 +1,6 @@
 package com.shutter.springserver.handler;
 
+import com.shutter.springserver.exception.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,16 +20,17 @@ public class OAuthController {
     private TokenStore tokenStore;
 
     @DeleteMapping("/oauth/revoke-token")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> revokeToken(HttpServletRequest request, Authentication authentication) {
+    public ResponseEntity<String> revokeToken(HttpServletRequest request, Authentication authentication) {
         String authorization = request.getHeader("Authorization");
         if (authorization != null && authorization.contains("Bearer")){
             String tokenValue = authorization.substring("Bearer".length()).trim();
             OAuth2AccessToken accessToken =  this.tokenStore.readAccessToken(tokenValue);
+            if (accessToken == null)
+                throw new BadRequestException("Not logged in!");
             this.tokenStore.removeAccessToken(accessToken);
             this.tokenStore.removeRefreshToken(accessToken.getRefreshToken());
             return ResponseEntity.ok("Successfully logged out!");
         }
-        return ResponseEntity.badRequest().build();
+        return new ResponseEntity<>("Token is missing!", HttpStatus.BAD_REQUEST);
     }
 }

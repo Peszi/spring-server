@@ -1,8 +1,8 @@
 package com.shutter.springserver.restcontroller;
 
-import com.shutter.springserver.data.UserGameData;
+import com.shutter.springserver.key.UserGameData;
 import com.shutter.springserver.data.game.GameData;
-import com.shutter.springserver.data.UserData;
+import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.service.game.ManageGameService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

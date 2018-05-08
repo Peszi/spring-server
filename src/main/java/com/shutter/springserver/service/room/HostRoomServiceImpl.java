@@ -1,17 +1,19 @@
 package com.shutter.springserver.service.room;
 
-import com.shutter.springserver.data.GameType;
-import com.shutter.springserver.data.UserData;
-import com.shutter.springserver.dto.ZoneControlDTO;
-import com.shutter.springserver.dto.ZoneDTO;
+import com.shutter.springserver.key.GameType;
+import com.shutter.springserver.key.UserData;
+import com.shutter.springserver.attribute.ZoneControlDTO;
+import com.shutter.springserver.attribute.ZoneDTO;
 import com.shutter.springserver.exception.AlreadyExistsException;
 import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.model.Room;
 import com.shutter.springserver.model.Team;
 import com.shutter.springserver.model.User;
+import com.shutter.springserver.repository.TeamRepository;
 import com.shutter.springserver.service.TeamService;
 import com.shutter.springserver.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +24,9 @@ public class HostRoomServiceImpl implements HostRoomService {
     private UserService userService;
     private TeamService teamService;
     private RoomService roomService;
+
+    @Autowired
+    private TeamRepository teamRepository;
 
     public HostRoomServiceImpl(UserService userService, TeamService teamService, RoomService roomService) {
         this.userService = userService;
@@ -62,7 +67,7 @@ public class HostRoomServiceImpl implements HostRoomService {
             throw new BadRequestException("There need to be at least one team!");
         if (team.getUsers().size() > 0)
             throw new BadRequestException("This team is not empty!");
-//        this.teamRepository.delete(optTeam.get());
+//        this.teamRepository.delete(team);
         room.removeTeam(team);
         this.roomService.save(room);
     }

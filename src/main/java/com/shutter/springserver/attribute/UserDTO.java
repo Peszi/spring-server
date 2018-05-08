@@ -1,4 +1,4 @@
-package com.shutter.springserver.dto;
+package com.shutter.springserver.attribute;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
