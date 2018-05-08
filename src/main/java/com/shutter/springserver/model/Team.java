@@ -20,11 +20,9 @@ public class Team {
     private Long id;
 
     @ManyToOne
-//    @Id
     @JoinColumn(name="room_id")
     private Room room;
 
-//    @Id
     @Column(length = 32)
     private String alias;
 

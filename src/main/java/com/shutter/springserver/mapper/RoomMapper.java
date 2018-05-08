@@ -17,13 +17,17 @@ public interface RoomMapper {
 
     RoomMapper INSTANCE = Mappers.getMapper(RoomMapper.class);
 
-    @Mapping(source = "isStarted", target = "started")
+    @Mappings({
+            @Mapping(source = "host.name", target = "hostName"),
+            @Mapping(source = "isStarted", target = "started")
+    })
     RoomDTO roomToRoomDTO(Room room);
 
     @Mapping(source = "users", target = "usersList")
     TeamDTO teamToTeamDTO(Team team);
 
     @Mappings({
+            @Mapping(source = "host.name", target = "hostName"),
             @Mapping(source = "teams", target = "teamsList"),
             @Mapping(source = "isStarted", target = "started")
     })

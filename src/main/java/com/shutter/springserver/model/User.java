@@ -41,14 +41,6 @@ public class User {
         return (this.team != null) ? true : false;
     }
 
-//    public void addTeam(Team team) {
-//        team.addUser(this);
-//    }
-//
-//    public void removeTeam(Team team) {
-//        team.addUser(this);
-//    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

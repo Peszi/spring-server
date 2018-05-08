@@ -1,13 +1,14 @@
 package com.shutter.springserver.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
-@Data
+import java.util.List;
+
+@Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 public class RoomsListDTO {
     private boolean hasRoom;
-    private Iterable<RoomDTO> roomsList;
+    private List<RoomDTO> roomsList;
 }

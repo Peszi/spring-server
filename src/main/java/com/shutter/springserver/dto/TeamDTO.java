@@ -4,7 +4,9 @@ import lombok.*;
 
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class TeamDTO {
     private Long id;
     private String alias;
