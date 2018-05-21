@@ -22,7 +22,7 @@ public class UserDTO {
     private String email;
 
     @NotEmpty
-    @Size(min = 6, max = 24)
+    @Size(min = 6, max = 20)
     private String password;
 
 }

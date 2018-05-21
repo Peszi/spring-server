@@ -36,6 +36,16 @@ public class ManageUserServiceImpl implements ManageUserService {
         this.userMapper = userMapper;
     }
 
+    @Override
+    public boolean isEmailInUse(String email) {
+        return this.userRepository.findByEmail(email).isPresent();
+    }
+
+    @Override
+    public boolean isNickInUse(String nickname) {
+        return this.userRepository.findByName(nickname).isPresent();
+    }
+
     @Transactional
     @Override
     public void registerUser(UserDTO userData) {

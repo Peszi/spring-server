@@ -3,6 +3,7 @@ package com.shutter.springserver.restcontroller;
 import com.shutter.springserver.attribute.UserDTO;
 import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.service.user.ManageUserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
@@ -20,8 +21,21 @@ public class UserRestController {
         this.manageUserService = manageUserService;
     }
 
-    @PostMapping
-    @RequestMapping("/register")
+    @GetMapping("/register/check/email/{email}")
+    public ResponseEntity<String> checkEmailAvailability(@PathVariable String email) {
+        if (!this.manageUserService.isEmailInUse(email))
+            return ResponseEntity.ok("Email available!");
+        return new ResponseEntity<>("Email in use!", HttpStatus.CONFLICT);
+    }
+
+    @GetMapping("/register/check/name/{name}")
+    public ResponseEntity<String> checkNameAvailability(@PathVariable String name) {
+        if (!this.manageUserService.isNickInUse(name))
+            return ResponseEntity.ok("Nick available!");
+        return new ResponseEntity<>("Nick in use!", HttpStatus.CONFLICT);
+    }
+
+    @PostMapping("/register")
     public ResponseEntity<String> getUser(@Valid @ModelAttribute UserDTO user, BindingResult result) {
         if (result.hasErrors())
             return ResponseEntity.badRequest().body(result.getFieldError().getField() + " " + result.getFieldError().getDefaultMessage());
@@ -29,8 +43,7 @@ public class UserRestController {
         return ResponseEntity.ok("User account successfully created!");
     }
 
-    @DeleteMapping
-    @RequestMapping("/delete")
+    @DeleteMapping("/delete")
     public ResponseEntity<String> getUser(@AuthenticationPrincipal UserData userData) {
         this.manageUserService.deleteUser(userData);
         return ResponseEntity.ok("User successfuly deleted!");
