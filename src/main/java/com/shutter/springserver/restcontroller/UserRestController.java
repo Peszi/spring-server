@@ -3,6 +3,7 @@ package com.shutter.springserver.restcontroller;
 import com.shutter.springserver.attribute.UserDTO;
 import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.service.user.ManageUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@Slf4j
 @RestController
 @RequestMapping("/api")
 public class UserRestController {
@@ -36,7 +38,7 @@ public class UserRestController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> getUser(@Valid @ModelAttribute UserDTO user, BindingResult result) {
+    public ResponseEntity<String> registerUser(@Valid @ModelAttribute UserDTO user, BindingResult result) {
         if (result.hasErrors())
             return ResponseEntity.badRequest().body(result.getFieldError().getField() + " " + result.getFieldError().getDefaultMessage());
         this.manageUserService.registerUser(user);
@@ -44,7 +46,7 @@ public class UserRestController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<String> getUser(@AuthenticationPrincipal UserData userData) {
+    public ResponseEntity<String> deleteUser(@AuthenticationPrincipal UserData userData) {
         this.manageUserService.deleteUser(userData);
         return ResponseEntity.ok("User successfuly deleted!");
     }
