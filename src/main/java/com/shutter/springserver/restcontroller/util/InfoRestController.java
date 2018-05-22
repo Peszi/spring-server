@@ -19,6 +19,11 @@ public class InfoRestController {
         this.manageUserService = manageUserService;
     }
 
+    @GetMapping("/ping")
+    public ResponseEntity<String> getPing() {
+        return ResponseEntity.ok("pong");
+    }
+
     @GetMapping
     @RequestMapping("/users")
     public ResponseEntity<List<BasicUserDTO>> getHello() {
