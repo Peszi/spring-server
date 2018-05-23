@@ -59,6 +59,11 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
+//                .withClient("webClientId")
+//                    .authorizedGrantTypes("implicit")
+//                    .scopes("read", "write")
+//                    .autoApprove(true)
+//                    .and()
                 .withClient(this.clientId)
                     .secret(this.passwordEncoder.encode(this.clientSecret))
                     .authorizedGrantTypes("password", "authorization_code", "refresh_token")
