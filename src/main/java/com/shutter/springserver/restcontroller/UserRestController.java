@@ -51,6 +51,12 @@ public class UserRestController {
         return ResponseEntity.ok("User successfuly deleted!");
     }
 
+    @GetMapping
+    @RequestMapping("/user")
+    public ResponseEntity<UserData> getUserData(@AuthenticationPrincipal UserData userData) {
+        return ResponseEntity.ok(userData);
+    }
+
 //    @GetMapping
 //    @RequestMapping("/admin/info")
 //    public ResponseEntity<String> getHelloAdmin(@AuthenticationPrincipal UserData currentUser) {
