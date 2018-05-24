@@ -1,11 +1,11 @@
 package com.shutter.springserver.mapper;
 
 //@Deprecated
-//public class UserRowMapper implements RowMapper<UserDTO> {
+//public class UserRowMapper implements RowMapper<UserAttribute> {
 //
 //    @Override
-//    public UserDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-//        UserDTO userDTO = new UserDTO();
+//    public UserAttribute mapRow(ResultSet rs, int rowNum) throws SQLException {
+//        UserAttribute userDTO = new UserAttribute();
 //        userDTO.setId(rs.getInt("id"));
 //        userDTO.setEmail(rs.getString("email"));
 //        userDTO.setPasswordHash(rs.getString("passwordHash"));
@@ -14,6 +14,6 @@ package com.shutter.springserver.mapper;
 //    }
 //}
 
-//    private UserDTO getUserByEmail(String email) {
+//    private UserAttribute getUserByEmail(String email) {
 //        return this.jdbcTemplate.queryForObject("SELECT `id`,`email`,`passwordHash`,`active` FROM `users` WHERE `email`=?", new Object[]{email}, new UserRowMapper());
 //    }

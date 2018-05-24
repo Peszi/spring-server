@@ -1,7 +1,9 @@
 package com.shutter.springserver.restcontroller;
 
-import com.shutter.springserver.attribute.UserDTO;
+import com.shutter.springserver.attribute.UserAttribute;
+import com.shutter.springserver.dto.UserDTO;
 import com.shutter.springserver.key.UserData;
+import com.shutter.springserver.mapper.UserMapper;
 import com.shutter.springserver.service.user.ManageUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -17,9 +19,11 @@ import javax.validation.Valid;
 @RequestMapping("/api")
 public class UserRestController {
 
+    private UserMapper userMapper;
     private ManageUserService manageUserService;
 
-    public UserRestController(ManageUserService manageUserService) {
+    public UserRestController(UserMapper userMapper, ManageUserService manageUserService) {
+        this.userMapper = userMapper;
         this.manageUserService = manageUserService;
     }
 
@@ -38,7 +42,7 @@ public class UserRestController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@Valid @ModelAttribute UserDTO user, BindingResult result) {
+    public ResponseEntity<String> registerUser(@Valid @ModelAttribute UserAttribute user, BindingResult result) {
         if (result.hasErrors())
             return ResponseEntity.badRequest().body(result.getFieldError().getField() + " " + result.getFieldError().getDefaultMessage());
         this.manageUserService.registerUser(user);
@@ -53,8 +57,8 @@ public class UserRestController {
 
     @GetMapping
     @RequestMapping("/user")
-    public ResponseEntity<UserData> getUserData(@AuthenticationPrincipal UserData userData) {
-        return ResponseEntity.ok(userData);
+    public ResponseEntity<UserDTO> getUserData(@AuthenticationPrincipal UserData userData) {
+        return new ResponseEntity<>(this.userMapper.userToUserDTO(userData), HttpStatus.OK);
     }
 
 //    @GetMapping

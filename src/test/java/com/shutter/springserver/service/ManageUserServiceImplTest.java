@@ -1,6 +1,6 @@
 package com.shutter.springserver.service;
 
-import com.shutter.springserver.attribute.UserDTO;
+import com.shutter.springserver.attribute.UserAttribute;
 import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.exception.AlreadyExistsException;
 import com.shutter.springserver.exception.NotFoundException;
@@ -51,12 +51,12 @@ public class ManageUserServiceImplTest {
     @Test
     public void registerUser() {
         // Given
-        UserDTO userDTO = new UserDTO("name", "name@email.com", "123456");
-        when(this.userRepository.findByEmail(userDTO.getEmail())).thenReturn(Optional.empty());
-        when(this.userRepository.findByName(userDTO.getNickname())).thenReturn(Optional.empty());
+        UserAttribute userAttribute = new UserAttribute("name", "name@email.com", "123456");
+        when(this.userRepository.findByEmail(userAttribute.getEmail())).thenReturn(Optional.empty());
+        when(this.userRepository.findByName(userAttribute.getNickname())).thenReturn(Optional.empty());
         when(this.roleRepository.findById(1L)).thenReturn(Optional.of(new Role()));
         // When
-        this.manageUserService.registerUser(userDTO);
+        this.manageUserService.registerUser(userAttribute);
         // Then
         verify(userRepository, times(1)).save(any(User.class));
     }
@@ -64,12 +64,12 @@ public class ManageUserServiceImplTest {
     @Test(expected = AlreadyExistsException.class)
     public void registerUserExceptionAEE() {
         // Given
-        UserDTO userDTO = new UserDTO("name", "name@email.com", "123456");
-        when(this.userRepository.findByEmail(userDTO.getEmail())).thenReturn(Optional.of(new User()));
-        when(this.userRepository.findByName(userDTO.getNickname())).thenReturn(Optional.empty());
+        UserAttribute userAttribute = new UserAttribute("name", "name@email.com", "123456");
+        when(this.userRepository.findByEmail(userAttribute.getEmail())).thenReturn(Optional.of(new User()));
+        when(this.userRepository.findByName(userAttribute.getNickname())).thenReturn(Optional.empty());
         when(this.roleRepository.findById(1L)).thenReturn(Optional.of(new Role()));
         // When
-        this.manageUserService.registerUser(userDTO);
+        this.manageUserService.registerUser(userAttribute);
         // Then
         verify(userRepository, never()).save(any(User.class));
     }
@@ -77,12 +77,12 @@ public class ManageUserServiceImplTest {
     @Test(expected = AlreadyExistsException.class)
     public void registerUserExceptionAEU() {
         // Given
-        UserDTO userDTO = new UserDTO("name", "name@email.com", "123456");
+        UserAttribute userAttribute = new UserAttribute("name", "name@email.com", "123456");
         when(this.userRepository.findByEmail(anyString())).thenReturn(Optional.empty());
-        when(this.userRepository.findByName(userDTO.getNickname())).thenReturn(Optional.of(new User()));
+        when(this.userRepository.findByName(userAttribute.getNickname())).thenReturn(Optional.of(new User()));
         when(this.roleRepository.findById(anyLong())).thenReturn(Optional.of(new Role()));
         // When
-        this.manageUserService.registerUser(userDTO);
+        this.manageUserService.registerUser(userAttribute);
         // Then
         verify(userRepository, never()).save(any(User.class));
     }
@@ -90,12 +90,12 @@ public class ManageUserServiceImplTest {
     @Test(expected = ServerFailureException.class)
     public void registerUserExceptionNoRole() {
         // Given
-        UserDTO userDTO = new UserDTO("name", "name@email.com", "123456");
+        UserAttribute userAttribute = new UserAttribute("name", "name@email.com", "123456");
         when(this.userRepository.findByEmail(anyString())).thenReturn(Optional.empty());
-        when(this.userRepository.findByName(userDTO.getNickname())).thenReturn(Optional.empty());
+        when(this.userRepository.findByName(userAttribute.getNickname())).thenReturn(Optional.empty());
         when(this.roleRepository.findById(anyLong())).thenReturn(Optional.empty());
         // When
-        this.manageUserService.registerUser(userDTO);
+        this.manageUserService.registerUser(userAttribute);
         // Then
         verify(userRepository, never()).save(any(User.class));
     }

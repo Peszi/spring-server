@@ -1,6 +1,6 @@
 package com.shutter.springserver.controller;
 
-import com.shutter.springserver.attribute.UserDTO;
+import com.shutter.springserver.attribute.UserAttribute;
 import com.shutter.springserver.service.user.ManageUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -25,17 +25,17 @@ public class IndexController {
     }
 
     @GetMapping("/index")
-    public String getIndex(@ModelAttribute UserDTO userDTO) {
+    public String getIndex(@ModelAttribute UserAttribute userAttribute) {
         return "index";
     }
 
     @PostMapping("/register")
-    public String registerUser(@Valid @ModelAttribute UserDTO userDTO, BindingResult binding, Model model) {
-        model.addAttribute(userDTO);
+    public String registerUser(@Valid @ModelAttribute UserAttribute userAttribute, BindingResult binding, Model model) {
+        model.addAttribute(userAttribute);
         if (binding.hasErrors())
             model.addAttribute("messages", this.getFieldErrorMessage(binding.getFieldErrors()));
         else {
-            this.manageUserService.registerUser(userDTO);
+            this.manageUserService.registerUser(userAttribute);
             model.addAttribute("messages", new String[]{"Success!"});
         }
         return "index";

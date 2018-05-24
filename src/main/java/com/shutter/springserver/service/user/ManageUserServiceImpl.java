@@ -1,7 +1,7 @@
 package com.shutter.springserver.service.user;
 
 import com.shutter.springserver.dto.BasicUserDTO;
-import com.shutter.springserver.attribute.UserDTO;
+import com.shutter.springserver.attribute.UserAttribute;
 import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.exception.NotFoundException;
@@ -48,7 +48,7 @@ public class ManageUserServiceImpl implements ManageUserService {
 
     @Transactional
     @Override
-    public void registerUser(UserDTO userData) {
+    public void registerUser(UserAttribute userData) {
         if (this.userRepository.findByEmail(userData.getEmail()).isPresent())
             throw new BadRequestException(userData.getEmail() + " already registered!");
         if (this.userRepository.findByName(userData.getNickname()).isPresent())

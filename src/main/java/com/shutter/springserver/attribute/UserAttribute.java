@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 @Setter
 @Getter
 @AllArgsConstructor
-public class UserDTO {
+public class UserAttribute {
 
     @NotEmpty
     @Size(min = 3, max = 20)

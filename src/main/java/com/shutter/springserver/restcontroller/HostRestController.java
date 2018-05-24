@@ -52,7 +52,6 @@ public class HostRestController {
 
     @PostMapping("/zone")
     public ResponseEntity<String> changeLocation(@AuthenticationPrincipal UserData userData, @Valid @ModelAttribute ZoneDTO mainZone, BindingResult result) {
-        log.warn(mainZone.toString());
         if (result.hasErrors())
             throw new BadRequestException(result.getFieldError().getField() + " " + result.getFieldError().getDefaultMessage());
         this.hostService.changeGameLocation(userData, mainZone);
