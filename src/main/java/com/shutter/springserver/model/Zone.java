@@ -22,6 +22,8 @@ public class Zone {
     @PrePersist
     public void init() {
         this.zoneRadius = RoomConstants.DEFAULT_ZONE_RADIUS;
+        this.zoneLatitude = 49.824814d;
+        this.zoneLongitude = 19.046022d;
     }
 
     public void setZoneData(ZoneDTO zoneData) {

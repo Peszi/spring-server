@@ -13,4 +13,8 @@ public class RoomDTO {
     private boolean isStarted;
     private int teamsCount;
 
+    private double zoneLat;
+    private double zoneLng;
+    private int zoneRadius;
+
 }
