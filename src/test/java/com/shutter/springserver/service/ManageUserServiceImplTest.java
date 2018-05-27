@@ -42,83 +42,83 @@ public class ManageUserServiceImplTest {
 
     ManageUserService manageUserService;
 
-    @Before
-    public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
-        this.manageUserService = new ManageUserServiceImpl(userRepository, roleRepository, passwordEncoder, userMapper);
-    }
-
-    @Test
-    public void registerUser() {
-        // Given
-        UserAttribute userAttribute = new UserAttribute("name", "name@email.com", "123456");
-        when(this.userRepository.findByEmail(userAttribute.getEmail())).thenReturn(Optional.empty());
-        when(this.userRepository.findByName(userAttribute.getNickname())).thenReturn(Optional.empty());
-        when(this.roleRepository.findById(1L)).thenReturn(Optional.of(new Role()));
-        // When
-        this.manageUserService.registerUser(userAttribute);
-        // Then
-        verify(userRepository, times(1)).save(any(User.class));
-    }
-
-    @Test(expected = AlreadyExistsException.class)
-    public void registerUserExceptionAEE() {
-        // Given
-        UserAttribute userAttribute = new UserAttribute("name", "name@email.com", "123456");
-        when(this.userRepository.findByEmail(userAttribute.getEmail())).thenReturn(Optional.of(new User()));
-        when(this.userRepository.findByName(userAttribute.getNickname())).thenReturn(Optional.empty());
-        when(this.roleRepository.findById(1L)).thenReturn(Optional.of(new Role()));
-        // When
-        this.manageUserService.registerUser(userAttribute);
-        // Then
-        verify(userRepository, never()).save(any(User.class));
-    }
-
-    @Test(expected = AlreadyExistsException.class)
-    public void registerUserExceptionAEU() {
-        // Given
-        UserAttribute userAttribute = new UserAttribute("name", "name@email.com", "123456");
-        when(this.userRepository.findByEmail(anyString())).thenReturn(Optional.empty());
-        when(this.userRepository.findByName(userAttribute.getNickname())).thenReturn(Optional.of(new User()));
-        when(this.roleRepository.findById(anyLong())).thenReturn(Optional.of(new Role()));
-        // When
-        this.manageUserService.registerUser(userAttribute);
-        // Then
-        verify(userRepository, never()).save(any(User.class));
-    }
-
-    @Test(expected = ServerFailureException.class)
-    public void registerUserExceptionNoRole() {
-        // Given
-        UserAttribute userAttribute = new UserAttribute("name", "name@email.com", "123456");
-        when(this.userRepository.findByEmail(anyString())).thenReturn(Optional.empty());
-        when(this.userRepository.findByName(userAttribute.getNickname())).thenReturn(Optional.empty());
-        when(this.roleRepository.findById(anyLong())).thenReturn(Optional.empty());
-        // When
-        this.manageUserService.registerUser(userAttribute);
-        // Then
-        verify(userRepository, never()).save(any(User.class));
-    }
-
-    @Test
-    public void deleteUser() {
-        // Given
-        UserData userData = new UserData(1L, "name","name@email.com", "", true, new ArrayList<>());
-        when(this.userRepository.findById(userData.getId())).thenReturn(Optional.of(new User()));
-        // When
-        this.manageUserService.deleteUser(userData);
-        // Then
-        verify(userRepository, times(1)).delete(any(User.class));
-    }
-
-    @Test(expected = NotFoundException.class)
-    public void deleteUserExceptionNotExists() {
-        // Given
-        UserData userData = new UserData(1L, "name","name@email.com", "", true, new ArrayList<>());
-        when(this.userRepository.findById(userData.getId())).thenReturn(Optional.empty());
-        // When
-        this.manageUserService.deleteUser(userData);
-        // Then
-        verify(userRepository, never()).delete(any(User.class));
-    }
+//    @Before
+//    public void setUp() throws Exception {
+//        MockitoAnnotations.initMocks(this);
+//        this.manageUserService = new ManageUserServiceImpl(userRepository, roleRepository, passwordEncoder, userMapper);
+//    }
+//
+//    @Test
+//    public void registerUser() {
+//        // Given
+//        UserAttribute userAttribute = new UserAttribute("name", "name@email.com", "123456");
+//        when(this.userRepository.findByEmail(userAttribute.getEmail())).thenReturn(Optional.empty());
+//        when(this.userRepository.findByName(userAttribute.getNickname())).thenReturn(Optional.empty());
+//        when(this.roleRepository.findById(1L)).thenReturn(Optional.of(new Role()));
+//        // When
+//        this.manageUserService.registerUser(userAttribute);
+//        // Then
+//        verify(userRepository, times(1)).save(any(User.class));
+//    }
+//
+//    @Test(expected = AlreadyExistsException.class)
+//    public void registerUserExceptionAEE() {
+//        // Given
+//        UserAttribute userAttribute = new UserAttribute("name", "name@email.com", "123456");
+//        when(this.userRepository.findByEmail(userAttribute.getEmail())).thenReturn(Optional.of(new User()));
+//        when(this.userRepository.findByName(userAttribute.getNickname())).thenReturn(Optional.empty());
+//        when(this.roleRepository.findById(1L)).thenReturn(Optional.of(new Role()));
+//        // When
+//        this.manageUserService.registerUser(userAttribute);
+//        // Then
+//        verify(userRepository, never()).save(any(User.class));
+//    }
+//
+//    @Test(expected = AlreadyExistsException.class)
+//    public void registerUserExceptionAEU() {
+//        // Given
+//        UserAttribute userAttribute = new UserAttribute("name", "name@email.com", "123456");
+//        when(this.userRepository.findByEmail(anyString())).thenReturn(Optional.empty());
+//        when(this.userRepository.findByName(userAttribute.getNickname())).thenReturn(Optional.of(new User()));
+//        when(this.roleRepository.findById(anyLong())).thenReturn(Optional.of(new Role()));
+//        // When
+//        this.manageUserService.registerUser(userAttribute);
+//        // Then
+//        verify(userRepository, never()).save(any(User.class));
+//    }
+//
+//    @Test(expected = ServerFailureException.class)
+//    public void registerUserExceptionNoRole() {
+//        // Given
+//        UserAttribute userAttribute = new UserAttribute("name", "name@email.com", "123456");
+//        when(this.userRepository.findByEmail(anyString())).thenReturn(Optional.empty());
+//        when(this.userRepository.findByName(userAttribute.getNickname())).thenReturn(Optional.empty());
+//        when(this.roleRepository.findById(anyLong())).thenReturn(Optional.empty());
+//        // When
+//        this.manageUserService.registerUser(userAttribute);
+//        // Then
+//        verify(userRepository, never()).save(any(User.class));
+//    }
+//
+//    @Test
+//    public void deleteUser() {
+//        // Given
+//        UserData userData = new UserData(1L, "name","name@email.com", "", true, new ArrayList<>());
+//        when(this.userRepository.findById(userData.getId())).thenReturn(Optional.of(new User()));
+//        // When
+//        this.manageUserService.deleteUser(userData);
+//        // Then
+//        verify(userRepository, times(1)).delete(any(User.class));
+//    }
+//
+//    @Test(expected = NotFoundException.class)
+//    public void deleteUserExceptionNotExists() {
+//        // Given
+//        UserData userData = new UserData(1L, "name","name@email.com", "", true, new ArrayList<>());
+//        when(this.userRepository.findById(userData.getId())).thenReturn(Optional.empty());
+//        // When
+//        this.manageUserService.deleteUser(userData);
+//        // Then
+//        verify(userRepository, never()).delete(any(User.class));
+//    }
 }

@@ -2,8 +2,8 @@ package com.shutter.springserver.service.room;
 
 import com.shutter.springserver.key.GameType;
 import com.shutter.springserver.key.UserData;
-import com.shutter.springserver.attribute.ZoneControlDTO;
-import com.shutter.springserver.attribute.ZoneDTO;
+import com.shutter.springserver.attribute.ZoneControlAttribute;
+import com.shutter.springserver.attribute.ZoneAttribute;
 import com.shutter.springserver.exception.AlreadyExistsException;
 import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.model.Room;
@@ -83,7 +83,7 @@ public class HostRoomServiceImpl implements HostRoomService {
     }
 
     @Override
-    public void changeGameLocation(UserData userData, ZoneDTO mainZone) {
+    public void changeGameLocation(UserData userData, ZoneAttribute mainZone) {
         Room room = this.roomService.validateAndGetByHost(this.userService.validateAndGetUser(userData));
         this.roomService.validateNotInGame(room);
         room.getMainZone().setZoneData(mainZone);
@@ -95,7 +95,7 @@ public class HostRoomServiceImpl implements HostRoomService {
     // Zone Control
 
     @Override
-    public void changeZoneControlData(UserData userData, ZoneControlDTO zoneControlData) {
+    public void changeZoneControlData(UserData userData, ZoneControlAttribute zoneControlData) {
         Room room = this.roomService.validateAndGetByHost(this.userService.validateAndGetUser(userData));
         this.roomService.validateNotInGame(room);
         if (room.getGameType() != GameType.ZONE_CONTROL)

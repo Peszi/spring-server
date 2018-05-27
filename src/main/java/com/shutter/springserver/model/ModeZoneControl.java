@@ -1,7 +1,7 @@
 package com.shutter.springserver.model;
 
 import com.shutter.springserver.constants.ZoneControlConstants;
-import com.shutter.springserver.attribute.ZoneControlDTO;
+import com.shutter.springserver.attribute.ZoneControlAttribute;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -26,7 +26,7 @@ public class ModeZoneControl {
         this.zoneCapacity = ZoneControlConstants.DEFAULT_ZONE_CAPACITY;
     }
 
-    public void setData(ZoneControlDTO zoneControlData) {
+    public void setData(ZoneControlAttribute zoneControlData) {
         this.pointsLimit = zoneControlData.getPointsLimit();
         this.timeLimit = zoneControlData.getTimeLimit();
         this.zoneCapacity = zoneControlData.getZoneCapacity();

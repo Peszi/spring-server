@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.validation.constraints.*;
 
 @Data
-public class ZoneDTO {
+public class ZoneAttribute {
 
     @NotNull
     private long zoneLongitude;

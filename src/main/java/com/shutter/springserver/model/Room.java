@@ -2,8 +2,10 @@ package com.shutter.springserver.model;
 
 import com.shutter.springserver.key.GameType;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Data
@@ -33,9 +35,9 @@ public class Room {
     @JoinColumn(name = "zone_control_id", referencedColumnName = "id")
     private ModeZoneControl zoneControl;
 
-//    @Column(nullable = false, updatable = false)
-//    @CreationTimestamp
-//    private Date createdAt;
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private Date createdAt;
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("id ASC")
@@ -63,6 +65,12 @@ public class Room {
         if (this.mainZone == null)
             this.mainZone = new Zone();
         return this.mainZone;
+    }
+
+    public String getCreatedDate() {
+        if (this.createdAt != null)
+            return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(this.createdAt);
+        return "no date";
     }
 
     @Override

@@ -55,10 +55,9 @@ public class UserRestController {
         return ResponseEntity.ok("User successfuly deleted!");
     }
 
-    @GetMapping
-    @RequestMapping("/user")
+    @GetMapping("/user")
     public ResponseEntity<UserDTO> getUserData(@AuthenticationPrincipal UserData userData) {
-        return new ResponseEntity<>(this.userMapper.userToUserDTO(userData), HttpStatus.OK);
+        return ResponseEntity.ok(this.userMapper.userToUserDTO(userData));
     }
 
 //    @GetMapping

@@ -6,7 +6,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
 
 @Data
-public class ZoneControlDTO {
+public class ZoneControlAttribute {
 
     @Min(50)
     private int pointsLimit;

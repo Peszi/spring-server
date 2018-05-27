@@ -1,7 +1,7 @@
 package com.shutter.springserver.model;
 
 import com.shutter.springserver.constants.RoomConstants;
-import com.shutter.springserver.attribute.ZoneDTO;
+import com.shutter.springserver.attribute.ZoneAttribute;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -26,7 +26,7 @@ public class Zone {
         this.zoneLongitude = 19.046022d;
     }
 
-    public void setZoneData(ZoneDTO zoneData) {
+    public void setZoneData(ZoneAttribute zoneData) {
         this.zoneLongitude = zoneData.getZoneLongitude();
         this.zoneLatitude = zoneData.getZoneLatitude();
         this.zoneRadius = zoneData.getZoneRadius();

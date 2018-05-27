@@ -2,6 +2,8 @@ package com.shutter.springserver.dto;
 
 import lombok.*;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -12,6 +14,7 @@ public class RoomDTO {
     private String hostName;
     private boolean isStarted;
     private int teamsCount;
+    private String createdAt;
 
     private double zoneLat;
     private double zoneLng;

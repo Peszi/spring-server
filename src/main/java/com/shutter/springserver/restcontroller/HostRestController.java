@@ -2,8 +2,8 @@ package com.shutter.springserver.restcontroller;
 
 import com.shutter.springserver.key.GameType;
 import com.shutter.springserver.key.UserData;
-import com.shutter.springserver.attribute.ZoneControlDTO;
-import com.shutter.springserver.attribute.ZoneDTO;
+import com.shutter.springserver.attribute.ZoneControlAttribute;
+import com.shutter.springserver.attribute.ZoneAttribute;
 import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.service.room.HostRoomService;
 import lombok.extern.slf4j.Slf4j;
@@ -51,7 +51,7 @@ public class HostRestController {
     }
 
     @PostMapping("/zone")
-    public ResponseEntity<String> changeLocation(@AuthenticationPrincipal UserData userData, @Valid @ModelAttribute ZoneDTO mainZone, BindingResult result) {
+    public ResponseEntity<String> changeLocation(@AuthenticationPrincipal UserData userData, @Valid @ModelAttribute ZoneAttribute mainZone, BindingResult result) {
         if (result.hasErrors())
             throw new BadRequestException(result.getFieldError().getField() + " " + result.getFieldError().getDefaultMessage());
         this.hostService.changeGameLocation(userData, mainZone);
@@ -59,7 +59,7 @@ public class HostRestController {
     }
 
     @PostMapping("/zoneControl")
-    public ResponseEntity<String> changeZoneControlPrefs(@AuthenticationPrincipal UserData userData, @Valid @ModelAttribute ZoneControlDTO zoneControlData, BindingResult result) {
+    public ResponseEntity<String> changeZoneControlPrefs(@AuthenticationPrincipal UserData userData, @Valid @ModelAttribute ZoneControlAttribute zoneControlData, BindingResult result) {
         if (result.hasErrors())
             throw new BadRequestException(result.getFieldError().getField() + " " + result.getFieldError().getDefaultMessage());
         this.hostService.changeZoneControlData(userData, zoneControlData);

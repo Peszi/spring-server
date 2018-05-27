@@ -20,6 +20,7 @@ public interface RoomMapper {
     @Mappings({
             @Mapping(source = "host.name", target = "hostName"),
             @Mapping(source = "isStarted", target = "started"),
+            @Mapping(source = "createdDate", target = "createdAt"),
             @Mapping(source = "mainZone.zoneLatitude", target = "zoneLat"),
             @Mapping(source = "mainZone.zoneLongitude", target = "zoneLng"),
             @Mapping(source = "mainZone.zoneRadius", target = "zoneRadius")
@@ -32,6 +33,7 @@ public interface RoomMapper {
     @Mappings({
             @Mapping(source = "host.name", target = "hostName"),
             @Mapping(source = "isStarted", target = "started"),
+            @Mapping(source = "createdDate", target = "createdAt"),
             @Mapping(source = "mainZone.zoneLatitude", target = "zoneLat"),
             @Mapping(source = "mainZone.zoneLongitude", target = "zoneLng"),
             @Mapping(source = "mainZone.zoneRadius", target = "zoneRadius"),

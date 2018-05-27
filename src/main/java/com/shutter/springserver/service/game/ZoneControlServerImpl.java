@@ -5,7 +5,7 @@ import com.shutter.springserver.data.game.GameData;
 import com.shutter.springserver.data.game.GameTeamData;
 import com.shutter.springserver.data.game.GameUserData;
 import com.shutter.springserver.data.status.GameStatus;
-import com.shutter.springserver.attribute.ZoneControlDTO;
+import com.shutter.springserver.attribute.ZoneControlAttribute;
 import com.shutter.springserver.exception.ServerFailureException;
 import com.shutter.springserver.model.Room;
 import com.shutter.springserver.model.Team;
@@ -25,7 +25,7 @@ public class ZoneControlServerImpl implements GameServer {
     private Map<Long, Integer> usersMap;
     private List<GameTeamData> teamsData;
 
-    private ZoneControlDTO zoneControlData;
+    private ZoneControlAttribute zoneControlData;
 
     public ZoneControlServerImpl() {
         this.gameStatus = new GameStatus();
