@@ -1,5 +1,6 @@
 package com.shutter.springserver.restcontroller;
 
+import com.shutter.springserver.dto.RoomDTO;
 import com.shutter.springserver.key.GameType;
 import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.attribute.ZoneControlAttribute;
@@ -23,6 +24,12 @@ public class HostRestController {
 
     public HostRestController(HostRoomService hostService) {
         this.hostService = hostService;
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> createRoom(@AuthenticationPrincipal UserData userData) {
+        this.hostService.deleteRoom(userData);
+        return ResponseEntity.ok("Room successfully deleted!");
     }
 
     @DeleteMapping("/kick/{userId}")

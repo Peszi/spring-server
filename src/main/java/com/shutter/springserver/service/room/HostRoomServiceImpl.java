@@ -34,6 +34,13 @@ public class HostRoomServiceImpl implements HostRoomService {
         this.roomService = roomService;
     }
 
+    @Transactional
+    @Override
+    public void deleteRoom(UserData userData) {
+        Room room = this.roomService.validateAndGetByHost(this.userService.validateAndGetUser(userData));
+        this.roomService.delete(room);
+    }
+
     @Override
     public void kickUser(UserData userData, long userId) {
 

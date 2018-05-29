@@ -8,10 +8,10 @@ import javax.validation.constraints.*;
 public class ZoneAttribute {
 
     @NotNull
-    private long zoneLongitude;
+    private long zoneLat;
 
     @NotNull
-    private long zoneLatitude;
+    private long zoneLng;
 
     @Min(5)
     @Max(1000)

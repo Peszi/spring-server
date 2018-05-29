@@ -27,8 +27,8 @@ public class Zone {
     }
 
     public void setZoneData(ZoneAttribute zoneData) {
-        this.zoneLongitude = zoneData.getZoneLongitude();
-        this.zoneLatitude = zoneData.getZoneLatitude();
+        this.zoneLongitude = zoneData.getZoneLng();
+        this.zoneLatitude = zoneData.getZoneLat();
         this.zoneRadius = zoneData.getZoneRadius();
     }
 

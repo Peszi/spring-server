@@ -55,6 +55,7 @@ public class UserRoomServiceImpl implements UserRoomService {
         return this.roomMapper.roomToRoomDTO(room);
     }
 
+    @Transactional
     @Override
     public void changeTeam(UserData userData, long teamId) {
         final User user = this.userService.validateAndGetUser(userData);

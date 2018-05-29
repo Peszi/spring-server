@@ -6,6 +6,7 @@ import com.shutter.springserver.attribute.ZoneControlAttribute;
 import com.shutter.springserver.attribute.ZoneAttribute;
 
 public interface HostRoomService {
+    void deleteRoom(UserData userData);
     void kickUser(UserData userData, long userId);
     void addTeam(UserData userData, String alias);
     void removeTeam(UserData userData, long teamId);
