@@ -14,6 +14,7 @@ public class RoomDTO {
     private String hostName;
     private boolean isStarted;
     private int teamsCount;
+    private int gameMode;
     private String createdAt;
 
     private double zoneLat;

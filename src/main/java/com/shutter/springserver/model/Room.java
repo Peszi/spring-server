@@ -67,6 +67,10 @@ public class Room {
         return this.mainZone;
     }
 
+    public int getGameMode() {
+        return this.gameType.ordinal();
+    }
+
     public String getCreatedDate() {
         if (this.createdAt != null)
             return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(this.createdAt);
