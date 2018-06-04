@@ -110,6 +110,13 @@ public class UserRoomServiceImpl implements UserRoomService {
         return this.roomMapper.roomToFullRoomDTO(user.getTeam().getRoom());
     }
 
+    @Override
+    public ModeZoneControl getZoneControl(UserData userData) {
+        final User user = this.userService.validateAndGetUser(userData);
+        this.userService.validateInTeam(user);
+        return user.getTeam().getRoom().getZoneControl();
+    }
+
     @Transactional
     @Override
     public RoomsListDTO getAllRooms(UserData userData) {

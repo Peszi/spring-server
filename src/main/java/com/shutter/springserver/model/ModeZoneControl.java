@@ -1,5 +1,6 @@
 package com.shutter.springserver.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.shutter.springserver.constants.ZoneControlConstants;
 import com.shutter.springserver.attribute.ZoneControlAttribute;
 import lombok.Data;
@@ -13,6 +14,7 @@ public class ModeZoneControl {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
 
     private int pointsLimit;

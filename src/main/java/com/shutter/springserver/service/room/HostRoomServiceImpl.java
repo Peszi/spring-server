@@ -1,5 +1,6 @@
 package com.shutter.springserver.service.room;
 
+import com.shutter.springserver.attribute.GameAttributes;
 import com.shutter.springserver.key.GameType;
 import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.attribute.ZoneControlAttribute;
@@ -24,9 +25,6 @@ public class HostRoomServiceImpl implements HostRoomService {
     private UserService userService;
     private TeamService teamService;
     private RoomService roomService;
-
-    @Autowired
-    private TeamRepository teamRepository;
 
     public HostRoomServiceImpl(UserService userService, TeamService teamService, RoomService roomService) {
         this.userService = userService;
@@ -80,6 +78,15 @@ public class HostRoomServiceImpl implements HostRoomService {
     }
 
     // Room
+
+    @Override
+    public void changeGameSettings(UserData userData, GameAttributes gameAttributes) {
+        Room room = this.roomService.validateAndGetByHost(this.userService.validateAndGetUser(userData));
+        this.roomService.validateNotInGame(room);
+        room.getMainZone().setZoneData(gameAttributes);
+        room.setGameType(GameType.fromInteger(gameAttributes.getGameMode()));
+        this.roomService.save(room);
+    }
 
     @Override
     public void changeGameMode(UserData userData, GameType gameType) {

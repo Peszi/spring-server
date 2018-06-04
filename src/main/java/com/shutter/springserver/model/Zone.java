@@ -1,5 +1,6 @@
 package com.shutter.springserver.model;
 
+import com.shutter.springserver.attribute.GameAttributes;
 import com.shutter.springserver.constants.RoomConstants;
 import com.shutter.springserver.attribute.ZoneAttribute;
 import lombok.Data;
@@ -30,6 +31,12 @@ public class Zone {
         this.zoneLongitude = zoneData.getZoneLng();
         this.zoneLatitude = zoneData.getZoneLat();
         this.zoneRadius = zoneData.getZoneRadius();
+    }
+
+    public void setZoneData(GameAttributes gameAttributes) {
+        this.zoneLongitude = gameAttributes.getZoneLng();
+        this.zoneLatitude = gameAttributes.getZoneLat();
+        this.zoneRadius = gameAttributes.getZoneRadius();
     }
 
 }

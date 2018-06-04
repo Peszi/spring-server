@@ -4,6 +4,7 @@ import com.shutter.springserver.dto.FullRoomDTO;
 import com.shutter.springserver.dto.RoomDTO;
 import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.dto.RoomsListDTO;
+import com.shutter.springserver.model.ModeZoneControl;
 import com.shutter.springserver.service.room.UserRoomService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -33,6 +34,11 @@ public class RoomRestController {
     @GetMapping("/room")
     public ResponseEntity<FullRoomDTO> getUserRoom(@AuthenticationPrincipal UserData userData) {
         return ResponseEntity.ok(this.userRoomService.getRoom(userData));
+    }
+
+    @GetMapping("/room/zoneControl")
+    public ResponseEntity<ModeZoneControl> getZoneControl(@AuthenticationPrincipal UserData userData) {
+        return ResponseEntity.ok(this.userRoomService.getZoneControl(userData));
     }
 
     @GetMapping("/rooms")

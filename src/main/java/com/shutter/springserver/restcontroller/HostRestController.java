@@ -1,5 +1,6 @@
 package com.shutter.springserver.restcontroller;
 
+import com.shutter.springserver.attribute.GameAttributes;
 import com.shutter.springserver.dto.RoomDTO;
 import com.shutter.springserver.key.GameType;
 import com.shutter.springserver.key.UserData;
@@ -55,6 +56,14 @@ public class HostRestController {
         GameType gameType = GameType.fromInteger(gameMode);
         this.hostService.changeGameMode(userData, gameType);
         return ResponseEntity.ok("Game mode changed to " + gameType.name() + "!");
+    }
+
+    @PostMapping("/game")
+    public ResponseEntity<?> changeGameSettings(@AuthenticationPrincipal UserData userData, @Valid @ModelAttribute GameAttributes gameAttributes, BindingResult result) {
+        if (result.hasErrors())
+            throw new BadRequestException(result.getFieldError().getField() + " " + result.getFieldError().getDefaultMessage());
+        this.hostService.changeGameSettings(userData, gameAttributes);
+        return ResponseEntity.ok("Game settings changed!");
     }
 
     @PostMapping("/zone")
