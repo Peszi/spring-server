@@ -1,5 +1,6 @@
 package com.shutter.springserver.service.game;
 
+import com.shutter.springserver.data.zonecontrol.ZoneControlGameStatus;
 import com.shutter.springserver.key.UserGameData;
 import com.shutter.springserver.data.game.GameData;
 import com.shutter.springserver.data.game.GameTeamData;
@@ -28,7 +29,7 @@ public class ZoneControlServerImpl implements GameServer {
     private ZoneControlAttribute zoneControlData;
 
     public ZoneControlServerImpl() {
-        this.gameStatus = new GameStatus();
+        this.gameStatus = new ZoneControlGameStatus();
         this.usersMap = new HashMap<>();
         this.teamsData = new ArrayList<>();
     }
