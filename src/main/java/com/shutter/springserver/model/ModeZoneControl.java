@@ -2,7 +2,7 @@ package com.shutter.springserver.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.shutter.springserver.constants.ZoneControlConstants;
-import com.shutter.springserver.attribute.ZoneControlAttribute;
+import com.shutter.springserver.attribute.ZoneControlAttributes;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -28,7 +28,7 @@ public class ModeZoneControl {
         this.zoneCapacity = ZoneControlConstants.DEFAULT_ZONE_CAPACITY;
     }
 
-    public void setData(ZoneControlAttribute zoneControlData) {
+    public void setData(ZoneControlAttributes zoneControlData) {
         this.pointsLimit = zoneControlData.getPointsLimit();
         this.timeLimit = zoneControlData.getTimeLimit();
         this.zoneCapacity = zoneControlData.getZoneCapacity();

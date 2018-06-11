@@ -2,7 +2,7 @@ package com.shutter.springserver.service.game;
 
 import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.key.UserGameData;
-import com.shutter.springserver.data.game.GameData;
+import com.shutter.springserver.data.game.GamePacket;
 import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.model.Room;
 import com.shutter.springserver.model.User;
@@ -41,7 +41,7 @@ public class ManageGameServiceImpl implements ManageGameService {
     }
 
     @Override
-    public GameData getGameData(long userId, UserGameData userGameData) {
+    public GamePacket getGameData(long userId, UserGameData userGameData) {
         Long roomId = this.gameService.getGameId(userId);
         if (roomId == null) {// if game crushed last time
             rerunGame(userId);

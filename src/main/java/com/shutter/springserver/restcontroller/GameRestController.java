@@ -1,7 +1,7 @@
 package com.shutter.springserver.restcontroller;
 
 import com.shutter.springserver.key.UserGameData;
-import com.shutter.springserver.data.game.GameData;
+import com.shutter.springserver.data.game.GamePacket;
 import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.service.game.ManageGameService;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +31,7 @@ public class GameRestController {
     }
 
     @GetMapping
-    public ResponseEntity<GameData> getGameData(@AuthenticationPrincipal UserData userData, UserGameData userGameData) {
+    public ResponseEntity<GamePacket> getGameData(@AuthenticationPrincipal UserData userData, UserGameData userGameData) {
         return ResponseEntity.ok(this.gameService.getGameData(userData.getId(), userGameData));
     }
 

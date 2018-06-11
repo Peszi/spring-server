@@ -1,10 +1,9 @@
 package com.shutter.springserver.restcontroller;
 
 import com.shutter.springserver.attribute.GameAttributes;
-import com.shutter.springserver.dto.RoomDTO;
 import com.shutter.springserver.key.GameType;
 import com.shutter.springserver.key.UserData;
-import com.shutter.springserver.attribute.ZoneControlAttribute;
+import com.shutter.springserver.attribute.ZoneControlAttributes;
 import com.shutter.springserver.attribute.ZoneAttribute;
 import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.service.room.HostRoomService;
@@ -75,7 +74,7 @@ public class HostRestController {
     }
 
     @PostMapping("/zoneControl")
-    public ResponseEntity<String> changeZoneControlPrefs(@AuthenticationPrincipal UserData userData, @Valid @ModelAttribute ZoneControlAttribute zoneControlData, BindingResult result) {
+    public ResponseEntity<String> changeZoneControlPrefs(@AuthenticationPrincipal UserData userData, @Valid @ModelAttribute ZoneControlAttributes zoneControlData, BindingResult result) {
         if (result.hasErrors())
             throw new BadRequestException(result.getFieldError().getField() + " " + result.getFieldError().getDefaultMessage());
         this.hostService.changeZoneControlData(userData, zoneControlData);

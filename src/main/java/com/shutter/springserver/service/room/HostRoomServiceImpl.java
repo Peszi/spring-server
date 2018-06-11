@@ -3,18 +3,16 @@ package com.shutter.springserver.service.room;
 import com.shutter.springserver.attribute.GameAttributes;
 import com.shutter.springserver.key.GameType;
 import com.shutter.springserver.key.UserData;
-import com.shutter.springserver.attribute.ZoneControlAttribute;
+import com.shutter.springserver.attribute.ZoneControlAttributes;
 import com.shutter.springserver.attribute.ZoneAttribute;
 import com.shutter.springserver.exception.AlreadyExistsException;
 import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.model.Room;
 import com.shutter.springserver.model.Team;
 import com.shutter.springserver.model.User;
-import com.shutter.springserver.repository.TeamRepository;
 import com.shutter.springserver.service.TeamService;
 import com.shutter.springserver.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -109,7 +107,7 @@ public class HostRoomServiceImpl implements HostRoomService {
     // Zone Control
 
     @Override
-    public void changeZoneControlData(UserData userData, ZoneControlAttribute zoneControlData) {
+    public void changeZoneControlData(UserData userData, ZoneControlAttributes zoneControlData) {
         Room room = this.roomService.validateAndGetByHost(this.userService.validateAndGetUser(userData));
         this.roomService.validateNotInGame(room);
         if (room.getGameType() != GameType.ZONE_CONTROL)

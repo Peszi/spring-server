@@ -3,6 +3,7 @@ package com.shutter.springserver.model;
 import com.shutter.springserver.attribute.GameAttributes;
 import com.shutter.springserver.constants.RoomConstants;
 import com.shutter.springserver.attribute.ZoneAttribute;
+import com.shutter.springserver.util.location.LatLng;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -39,4 +40,7 @@ public class Zone {
         this.zoneRadius = gameAttributes.getZoneRadius();
     }
 
+    public LatLng getLocation() {
+        return new LatLng(this.zoneLatitude, this.zoneLongitude);
+    }
 }
