@@ -10,8 +10,6 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
-import java.util.Set;
-
 @Mapper
 public interface RoomMapper {
 
@@ -21,9 +19,9 @@ public interface RoomMapper {
             @Mapping(source = "host.name", target = "hostName"),
             @Mapping(source = "isStarted", target = "started"),
             @Mapping(source = "createdDate", target = "createdAt"),
-            @Mapping(source = "mainZone.zoneLatitude", target = "zoneLat"),
-            @Mapping(source = "mainZone.zoneLongitude", target = "zoneLng"),
-            @Mapping(source = "mainZone.zoneRadius", target = "zoneRadius")
+            @Mapping(source = "baseZone.zoneLatitude", target = "zoneLat"),
+            @Mapping(source = "baseZone.zoneLongitude", target = "zoneLng"),
+            @Mapping(source = "baseZone.zoneRadius", target = "zoneRadius")
     })
     RoomDTO roomToRoomDTO(Room room);
 
@@ -34,9 +32,9 @@ public interface RoomMapper {
             @Mapping(source = "host.name", target = "hostName"),
             @Mapping(source = "isStarted", target = "started"),
             @Mapping(source = "createdDate", target = "createdAt"),
-            @Mapping(source = "mainZone.zoneLatitude", target = "zoneLat"),
-            @Mapping(source = "mainZone.zoneLongitude", target = "zoneLng"),
-            @Mapping(source = "mainZone.zoneRadius", target = "zoneRadius"),
+            @Mapping(source = "baseZone.zoneLatitude", target = "zoneLat"),
+            @Mapping(source = "baseZone.zoneLongitude", target = "zoneLng"),
+            @Mapping(source = "baseZone.zoneRadius", target = "zoneRadius"),
             @Mapping(source = "teams", target = "teamsList")
     })
     FullRoomDTO roomToFullRoomDTO(Room room);

@@ -1,24 +1,34 @@
 package com.shutter.springserver.data.status;
 
-import com.shutter.springserver.data.game.CaptureZoneData;
+import com.shutter.springserver.data.game.GameTeamData;
 import com.shutter.springserver.data.game.ZoneData;
+import com.shutter.springserver.model.Zone;
+import com.shutter.springserver.util.location.LatLng;
+import com.shutter.springserver.util.location.SphericalUtil;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
+@Setter
+@Getter
 public class GameData {
 
-    private ZoneData baseZone;
-    private List<CaptureZoneData> captureZones;
+    private static final int RESP_ZONE_RADIUS = 15;
+
     private ZoneData respZone;
 
     public GameData() {
-        this.baseZone = new ZoneData();
-        this.captureZones = new ArrayList<>();
         this.respZone = new ZoneData();
     }
 
-    public void setData() {
-
+    public static void init(List<GameTeamData> teamsData, Zone zone) {
+        final int zonesOffset = new Random().nextInt(360);
+        final int zoneAngleStep = 360 / teamsData.size();
+        for (int i = 0; i < teamsData.size(); i++) {
+            final LatLng zoneLocation = SphericalUtil.computeOffset(zone.getLocation(), zone.getZoneRadius(), zoneAngleStep * i + zonesOffset);
+            teamsData.get(i).setResp(new ZoneData(zoneLocation.latitude, zoneLocation.longitude, RESP_ZONE_RADIUS));
+        }
     }
 }

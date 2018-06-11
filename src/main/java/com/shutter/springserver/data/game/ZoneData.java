@@ -16,6 +16,10 @@ public class ZoneData {
     private double lng;
     private int radius;
 
+    public ZoneData(Zone zone) {
+        this.setup(zone);
+    }
+
     public void setup(Zone zone) {
         this.lat = zone.getZoneLatitude();
         this.lng = zone.getZoneLongitude();

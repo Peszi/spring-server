@@ -61,7 +61,7 @@ public class Room {
         return this.host.getId();
     }
 
-    public Zone getMainZone() {
+    public Zone getBaseZone() {
         if (this.mainZone == null)
             this.mainZone = new Zone();
         return this.mainZone;

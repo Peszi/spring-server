@@ -6,13 +6,9 @@ import com.shutter.springserver.model.Room;
 import com.shutter.springserver.model.Team;
 import com.shutter.springserver.model.User;
 
-public abstract class GameInitializer {
+public class GameUtility {
 
-    public void init(Room room, TeamsMap teamsMap) {
-        this.setupUsers(room, teamsMap);
-    }
-
-    private void setupUsers(Room room, TeamsMap teamsMap) {
+    public static void setupUsers(Room room, TeamsMap teamsMap) {
         teamsMap.clear();
         for (int i = 0; i < room.getTeams().size(); i++) {
             Team team = room.getTeams().get(i);
@@ -24,5 +20,4 @@ public abstract class GameInitializer {
             teamsMap.getTeamsData().add(teamData);
         }
     }
-
 }
