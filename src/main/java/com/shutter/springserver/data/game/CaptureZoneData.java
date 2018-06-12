@@ -10,24 +10,19 @@ import lombok.Setter;
 @Setter
 @Getter
 public class CaptureZoneData extends ZoneData {
-    private String color;
 
-    public CaptureZoneData(double lat, double lng, int radius, String color) {
+    private String color; // const
+    private String owner;
+    private float points;
+    private boolean capt;
+
+    public CaptureZoneData(double lat, double lng, int radius, String color, int points) {
         super(lat, lng, radius);
         this.color = color;
+        this.points = points;
     }
 
-    public void setup(Zone zone, String color) {
-        super.setup(zone);
-        this.color = color;
-    }
-
-    @Override
-    public String toString() {
-        return "CaptureZoneData{" +
-                "lat=" + this.getLat() +
-                "lng=" + this.getLng() +
-                "color='" + color + '\'' +
-                '}';
+    public int getPoints() {
+        return (int) this.points;
     }
 }

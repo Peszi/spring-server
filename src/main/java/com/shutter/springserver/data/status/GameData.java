@@ -15,7 +15,7 @@ import java.util.Random;
 @Getter
 public class GameData {
 
-    private static final int RESP_ZONE_RADIUS = 15;
+    private static final int RESP_ZONE_RADIUS = 16;
 
     private ZoneData respZone;
 
@@ -27,7 +27,8 @@ public class GameData {
         final int zonesOffset = new Random().nextInt(360);
         final int zoneAngleStep = 360 / teamsData.size();
         for (int i = 0; i < teamsData.size(); i++) {
-            final LatLng zoneLocation = SphericalUtil.computeOffset(zone.getLocation(), zone.getZoneRadius(), zoneAngleStep * i + zonesOffset);
+            final LatLng zoneLocation = SphericalUtil.computeOffset(zone.getLocation(),
+                    zone.getZoneRadius(), zoneAngleStep * i + zonesOffset);
             teamsData.get(i).setResp(new ZoneData(zoneLocation.latitude, zoneLocation.longitude, RESP_ZONE_RADIUS));
         }
     }

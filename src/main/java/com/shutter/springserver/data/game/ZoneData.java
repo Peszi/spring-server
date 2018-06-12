@@ -1,6 +1,7 @@
 package com.shutter.springserver.data.game;
 
 import com.shutter.springserver.model.Zone;
+import com.shutter.springserver.util.location.LatLng;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,5 +25,9 @@ public class ZoneData {
         this.lat = zone.getZoneLatitude();
         this.lng = zone.getZoneLongitude();
         this.radius = zone.getZoneRadius();
+    }
+
+    public LatLng getLocation() {
+        return new LatLng(this.lat, this.lng);
     }
 }

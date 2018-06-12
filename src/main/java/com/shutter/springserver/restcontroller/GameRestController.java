@@ -6,6 +6,7 @@ import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.service.game.ManageGameService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,8 +31,8 @@ public class GameRestController {
         return ResponseEntity.ok("Game is finished!");
     }
 
-    @GetMapping
-    public ResponseEntity<GamePacket> getGameData(@AuthenticationPrincipal UserData userData, UserGameData userGameData) {
+    @PostMapping("/update")
+    public ResponseEntity<GamePacket> getGameData(@AuthenticationPrincipal UserData userData, @RequestBody(required = false) UserGameData userGameData) {
         return ResponseEntity.ok(this.gameService.getGameData(userData.getId(), userGameData));
     }
 

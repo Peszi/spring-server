@@ -1,5 +1,9 @@
 package com.shutter.springserver.data.status;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.shutter.springserver.attribute.ZoneAttribute;
+import com.shutter.springserver.attribute.ZoneControlAttributes;
+import com.shutter.springserver.constants.ZoneControlConstants;
 import com.shutter.springserver.data.game.CaptureZoneData;
 import com.shutter.springserver.data.game.GameTeamData;
 import com.shutter.springserver.data.game.ZoneData;
@@ -28,13 +32,17 @@ public class GameStatus {
     private ZoneData baseZone;
     private List<CaptureZoneData> captureZones;
 
+    // Constant
+    private ZoneControlAttributes attributes;
+
     public GameStatus() {
         this.captureZones = new ArrayList<>();
+        this.attributes = new ZoneControlAttributes();
     }
 
-    public void init(Zone zone) {
+    public void init(Zone zone, ZoneControlAttributes gameAttributes) {
         this.setBaseZone(new ZoneData(zone));
-        this.initCaptureZones(zone.getLocation(), zone.getZoneRadius()/2);
+        this.initCaptureZones(zone.getLocation(), zone.getZoneRadius()/2, gameAttributes.getZoneCapacity());
     }
 
     public void updateTime(float deltaTime) {
@@ -45,7 +53,7 @@ public class GameStatus {
         return (int) gameTime;
     }
 
-    private void initCaptureZones(LatLng center, int offset) {
+    private void initCaptureZones(LatLng center, int offset, int zoneCap) {
         CaptureZoneData captureZoneData;
         final int captureZonesCount = 3;
         final int zonesOffset = new Random().nextInt(360);
@@ -53,7 +61,7 @@ public class GameStatus {
         this.captureZones.clear();
         for (int i = 0; i < captureZonesCount; i++) {
             final LatLng zoneLocation = SphericalUtil.computeOffset(center, offset,zoneAngleStep * i + zonesOffset);
-            captureZoneData = new CaptureZoneData(zoneLocation.latitude, zoneLocation.longitude, CAPTURE_ZONE_RADIUS, ZONES[i]);
+            captureZoneData = new CaptureZoneData(zoneLocation.latitude, zoneLocation.longitude, CAPTURE_ZONE_RADIUS, ZONES[i], zoneCap);
             this.captureZones.add(captureZoneData);
             System.out.println(captureZoneData.toString());
         }

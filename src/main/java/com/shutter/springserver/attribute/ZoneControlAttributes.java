@@ -9,11 +9,11 @@ import javax.validation.constraints.Positive;
 public class ZoneControlAttributes {
 
     @Min(50)
-    private int pointsLimit;
+    private int pointsLimit = 500;
 
     @Min(60)
-    private int timeLimit;
+    private int timeLimit = 1200;
 
     @Min(5)
-    private int zoneCapacity;
+    private int zoneCapacity = 50;
 }

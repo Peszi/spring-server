@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mariadb://db.shutterapp.pl:3301/spring_dev
+    url: jdbc:mariadb://db.shutapp.pl:3301/spring_dev
     driver-class-name: org.mariadb.jdbc.Driver
     username: spring_dev_user
     password: 1234
@@ -8,7 +8,7 @@ spring:
     hibernate:
       ddl-auto: none
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    show-sql: true
+    show-sql: false
 #    properties:
 #      javax:
 #        persistence:
