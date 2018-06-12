@@ -22,6 +22,10 @@ public class CaptureZoneData extends ZoneData {
         this.points = points;
     }
 
+    public void decreasePoints(float value) {
+        this.points -= value;
+    }
+
     public int getPoints() {
         return (int) this.points;
     }

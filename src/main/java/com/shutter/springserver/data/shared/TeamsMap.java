@@ -10,12 +10,14 @@ import com.shutter.springserver.model.User;
 import com.shutter.springserver.util.location.SphericalUtil;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Getter
 public class TeamsMap {
 
@@ -44,9 +46,10 @@ public class TeamsMap {
                 }
             }
             if (inZoneTeams.size() > 0) {
-                for (Map.Entry<GameTeamData, Integer> zoneTeam : inZoneTeams.entrySet()) {
-                    this.setCaptTeam(captureZone, zoneTeam.getKey(), deltaTime);
-                }
+//                for (Map.Entry<GameTeamData, Integer> zoneTeam : inZoneTeams.entrySet()) {
+//
+//                }
+                this.setCaptTeam(captureZone, inZoneTeams.entrySet().iterator().next().getKey(), deltaTime);
             } else {
                 this.setCaptTeam(captureZone, null, deltaTime);
             }
@@ -56,7 +59,7 @@ public class TeamsMap {
     private void setCaptTeam(CaptureZoneData captureZoneData, GameTeamData gameTeamData, float delta) {
         if (gameTeamData != null) {
             captureZoneData.setCapt(true);
-            captureZoneData.setPoints(captureZoneData.getPoints() - (delta * 0.05f));
+            captureZoneData.decreasePoints(delta * 0.1f);
             captureZoneData.setOwner(gameTeamData.getAlias());
         } else {
             captureZoneData.setCapt(false);
@@ -67,12 +70,5 @@ public class TeamsMap {
     void clear() {
         this.usersMap.clear();
         this.teamsData.clear();
-    }
-
-    @Setter
-    @Getter
-    class InZoneTeam {
-        private GameTeamData gameTeamData;
-        private int capturingUsers;
     }
 }

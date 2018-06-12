@@ -63,7 +63,6 @@ public class GameStatus {
             final LatLng zoneLocation = SphericalUtil.computeOffset(center, offset,zoneAngleStep * i + zonesOffset);
             captureZoneData = new CaptureZoneData(zoneLocation.latitude, zoneLocation.longitude, CAPTURE_ZONE_RADIUS, ZONES[i], zoneCap);
             this.captureZones.add(captureZoneData);
-            System.out.println(captureZoneData.toString());
         }
     }
 }

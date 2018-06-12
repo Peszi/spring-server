@@ -23,7 +23,7 @@ public class GameData {
         this.respZone = new ZoneData();
     }
 
-    public static void init(List<GameTeamData> teamsData, Zone zone) {
+    public static void init(List<GameTeamData> teamsData, Zone zone) { // calc resp zone
         final int zonesOffset = new Random().nextInt(360);
         final int zoneAngleStep = 360 / teamsData.size();
         for (int i = 0; i < teamsData.size(); i++) {
