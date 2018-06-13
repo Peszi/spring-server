@@ -62,7 +62,7 @@ public class UserRestController {
 
 //    @GetMapping
 //    @RequestMapping("/admin/info")
-//    public ResponseEntity<String> getHelloAdmin(@AuthenticationPrincipal UserData currentUser) {
+//    public ResponseEntity<String> getHelloAdmin(@AuthenticationPrincipal UserDataModel currentUser) {
 //        return ResponseEntity.ok("Hello admin!");
 //    }
 //
@@ -74,7 +74,7 @@ public class UserRestController {
 //
 //    @GetMapping
 //    @RequestMapping("/api/user")
-//    public ResponseEntity<String> getUsers(@AuthenticationPrincipal UserData currentUser) {
+//    public ResponseEntity<String> getUsers(@AuthenticationPrincipal UserDataModel currentUser) {
 //        return ResponseEntity.ok("Works with Auth! " + currentUser.getUsername() + ":" + currentUser.getId() + " Role " + currentUser.getAuthorities().iterator().next().getAuthority());
 //    }
 }

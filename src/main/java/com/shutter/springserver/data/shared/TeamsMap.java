@@ -1,15 +1,11 @@
 package com.shutter.springserver.data.shared;
 
-import com.shutter.springserver.data.game.CaptureZoneData;
+import com.shutter.springserver.data.game.response.models.CaptureZone;
 import com.shutter.springserver.data.game.GameTeamData;
 import com.shutter.springserver.data.game.GameUserData;
 import com.shutter.springserver.data.status.GameStatus;
-import com.shutter.springserver.model.Room;
-import com.shutter.springserver.model.Team;
-import com.shutter.springserver.model.User;
 import com.shutter.springserver.util.location.SphericalUtil;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
@@ -21,6 +17,8 @@ import java.util.Map;
 @Getter
 public class TeamsMap {
 
+    private final float CPT_SPEED = 0.1f;
+
     private Map<Long, Integer> usersMap; // Global User ID, Local Team ID
     private List<GameTeamData> teamsData; // Game Team Data (local team ID)
 
@@ -30,8 +28,13 @@ public class TeamsMap {
     }
 
     public void update(GameStatus gameStatus, float deltaTime) {
+        this.calcCapturePoints(gameStatus, deltaTime);
+        this.calcPlaces(gameStatus, deltaTime);
+    }
+
+    private void calcCapturePoints(GameStatus gameStatus, float deltaTime) {
         Map<GameTeamData, Integer> inZoneTeams = new HashMap<>();
-        for (CaptureZoneData captureZone : gameStatus.getCaptureZones()) { // per zone
+        for (CaptureZone captureZone : gameStatus.getCaptureZones()) { // per zone
             inZoneTeams.clear();
             for (GameTeamData gameTeamData : this.teamsData) {
                 for (GameUserData userData : gameTeamData.getUsers()) { // per user
@@ -56,11 +59,15 @@ public class TeamsMap {
         }
     }
 
-    private void setCaptTeam(CaptureZoneData captureZoneData, GameTeamData gameTeamData, float delta) {
+    private void calcPlaces(GameStatus gameStatus, float deltaTime) { }
+
+    private void setCaptTeam(CaptureZone captureZoneData, GameTeamData gameTeamData, float delta) {
         if (gameTeamData != null) {
             captureZoneData.setCapt(true);
-            captureZoneData.decreasePoints(delta * 0.1f);
             captureZoneData.setOwner(gameTeamData.getAlias());
+            final float cpt_value = delta * CPT_SPEED;
+            captureZoneData.decreasePoints(cpt_value);
+            gameTeamData.decreasePoints(cpt_value);
         } else {
             captureZoneData.setCapt(false);
             captureZoneData.setOwner(null);

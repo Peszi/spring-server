@@ -1,41 +1,44 @@
 package com.shutter.springserver.service.game;
 
-import com.shutter.springserver.data.game.GameTeamData;
-import com.shutter.springserver.data.shared.TeamsMap;
-import com.shutter.springserver.data.status.GameStatus;
+import com.shutter.springserver.data.game.response.GamePrefsModel;
+import com.shutter.springserver.data.game.response.ZonesLocationModel;
+import com.shutter.springserver.data.game.model.GameDataModel;
+import com.shutter.springserver.data.game.util.ZoneControlInitializer;
 import com.shutter.springserver.key.UserGameData;
-import com.shutter.springserver.data.game.GamePacket;
-import com.shutter.springserver.attribute.ZoneControlAttributes;
-import com.shutter.springserver.exception.ServerFailureException;
+import com.shutter.springserver.data.game.response.GamePacketModel;
 import com.shutter.springserver.model.Room;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ZoneControlServerImpl implements GameServer {
 
-    private TeamsMap teamsMap;
-    private GameStatus gameStatus;
+    private GamePrefsModel gamePrefsModel; // const game models
+    private ZonesLocationModel zonesLocationModel;
+//    private GamePacketModel gamePacketModel;
 
-    private GamePacket gamePacket;
-
-    // Game params
-    private ZoneControlAttributes zoneControlData;
-
-    public ZoneControlServerImpl() {
-        this.zoneControlData = new ZoneControlAttributes();
-        this.gameStatus = new GameStatus();
-        this.teamsMap = new TeamsMap();
-        this.gamePacket = new GamePacket();
-    }
+    private GameDataModel gameDataModel; // game data
 
     @Override
     public void setup(Room room) {
-        this.gameStatus.init(room.getBaseZone(), this.zoneControlData);
-        this.gamePacket.init(room, this.teamsMap);
+        this.gamePrefsModel = ZoneControlInitializer.initPrefs(room);
+        this.gameDataModel = ZoneControlInitializer.initGame(room);
+
+        // After game start
+        this.gameDataModel.startGame(this.gamePrefsModel);
     }
 
     @Override
-    public GamePacket updateUser(long userId, UserGameData userGameData) {
+    public GamePrefsModel getGamePrefs(long userId) {
+        return ZoneControlInitializer.getUserPrefs(this.gamePrefsModel, this.gameDataModel.getUserTeam(userId));
+    }
+
+    @Override
+    public ZonesLocationModel getZonesLocation(long userId) {
+        return ZoneControlInitializer.getCptZones(this.zonesLocationModel, this.gameDataModel.getZonesFactory().getCaptureZones());
+    }
+
+    @Override
+    public GamePacketModel getGamePacket(long userId, UserGameData userGameData) {
         this.gamePacket.setGameStatus(this.gameStatus); // TODO tmp
         this.gamePacket.update(this.getCurrentUserTeam(userId), userId, userGameData);
         return this.gamePacket;
@@ -45,12 +48,7 @@ public class ZoneControlServerImpl implements GameServer {
     public void updateGame(float deltaTime) {
         this.gameStatus.updateTime(deltaTime);
         this.teamsMap.update(this.gameStatus, deltaTime);
-    }
-
-    private GameTeamData getCurrentUserTeam(long userId) {
-        Integer teamId = this.teamsMap.getUsersMap().get(userId);
-        if (teamId == null)
-            throw new ServerFailureException("User not in the game!");
-        return this.teamsMap.getTeamsData().get(teamId);
+        // update game logic
+        this.gameDataModel.update(deltaTime);
     }
 }

@@ -1,7 +1,9 @@
 package com.shutter.springserver.service.game;
 
+import com.shutter.springserver.data.game.response.GamePrefsModel;
+import com.shutter.springserver.data.game.response.ZonesLocationModel;
 import com.shutter.springserver.key.UserGameData;
-import com.shutter.springserver.data.game.GamePacket;
+import com.shutter.springserver.data.game.response.GamePacketModel;
 import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.exception.NotFoundException;
 import com.shutter.springserver.exception.ServerFailureException;
@@ -44,14 +46,26 @@ public class GameServiceImpl implements GameService {
         if (!this.gamesList.containsKey(roomId))
             throw new NotFoundException("Game");
         this.gamesList.remove(roomId);
-        for (Map.Entry<Long, Long> user : this.usersList.entrySet())
+        for (Long user : this.usersList.keySet())
             this.usersList.remove(user);
     }
 
     @Override
-    public GamePacket getGameData(long userId, long roomId, UserGameData userData) {
+    public GamePrefsModel getGamePrefs(long userId, long roomId) {
         GameServer gameServer = this.getGameServer(roomId);
-        return gameServer.updateUser(userId, userData);
+        return gameServer.getGamePrefs(userId);
+    }
+
+    @Override
+    public ZonesLocationModel getZonesLocation(long userId, long roomId) {
+        GameServer gameServer = this.getGameServer(roomId);
+        return gameServer.getZonesLocation(userId);
+    }
+
+    @Override
+    public GamePacketModel getGamePacket(long userId, long roomId, UserGameData userData) {
+        GameServer gameServer = this.getGameServer(roomId);
+        return gameServer.getGamePacket(userId, userData);
     }
 
     @Override

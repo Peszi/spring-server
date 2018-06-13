@@ -1,13 +1,8 @@
 package com.shutter.springserver.data.status;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.shutter.springserver.attribute.ZoneAttribute;
 import com.shutter.springserver.attribute.ZoneControlAttributes;
-import com.shutter.springserver.constants.ZoneControlConstants;
-import com.shutter.springserver.data.game.CaptureZoneData;
-import com.shutter.springserver.data.game.GameTeamData;
-import com.shutter.springserver.data.game.ZoneData;
-import com.shutter.springserver.model.Room;
+import com.shutter.springserver.data.game.response.models.CaptureZone;
+import com.shutter.springserver.data.game.response.models.ZoneModel;
 import com.shutter.springserver.model.Zone;
 import com.shutter.springserver.util.location.LatLng;
 import com.shutter.springserver.util.location.SphericalUtil;
@@ -20,6 +15,7 @@ import java.util.Random;
 
 @Setter
 @Getter
+@Deprecated
 public class GameStatus {
 
     private static final String[] ZONES = {"green", "cyan", "yellow"};
@@ -29,19 +25,22 @@ public class GameStatus {
     private float gameTime;
     private boolean inGame;
 
-    private ZoneData baseZone;
-    private List<CaptureZoneData> captureZones;
+    private ZoneModel baseZone;
+    private List<CaptureZone> captureZones;
+
+    private String[] places;
 
     // Constant
     private ZoneControlAttributes attributes;
 
     public GameStatus() {
         this.captureZones = new ArrayList<>();
+        this.places = new String[3];
         this.attributes = new ZoneControlAttributes();
     }
 
     public void init(Zone zone, ZoneControlAttributes gameAttributes) {
-        this.setBaseZone(new ZoneData(zone));
+        this.setBaseZone(new ZoneModel(zone));
         this.initCaptureZones(zone.getLocation(), zone.getZoneRadius()/2, gameAttributes.getZoneCapacity());
     }
 
@@ -54,15 +53,15 @@ public class GameStatus {
     }
 
     private void initCaptureZones(LatLng center, int offset, int zoneCap) {
-        CaptureZoneData captureZoneData;
+        CaptureZone captureZoneData;
         final int captureZonesCount = 3;
         final int zonesOffset = new Random().nextInt(360);
         final int zoneAngleStep = 360 / captureZonesCount;
         this.captureZones.clear();
         for (int i = 0; i < captureZonesCount; i++) {
             final LatLng zoneLocation = SphericalUtil.computeOffset(center, offset,zoneAngleStep * i + zonesOffset);
-            captureZoneData = new CaptureZoneData(zoneLocation.latitude, zoneLocation.longitude, CAPTURE_ZONE_RADIUS, ZONES[i], zoneCap);
-            this.captureZones.add(captureZoneData);
+//            captureZoneData = new CaptureZone(zoneLocation.latitude, zoneLocation.longitude, CAPTURE_ZONE_RADIUS, ZONES[i], zoneCap);
+//            this.captureZones.add(captureZoneData);
         }
     }
 }

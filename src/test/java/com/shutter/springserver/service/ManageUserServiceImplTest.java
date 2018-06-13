@@ -103,7 +103,7 @@ public class ManageUserServiceImplTest {
 //    @Test
 //    public void deleteUser() {
 //        // Given
-//        UserData userData = new UserData(1L, "name","name@email.com", "", true, new ArrayList<>());
+//        UserDataModel userData = new UserDataModel(1L, "name","name@email.com", "", true, new ArrayList<>());
 //        when(this.userRepository.findById(userData.getId())).thenReturn(Optional.of(new User()));
 //        // When
 //        this.manageUserService.deleteUser(userData);
@@ -114,7 +114,7 @@ public class ManageUserServiceImplTest {
 //    @Test(expected = NotFoundException.class)
 //    public void deleteUserExceptionNotExists() {
 //        // Given
-//        UserData userData = new UserData(1L, "name","name@email.com", "", true, new ArrayList<>());
+//        UserDataModel userData = new UserDataModel(1L, "name","name@email.com", "", true, new ArrayList<>());
 //        when(this.userRepository.findById(userData.getId())).thenReturn(Optional.empty());
 //        // When
 //        this.manageUserService.deleteUser(userData);

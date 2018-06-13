@@ -78,6 +78,6 @@ public class HostRestController {
         if (result.hasErrors())
             throw new BadRequestException(result.getFieldError().getField() + " " + result.getFieldError().getDefaultMessage());
         this.hostService.changeZoneControlData(userData, zoneControlData);
-        return ResponseEntity.ok("Game prefs changed!");
+        return ResponseEntity.ok("Game models changed!");
     }
 }

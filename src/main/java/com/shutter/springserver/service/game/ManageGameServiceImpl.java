@@ -1,8 +1,10 @@
 package com.shutter.springserver.service.game;
 
+import com.shutter.springserver.data.game.response.GamePrefsModel;
+import com.shutter.springserver.data.game.response.ZonesLocationModel;
 import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.key.UserGameData;
-import com.shutter.springserver.data.game.GamePacket;
+import com.shutter.springserver.data.game.response.GamePacketModel;
 import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.model.Room;
 import com.shutter.springserver.model.User;
@@ -41,16 +43,34 @@ public class ManageGameServiceImpl implements ManageGameService {
     }
 
     @Override
-    public GamePacket getGameData(long userId, UserGameData userGameData) {
-        Long roomId = this.gameService.getGameId(userId);
-        if (roomId == null) {// if game crushed last time
-            rerunGame(userId);
-            throw new BadRequestException("Game is restarted...");
-        }
-        return this.gameService.getGameData(userId, roomId, userGameData);
+    public GamePrefsModel getGamePrefs(long userId) {
+        final Long roomId = this.getUserRoomId(userId);
+        return this.gameService.getGamePrefs(userId, roomId);
     }
 
-    private void rerunGame(Long userId) {
+    @Override
+    public ZonesLocationModel getZonesLocation(long userId) {
+        final Long roomId = this.getUserRoomId(userId);
+        return this.gameService.getZonesLocation(userId, roomId);
+    }
+
+    @Override
+    public GamePacketModel getGamePacket(long userId, UserGameData userGameData) {
+        final Long roomId = this.getUserRoomId(userId);
+        return this.gameService.getGamePacket(userId, roomId, userGameData);
+    }
+
+    private Long getUserRoomId(long userId) {
+        Long roomId = this.gameService.getGameId(userId);
+        if (roomId == null) {// if game crushed last time
+//            this.restartGame(userId);
+//            throw new BadRequestException("Game is restarted...");
+            throw new BadRequestException("Game not exists!");
+        }
+        return roomId;
+    }
+
+    private void restartGame(Long userId) {
         this.startGame(this.userService.validateAndGetUserById(userId));
     }
 
@@ -64,7 +84,7 @@ public class ManageGameServiceImpl implements ManageGameService {
 
 
 //    @Override
-//    public RoomService getHostRoom(UserData userData) {
+//    public RoomService getHostRoom(UserDataModel userData) {
 //        User user = this.userService.validateAndGetUser(userData);
 //        if (!user.hasTeam() || !user.getTeam().hasRoom())
 //            throw new NotFoundException("RoomService");

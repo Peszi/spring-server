@@ -1,5 +1,6 @@
 package com.shutter.springserver.data.game;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.shutter.springserver.model.User;
 import com.shutter.springserver.util.location.LatLng;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class GameUserData {
         this.died = false;
     }
 
+    @JsonIgnore
     public LatLng getLocation() {
         return new LatLng(this.lat, this.lng);
     }

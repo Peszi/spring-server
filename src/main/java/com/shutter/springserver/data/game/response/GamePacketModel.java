@@ -1,8 +1,8 @@
-package com.shutter.springserver.data.game;
+package com.shutter.springserver.data.game.response;
 
-import com.shutter.springserver.data.shared.GameUtility;
+import com.shutter.springserver.attribute.ZoneControlAttributes;
+import com.shutter.springserver.data.game.GameTeamData;
 import com.shutter.springserver.data.shared.TeamsMap;
-import com.shutter.springserver.data.status.GameData;
 import com.shutter.springserver.data.status.GameStatus;
 import com.shutter.springserver.data.status.UserStatus;
 import com.shutter.springserver.key.UserGameData;
@@ -12,27 +12,22 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class GamePacket {
+public class GamePacketModel {
 
     private GameStatus gameStatus; // per game
 
-    private UserStatus userStatus; // updated per user
-    private GameData gameData; // updated per user
+    private UserStatus userStatus; // per user
 
-    public GamePacket() {
+    public GamePacketModel() {
         this.userStatus = new UserStatus();
-        this.gameData = new GameData();
     }
 
-    public void init(Room room, TeamsMap teamsMap) {
-        GameUtility.setupUsers(room, teamsMap);
-        GameData.init(teamsMap.getTeamsData(), room.getMainZone());
+    public void init(Room room, TeamsMap teamsMap, ZoneControlAttributes attributes) {
     }
 
     public void update(GameTeamData gameTeamData, long userId, UserGameData userGameData) {
         this.userStatus.update(gameTeamData, userId); // updated per user
         this.userStatus.updatePosition(userGameData);
-        this.gameData.setRespZone(gameTeamData.getResp()); // updated per user
     }
 
 }

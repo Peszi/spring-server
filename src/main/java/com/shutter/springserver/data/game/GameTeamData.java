@@ -1,5 +1,6 @@
 package com.shutter.springserver.data.game;
 
+import com.shutter.springserver.data.game.response.models.ZoneModel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,12 +12,15 @@ import java.util.List;
 public class GameTeamData {
 
     private String alias;
-    private List<GameUserData> users = new ArrayList<>();
-    private ZoneData resp;
+    private List<GameUserData> users;
 
-    public GameTeamData(String alias) {
+    private float points;
+    private ZoneModel resp;
+
+    public GameTeamData(String alias, int teamPointsCap) {
         this.alias = alias;
-        this.resp = new ZoneData();
+        this.users = new ArrayList<>();
+        this.points = teamPointsCap;
     }
 
     public void addUser(GameUserData userData) {
@@ -27,7 +31,7 @@ public class GameTeamData {
         return !this.users.isEmpty();
     }
 
-    public GameUserData getById(long userId) {
+    public GameUserData getUserById(long userId) {
         for (GameUserData userData : this.users)
             if (userData.getId() == userId)
                 return userData;
@@ -40,5 +44,13 @@ public class GameTeamData {
             if (userData.getId() != userId)
                 alliesList.add(userData);
         return alliesList;
+    }
+
+    public void decreasePoints(float value) {
+        this.points -= value;
+    }
+
+    public int getPoints() {
+        return (int) this.points;
     }
 }
