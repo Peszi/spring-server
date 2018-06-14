@@ -1,4 +1,4 @@
-package com.shutter.springserver.data.game.response.models;
+package com.shutter.springserver.data.game.dto.utility;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,14 +1,14 @@
-package com.shutter.springserver.data.game.response.models;
+package com.shutter.springserver.data.game.dto.utility.zone;
 
 import lombok.Getter;
 
 @Getter
-public class ZonePrefsModel {
+public class CptZonePrefsModel {
 
     private int capacity;
     private int radius;
 
-    public ZonePrefsModel(int capacity, int radius) {
+    public CptZonePrefsModel(int capacity, int radius) {
         this.setup(capacity, radius);
     }
 

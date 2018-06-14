@@ -1,9 +1,9 @@
 package com.shutter.springserver.restcontroller;
 
-import com.shutter.springserver.data.game.response.GamePrefsModel;
-import com.shutter.springserver.data.game.response.ZonesLocationModel;
-import com.shutter.springserver.key.UserGameData;
-import com.shutter.springserver.data.game.response.GamePacketModel;
+import com.shutter.springserver.data.game.dto.GamePrefsModel;
+import com.shutter.springserver.data.game.dto.ZonesLocationModel;
+import com.shutter.springserver.key.UserGameAttributes;
+import com.shutter.springserver.data.game.dto.GamePacketModel;
 import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.service.game.ManageGameService;
 import org.springframework.http.ResponseEntity;
@@ -43,8 +43,8 @@ public class GameRestController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<GamePacketModel> getGameData(@AuthenticationPrincipal UserData userData, @RequestBody(required = false) UserGameData userGameData) {
-        return ResponseEntity.ok(this.gameService.getGamePacket(userData.getId(), userGameData));
+    public ResponseEntity<GamePacketModel> getGameData(@AuthenticationPrincipal UserData userData, @RequestBody(required = false) UserGameAttributes userGameAttributes) {
+        return ResponseEntity.ok(this.gameService.getGamePacket(userData.getId(), userGameAttributes));
     }
 
 }

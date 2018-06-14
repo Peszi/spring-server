@@ -1,5 +1,6 @@
-package com.shutter.springserver.data.game.response.models;
+package com.shutter.springserver.data.game.dto.utility.zone;
 
+import com.shutter.springserver.data.game.dto.utility.LocationModel;
 import com.shutter.springserver.model.Zone;
 import lombok.Getter;
 import lombok.Setter;

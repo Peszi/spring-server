@@ -5,13 +5,13 @@ package com.shutter.springserver.handler;
 //public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 //
 //    @Override
-//    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e) {
+//    public void handle(HttpServletRequest request, HttpServletResponse dto, AccessDeniedException e) {
 //        System.err.println("HERE" + request.getRemoteAddr() + e.getMessage());
-//        response.setDied(HttpServletResponse.SC_UNAUTHORIZED);
-//        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-//        response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
+//        dto.setAlive(HttpServletResponse.SC_UNAUTHORIZED);
+//        dto.setContentType(MediaType.APPLICATION_JSON_VALUE);
+//        dto.setCharacterEncoding(StandardCharsets.UTF_8.toString());
 //        try {
-//            response.getWriter().write(e.getMessage());
+//            dto.getWriter().write(e.getMessage());
 //        } catch (IOException e1) {
 //            e1.printStackTrace();
 //        }

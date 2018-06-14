@@ -81,7 +81,7 @@ public class HostRoomServiceImpl implements HostRoomService {
     public void changeGameSettings(UserData userData, GameAttributes gameAttributes) {
         Room room = this.roomService.validateAndGetByHost(this.userService.validateAndGetUser(userData));
         this.roomService.validateNotInGame(room);
-        room.getBaseZone().setZoneData(gameAttributes);
+        room.getMainZone().setZoneData(gameAttributes);
         room.setGameType(GameType.fromInteger(gameAttributes.getGameMode()));
         this.roomService.save(room);
     }
@@ -98,7 +98,7 @@ public class HostRoomServiceImpl implements HostRoomService {
     public void changeGameLocation(UserData userData, ZoneAttribute mainZone) {
         Room room = this.roomService.validateAndGetByHost(this.userService.validateAndGetUser(userData));
         this.roomService.validateNotInGame(room);
-        room.getBaseZone().setZoneData(mainZone);
+        room.getMainZone().setZoneData(mainZone);
         this.roomService.save(room);
     }
 

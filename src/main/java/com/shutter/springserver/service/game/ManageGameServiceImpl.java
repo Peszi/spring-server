@@ -1,10 +1,10 @@
 package com.shutter.springserver.service.game;
 
-import com.shutter.springserver.data.game.response.GamePrefsModel;
-import com.shutter.springserver.data.game.response.ZonesLocationModel;
+import com.shutter.springserver.data.game.dto.GamePrefsModel;
+import com.shutter.springserver.data.game.dto.ZonesLocationModel;
 import com.shutter.springserver.key.UserData;
-import com.shutter.springserver.key.UserGameData;
-import com.shutter.springserver.data.game.response.GamePacketModel;
+import com.shutter.springserver.key.UserGameAttributes;
+import com.shutter.springserver.data.game.dto.GamePacketModel;
 import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.model.Room;
 import com.shutter.springserver.model.User;
@@ -55,9 +55,9 @@ public class ManageGameServiceImpl implements ManageGameService {
     }
 
     @Override
-    public GamePacketModel getGamePacket(long userId, UserGameData userGameData) {
+    public GamePacketModel getGamePacket(long userId, UserGameAttributes userGameAttributes) {
         final Long roomId = this.getUserRoomId(userId);
-        return this.gameService.getGamePacket(userId, roomId, userGameData);
+        return this.gameService.getGamePacket(userId, roomId, userGameAttributes);
     }
 
     private Long getUserRoomId(long userId) {

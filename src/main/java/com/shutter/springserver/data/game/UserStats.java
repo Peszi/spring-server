@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 @Getter
 @Setter
+@Deprecated
 public class UserStats {
 
     private long userId;

@@ -1,9 +1,9 @@
 package com.shutter.springserver.service.game;
 
-import com.shutter.springserver.data.game.response.GamePrefsModel;
-import com.shutter.springserver.data.game.response.ZonesLocationModel;
-import com.shutter.springserver.key.UserGameData;
-import com.shutter.springserver.data.game.response.GamePacketModel;
+import com.shutter.springserver.data.game.dto.GamePrefsModel;
+import com.shutter.springserver.data.game.dto.ZonesLocationModel;
+import com.shutter.springserver.key.UserGameAttributes;
+import com.shutter.springserver.data.game.dto.GamePacketModel;
 import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.exception.NotFoundException;
 import com.shutter.springserver.exception.ServerFailureException;
@@ -63,7 +63,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public GamePacketModel getGamePacket(long userId, long roomId, UserGameData userData) {
+    public GamePacketModel getGamePacket(long userId, long roomId, UserGameAttributes userData) {
         GameServer gameServer = this.getGameServer(roomId);
         return gameServer.getGamePacket(userId, userData);
     }

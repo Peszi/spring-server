@@ -17,6 +17,7 @@ import com.shutter.springserver.service.user.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,7 +44,7 @@ public class UserRoomServiceImpl implements UserRoomService {
         Room room = new Room();
         room.setHost(user);
         room.setIsStarted(false);
-        room.getBaseZone();
+        room.getMainZone();
         room.setGameType(GameType.ZONE_CONTROL); // TODO tmp
         room.setZoneControl(new ModeZoneControl());
         Team team = new Team();

@@ -5,8 +5,10 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class UserGameData {
+public class UserGameAttributes {
+
     private double lat;
     private double lng;
     private boolean ready;
+
 }
