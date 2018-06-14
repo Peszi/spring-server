@@ -34,13 +34,13 @@ public class CaptureZonesManagerTest {
         this.zonesFactory.init(gamePrefsModel);
         this.zonesFactory.getCaptureZones().get(0).setOwner("A");
         this.printZones();
-        while (true) {
-            this.zonesFactory.update(1f);
-            if (this.zonesFactory.getCaptureZones().get(0).getOrder() != 0) {
-                break;
-            }
-        }
-        this.printZones();
+//        while (true) {
+//            this.zonesFactory.update(1f);
+//            if (this.zonesFactory.getCaptureZones().get(0).getOrder() != 0) {
+//                break;
+//            }
+//        }
+//        this.printZones();
         assertEquals(3, this.zonesFactory.getCaptureZones().size());
     }
 
