@@ -1,15 +1,26 @@
 package com.shutter.springserver.service.game;
 
-import com.shutter.springserver.data.game.dto.GamePrefsModel;
-import com.shutter.springserver.data.game.dto.ZonesLocationModel;
+import com.shutter.springserver.game.GameEngine;
+import com.shutter.springserver.game.GameEventListener;
+import com.shutter.springserver.game.dto.GamePrefsModel;
+import com.shutter.springserver.game.dto.ZonesLocationModel;
+import com.shutter.springserver.game.dto.utility.GameResultModel;
 import com.shutter.springserver.key.UserGameAttributes;
-import com.shutter.springserver.data.game.dto.GamePacketModel;
+import com.shutter.springserver.game.dto.GamePacketModel;
 import com.shutter.springserver.model.Room;
 
-public interface GameServer {
-    void setup(Room room);
-    void updateGame(float deltaTime);
-    GamePrefsModel getGamePrefs(long userId);
-    ZonesLocationModel getZonesLocation(long userId);
-    GamePacketModel getGamePacket(long userId, UserGameAttributes userGameAttributes);
+public abstract class GameServer {
+
+    GameEventListener gameListener;
+
+    void setGameListener(GameEventListener gameListener) { this.gameListener = gameListener; }
+
+    public abstract void setup(Room room);
+    public abstract void updateGame(float deltaTime);
+    public abstract GamePrefsModel getGamePrefs(long userId);
+    public abstract ZonesLocationModel getZonesLocation(long userId);
+    public abstract String setUserReady(long userId);
+    public abstract GamePacketModel getGamePacket(long userId, UserGameAttributes userGameAttributes);
+    public abstract GameResultModel getGameResult(long userId);
+    public abstract GameEngine getGameEngine();
 }

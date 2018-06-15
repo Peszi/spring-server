@@ -1,10 +1,12 @@
 package com.shutter.springserver.service.game;
 
-import com.shutter.springserver.data.game.dto.GamePrefsModel;
-import com.shutter.springserver.data.game.dto.ZonesLocationModel;
+import com.shutter.springserver.game.GameEventListener;
+import com.shutter.springserver.game.dto.GamePrefsModel;
+import com.shutter.springserver.game.dto.ZonesLocationModel;
+import com.shutter.springserver.game.dto.utility.GameResultModel;
 import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.key.UserGameAttributes;
-import com.shutter.springserver.data.game.dto.GamePacketModel;
+import com.shutter.springserver.game.dto.GamePacketModel;
 import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.model.Room;
 import com.shutter.springserver.model.User;
@@ -16,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
-public class ManageGameServiceImpl implements ManageGameService {
+public class ManageGameServiceImpl implements ManageGameService, GameEventListener {
 
     private UserService userService;
     private RoomService roomService;
@@ -44,23 +46,50 @@ public class ManageGameServiceImpl implements ManageGameService {
 
     @Override
     public GamePrefsModel getGamePrefs(long userId) {
-        final Long roomId = this.getUserRoomId(userId);
-        return this.gameService.getGamePrefs(userId, roomId);
+        final Long gameId = this.getUserGameId(userId);
+        return this.gameService.getGamePrefs(userId, gameId);
     }
 
     @Override
     public ZonesLocationModel getZonesLocation(long userId) {
-        final Long roomId = this.getUserRoomId(userId);
-        return this.gameService.getZonesLocation(userId, roomId);
+        final Long gameId = this.getUserGameId(userId);
+        return this.gameService.getZonesLocation(userId, gameId);
+    }
+
+    @Override
+    public String setUserReady(long userId) {
+        final Long gameId = this.getUserGameId(userId);
+        return this.gameService.setUserReady(userId, gameId);
     }
 
     @Override
     public GamePacketModel getGamePacket(long userId, UserGameAttributes userGameAttributes) {
-        final Long roomId = this.getUserRoomId(userId);
-        return this.gameService.getGamePacket(userId, roomId, userGameAttributes);
+        final Long gameId = this.getUserGameId(userId);
+        return this.gameService.getGamePacket(userId, gameId, userGameAttributes);
     }
 
-    private Long getUserRoomId(long userId) {
+    @Override
+    public GameResultModel getGameResult(long userId) {
+        final Long gameId = this.getUserGameId(userId);
+        return this.gameService.getGameResult(userId, gameId);
+    }
+
+    @Override
+    public void onGameFinished(long roomId) {
+        Room room = this.roomService.validateAndGetById(roomId);
+        room.setIsStarted(false);
+        this.roomService.save(room);
+    }
+
+    private void startGame(User user) {
+        Room room = this.roomService.validateAndGetByHost(user);
+        this.roomService.removeEmptyTeams(room);
+        room.setIsStarted(true);
+        this.roomService.save(room);
+        this.gameService.createGame(room, this);
+    }
+
+    private Long getUserGameId(long userId) {
         Long roomId = this.gameService.getGameId(userId);
         if (roomId == null) {// if game crushed last time
 //            this.restartGame(userId);
@@ -74,21 +103,13 @@ public class ManageGameServiceImpl implements ManageGameService {
         this.startGame(this.userService.validateAndGetUserById(userId));
     }
 
-    private void startGame(User user) {
-        Room room = this.roomService.validateAndGetByHost(user);
-        this.roomService.removeEmptyTeams(room);
-        room.setIsStarted(true);
-        this.roomService.save(room);
-        this.gameService.createGame(room);
-    }
-
 
 //    @Override
 //    public RoomService getHostRoom(UserDataModel userData) {
 //        User user = this.userService.validateAndGetUser(userData);
 //        if (!user.hasTeam() || !user.getTeam().hasRoom())
 //            throw new NotFoundException("RoomService");
-//        if (user.getTeam().validateAndGetByHost().getHostId() != userData.getId())
+//        if (user.getTeam().validateAndGetByHost().getRoomId() != userData.getId())
 //            throw new BadRequestException("User is not a host!");
 //        return user.getTeam().validateAndGetByHost();
 //    }

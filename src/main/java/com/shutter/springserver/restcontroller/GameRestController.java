@@ -1,9 +1,11 @@
 package com.shutter.springserver.restcontroller;
 
-import com.shutter.springserver.data.game.dto.GamePrefsModel;
-import com.shutter.springserver.data.game.dto.ZonesLocationModel;
+import com.shutter.springserver.game.dto.GamePrefsModel;
+import com.shutter.springserver.game.dto.ZonesLocationModel;
+import com.shutter.springserver.game.dto.utility.GameResultModel;
+import com.shutter.springserver.game.dto.utility.ResultModel;
 import com.shutter.springserver.key.UserGameAttributes;
-import com.shutter.springserver.data.game.dto.GamePacketModel;
+import com.shutter.springserver.game.dto.GamePacketModel;
 import com.shutter.springserver.key.UserData;
 import com.shutter.springserver.service.game.ManageGameService;
 import org.springframework.http.ResponseEntity;
@@ -42,9 +44,19 @@ public class GameRestController {
         return ResponseEntity.ok(this.gameService.getZonesLocation(userData.getId()));
     }
 
+    @PostMapping("/ready")
+    public ResponseEntity<String> setUserReady(@AuthenticationPrincipal UserData userData) {
+        this.gameService.setUserReady(userData.getId());
+        return ResponseEntity.ok("User is ready!");
+    }
+
     @PostMapping("/update")
     public ResponseEntity<GamePacketModel> getGameData(@AuthenticationPrincipal UserData userData, @RequestBody(required = false) UserGameAttributes userGameAttributes) {
         return ResponseEntity.ok(this.gameService.getGamePacket(userData.getId(), userGameAttributes));
     }
 
+    @GetMapping("/results")
+    public ResponseEntity<GameResultModel> getGameResult(@AuthenticationPrincipal UserData userData) {
+        return ResponseEntity.ok(this.gameService.getGameResult(userData.getId()));
+    }
 }

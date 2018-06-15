@@ -62,7 +62,7 @@ public class MathUtil {
     /**
      * Computes inverse haversine. Has good numerical stability around 0.
      * arcHav(x) == acos(1 - 2 * x) == 2 * asin(sqrt(x)).
-     * The argument must be in [0, 1], and the result is positive.
+     * The argument must be in [0, 1], and the results is positive.
      */
     static double arcHav(double x) {
         return 2 * asin(sqrt(x));

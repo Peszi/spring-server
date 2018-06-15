@@ -1,9 +1,11 @@
 package com.shutter.springserver.service.game;
 
-import com.shutter.springserver.data.game.dto.GamePrefsModel;
-import com.shutter.springserver.data.game.dto.ZonesLocationModel;
+import com.shutter.springserver.game.GameEventListener;
+import com.shutter.springserver.game.dto.GamePrefsModel;
+import com.shutter.springserver.game.dto.ZonesLocationModel;
+import com.shutter.springserver.game.dto.utility.GameResultModel;
 import com.shutter.springserver.key.UserGameAttributes;
-import com.shutter.springserver.data.game.dto.GamePacketModel;
+import com.shutter.springserver.game.dto.GamePacketModel;
 import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.exception.NotFoundException;
 import com.shutter.springserver.exception.ServerFailureException;
@@ -34,10 +36,10 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void createGame(Room room) {
-        if (this.gamesList.containsKey(room.getId()))
+    public void createGame(Room room, GameEventListener gameListener) {
+        if (this.gamesList.containsKey(room.getId()) && !this.isGameFinished(room.getId()))
             throw new BadRequestException("Game already started!");
-        this.setupGame(room);
+        this.setupGame(room, gameListener);
         this.setupUsers(room.getTeams(), room.getId());
     }
 
@@ -63,9 +65,21 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    public String setUserReady(long userId, long roomId) {
+        GameServer gameServer = this.getGameServer(roomId);
+        return gameServer.setUserReady(userId);
+    }
+
+    @Override
     public GamePacketModel getGamePacket(long userId, long roomId, UserGameAttributes userData) {
         GameServer gameServer = this.getGameServer(roomId);
         return gameServer.getGamePacket(userId, userData);
+    }
+
+    @Override
+    public GameResultModel getGameResult(long userId, long roomId) {
+        GameServer gameServer = this.getGameServer(roomId);
+        return gameServer.getGameResult(userId);
     }
 
     @Override
@@ -85,7 +99,7 @@ public class GameServiceImpl implements GameService {
             gameServer.updateGame(deltaTime);
     }
 
-    private void setupGame(Room room) {
+    private void setupGame(Room room, GameEventListener gameListener) {
         GameServer gameServer = null;
         switch (room.getGameType()) {
             case BATTLE_ROYAL:
@@ -95,6 +109,7 @@ public class GameServiceImpl implements GameService {
         }
         if (gameServer == null)
             throw new ServerFailureException("Cannot start game (incorrect game mode)!");
+        gameServer.setGameListener(gameListener);
         gameServer.setup(room);
         this.gamesList.put(room.getId(), gameServer);
     }
@@ -110,6 +125,11 @@ public class GameServiceImpl implements GameService {
         if (gameServer == null)
             throw new NotFoundException("Game");
         return gameServer;
+    }
+
+    private boolean isGameFinished(long roomId) {
+        final GameServer gameServer = this.gamesList.get(roomId);
+        return (gameServer != null && gameServer.getGameEngine() != null && gameServer.getGameEngine().getGamePacketModel().isFinished());
     }
 
     private float getDeltaTime() {

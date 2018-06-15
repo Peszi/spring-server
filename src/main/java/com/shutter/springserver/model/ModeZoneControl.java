@@ -1,7 +1,7 @@
 package com.shutter.springserver.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.shutter.springserver.data.game.util.ZoneControlConstants;
+import com.shutter.springserver.game.util.ZoneControlConstants;
 import com.shutter.springserver.attribute.ZoneControlAttributes;
 import lombok.Data;
 
