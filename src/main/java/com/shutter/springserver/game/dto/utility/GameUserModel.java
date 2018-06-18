@@ -15,10 +15,13 @@ public class GameUserModel extends LocationModel {
     private boolean alive;
 
     @JsonIgnore
+    private String name;
+    @JsonIgnore
     private boolean ready;
 
     public GameUserModel(User user) {
         this.id = user.getId();
+        this.name = user.getName();
         this.alive = true;
     }
 }

@@ -1,5 +1,6 @@
 package com.shutter.springserver.game.model;
 
+import com.shutter.springserver.game.dto.utility.GameTeamModel;
 import com.shutter.springserver.game.dto.utility.GameUserModel;
 import com.shutter.springserver.game.dto.utility.zone.ZoneModel;
 import com.shutter.springserver.model.User;
@@ -13,8 +14,8 @@ import java.util.List;
 @Getter
 public class GameTeamData {
 
-    private String alias;
-    private List<GameUserModel> users;
+    protected String alias;
+    protected List<GameUserModel> users;
 
     private float points;
     private ZoneModel resp;
@@ -33,6 +34,13 @@ public class GameTeamData {
         return !this.users.isEmpty();
     }
 
+    public boolean isReady() {
+        for (GameUserModel userData : this.users)
+            if (!userData.isReady())
+                return false;
+        return true;
+    }
+
     public GameUserModel getUserById(long userId) {
         for (GameUserModel userData : this.users)
             if (userData.getId() == userId)
@@ -46,13 +54,6 @@ public class GameTeamData {
             if (userData.getId() != userId)
                 alliesList.add(userData);
         return alliesList;
-    }
-    
-    public boolean isTeamReady() {
-        for (GameUserModel userData : this.users)
-            if (!userData.isReady())
-                return false;
-        return true;
     }
 
     public void decreasePoints(float value) {

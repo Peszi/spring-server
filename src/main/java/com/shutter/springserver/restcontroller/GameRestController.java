@@ -1,6 +1,7 @@
 package com.shutter.springserver.restcontroller;
 
 import com.shutter.springserver.game.dto.GamePrefsModel;
+import com.shutter.springserver.game.dto.GameUsersModel;
 import com.shutter.springserver.game.dto.ZonesLocationModel;
 import com.shutter.springserver.game.dto.utility.GameResultModel;
 import com.shutter.springserver.game.dto.utility.ResultModel;
@@ -37,6 +38,11 @@ public class GameRestController {
     @GetMapping
     public ResponseEntity<GamePrefsModel> getGamePrefs(@AuthenticationPrincipal UserData userData) {
         return ResponseEntity.ok(this.gameService.getGamePrefs(userData.getId()));
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<GameUsersModel> getGameUsers(@AuthenticationPrincipal UserData userData) {
+        return ResponseEntity.ok(this.gameService.getGameUsers(userData.getId()));
     }
 
     @GetMapping("/zones")

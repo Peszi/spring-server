@@ -1,8 +1,7 @@
 package com.shutter.springserver.game;
 
-import com.shutter.springserver.game.dto.utility.GameResultModel;
-import com.shutter.springserver.game.dto.utility.GameUserModel;
-import com.shutter.springserver.game.dto.utility.ResultModel;
+import com.shutter.springserver.game.dto.GameUsersModel;
+import com.shutter.springserver.game.dto.utility.*;
 import com.shutter.springserver.game.model.CaptureZone;
 import com.shutter.springserver.game.model.GameTeamData;
 import com.shutter.springserver.game.util.CompareByPoints;
@@ -18,6 +17,16 @@ import static com.shutter.springserver.game.util.ZoneControlConstants.GAME_RESUL
 @Slf4j
 public class GameLogic {
 
+    static void setupUsers(GameEngine gameEngine) {
+        gameEngine.getGameUsersModel().getTeams().clear();
+        for (GameTeamData gameTeamData : gameEngine.getTeamsDataList()) {
+            List<UserPrefsModel> usersList = new ArrayList<>();
+            for (GameUserModel user : gameTeamData.getUsers())
+                usersList.add(new UserPrefsModel(user.getName(), user.isReady(), user.isAlive()));
+            gameEngine.getGameUsersModel().getTeams().add(new GameTeamModel(gameTeamData.getAlias(), usersList));
+        }
+    }
+
     static void updateGameStatus(GameEngine gameEngine) {
         if (GameLogic.isGameReady(gameEngine.getTeamsDataList()))
             gameEngine.getGamePacketModel().setStarted(true);
@@ -25,7 +34,7 @@ public class GameLogic {
 
     private static boolean isGameReady(List<GameTeamData> teamsList) {
         for (GameTeamData teamData : teamsList)
-            if (!teamData.isTeamReady())
+            if (!teamData.isReady())
                 return false;
         return true;
     }

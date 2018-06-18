@@ -2,6 +2,7 @@ package com.shutter.springserver.service.game;
 
 import com.shutter.springserver.game.dto.GamePacketModel;
 import com.shutter.springserver.game.dto.GamePrefsModel;
+import com.shutter.springserver.game.dto.GameUsersModel;
 import com.shutter.springserver.game.dto.ZonesLocationModel;
 import com.shutter.springserver.game.dto.utility.GameResultModel;
 import com.shutter.springserver.key.UserData;
@@ -12,8 +13,9 @@ public interface ManageGameService {
     void finishGame(UserData userData);
 
     GamePrefsModel getGamePrefs(long userId);
+    GameUsersModel getGameUsers(long userId);
     ZonesLocationModel getZonesLocation(long userId);
-    String setUserReady(long userId);
+    void setUserReady(long userId);
     GamePacketModel getGamePacket(long userId, UserGameAttributes userGameAttributes);
     GameResultModel getGameResult(long userId);
 }

@@ -1,6 +1,7 @@
 package com.shutter.springserver.service.game;
 
 import com.shutter.springserver.game.dto.GamePrefsModel;
+import com.shutter.springserver.game.dto.GameUsersModel;
 import com.shutter.springserver.game.dto.ZonesLocationModel;
 import com.shutter.springserver.game.GameEngine;
 import com.shutter.springserver.game.dto.utility.GameResultModel;
@@ -30,14 +31,18 @@ public class ZoneControlServerImpl extends GameServer {
     }
 
     @Override
+    public GameUsersModel getGameUsers() {
+        return this.gameEngine.getGameUsersModel();
+    }
+
+    @Override
     public ZonesLocationModel getZonesLocation(long userId) {
         return this.gameEngine.getZonesManager().getZonesLocationModel();
     }
 
     @Override
-    public String setUserReady(long userId) {
+    public void setUserReady(long userId) {
         this.gameEngine.setUserReady(userId);
-        return null; // TODO hardcoded
     }
 
     @Override

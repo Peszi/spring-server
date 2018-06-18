@@ -2,6 +2,7 @@ package com.shutter.springserver.service.game;
 
 import com.shutter.springserver.game.GameEventListener;
 import com.shutter.springserver.game.dto.GamePrefsModel;
+import com.shutter.springserver.game.dto.GameUsersModel;
 import com.shutter.springserver.game.dto.ZonesLocationModel;
 import com.shutter.springserver.game.dto.utility.GameResultModel;
 import com.shutter.springserver.key.UserData;
@@ -51,15 +52,21 @@ public class ManageGameServiceImpl implements ManageGameService, GameEventListen
     }
 
     @Override
+    public GameUsersModel getGameUsers(long userId) {
+        final Long gameId = this.getUserGameId(userId);
+        return this.gameService.getGameUsers(userId, gameId);
+    }
+
+    @Override
     public ZonesLocationModel getZonesLocation(long userId) {
         final Long gameId = this.getUserGameId(userId);
         return this.gameService.getZonesLocation(userId, gameId);
     }
 
     @Override
-    public String setUserReady(long userId) {
+    public void setUserReady(long userId) {
         final Long gameId = this.getUserGameId(userId);
-        return this.gameService.setUserReady(userId, gameId);
+        this.gameService.setUserReady(userId, gameId);
     }
 
     @Override

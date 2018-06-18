@@ -4,7 +4,9 @@ import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.game.dto.GamePacketModel;
 import com.shutter.springserver.game.dto.GamePrefsModel;
 import com.shutter.springserver.exception.ServerFailureException;
+import com.shutter.springserver.game.dto.GameUsersModel;
 import com.shutter.springserver.game.dto.utility.GameResultModel;
+import com.shutter.springserver.game.dto.utility.GameTeamModel;
 import com.shutter.springserver.game.model.GameTeamData;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +26,7 @@ public class GameEngine { // Dynamic game data
 
     private CaptureZonesManager zonesManager;
 
+    private GameUsersModel gameUsersModel;
     private GamePacketModel gamePacketModel;
     private GameResultModel gameResultModel;
 
@@ -33,6 +36,7 @@ public class GameEngine { // Dynamic game data
         this.usersMap = new HashMap<>();
         this.teamsDataList = new ArrayList<>();
         this.zonesManager = new CaptureZonesManager();
+        this.gameUsersModel = new GameUsersModel();
         this.gamePacketModel = new GamePacketModel();
     }
 
@@ -75,6 +79,7 @@ public class GameEngine { // Dynamic game data
     }
 
     public void update(float delta) {
+        GameLogic.setupUsers(this);
         this.zonesManager.updateZones(this.gamePacketModel.getZones());
         if (this.gamePacketModel.isStarted()) {
             this.gamePacketModel.updateTime(delta);
