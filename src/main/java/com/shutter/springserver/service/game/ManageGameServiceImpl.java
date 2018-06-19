@@ -70,6 +70,12 @@ public class ManageGameServiceImpl implements ManageGameService, GameEventListen
     }
 
     @Override
+    public void setUserDied(long userId) {
+        final Long gameId = this.getUserGameId(userId);
+        this.gameService.setUserDied(userId, gameId);
+    }
+
+    @Override
     public GamePacketModel getGamePacket(long userId, UserGameAttributes userGameAttributes) {
         final Long gameId = this.getUserGameId(userId);
         return this.gameService.getGamePacket(userId, gameId, userGameAttributes);

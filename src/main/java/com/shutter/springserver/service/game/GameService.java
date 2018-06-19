@@ -17,6 +17,7 @@ public interface GameService {
     GameUsersModel getGameUsers(long userId, long roomId);
     ZonesLocationModel getZonesLocation(long userId, long roomId);
     void setUserReady(long userId, long roomId);
+    void setUserDied(long userId, long roomId);
     GamePacketModel getGamePacket(long userId, long roomId, UserGameAttributes userData);
     GameResultModel getGameResult(long userId, long roomId);
 

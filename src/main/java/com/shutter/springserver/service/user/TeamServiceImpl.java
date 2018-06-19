@@ -1,8 +1,7 @@
-package com.shutter.springserver.service;
+package com.shutter.springserver.service.user;
 
 import com.shutter.springserver.exception.NotFoundException;
 import com.shutter.springserver.exception.ServerFailureException;
-import com.shutter.springserver.model.Room;
 import com.shutter.springserver.model.Team;
 import com.shutter.springserver.repository.TeamRepository;
 import org.springframework.stereotype.Service;

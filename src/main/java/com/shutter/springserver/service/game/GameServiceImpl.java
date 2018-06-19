@@ -76,6 +76,11 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    public void setUserDied(long userId, long roomId) {
+        this.getGameServer(roomId).setUserDied(userId);
+    }
+
+    @Override
     public GamePacketModel getGamePacket(long userId, long roomId, UserGameAttributes userData) {
         GameServer gameServer = this.getGameServer(roomId);
         return gameServer.getGamePacket(userId, userData);

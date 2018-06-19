@@ -10,7 +10,7 @@ import com.shutter.springserver.exception.BadRequestException;
 import com.shutter.springserver.model.Room;
 import com.shutter.springserver.model.Team;
 import com.shutter.springserver.model.User;
-import com.shutter.springserver.service.TeamService;
+import com.shutter.springserver.service.user.TeamService;
 import com.shutter.springserver.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

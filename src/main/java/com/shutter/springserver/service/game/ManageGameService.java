@@ -16,6 +16,7 @@ public interface ManageGameService {
     GameUsersModel getGameUsers(long userId);
     ZonesLocationModel getZonesLocation(long userId);
     void setUserReady(long userId);
+    void setUserDied(long userId);
     GamePacketModel getGamePacket(long userId, UserGameAttributes userGameAttributes);
     GameResultModel getGameResult(long userId);
 }

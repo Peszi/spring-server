@@ -26,6 +26,13 @@ public class ZoneControlServerImpl extends GameServer {
     }
 
     @Override
+    public void updateGame(float deltaTime) {
+        this.gameEngine.update(deltaTime);
+    }
+
+    // Requests
+
+    @Override
     public GamePrefsModel getGamePrefs(long userId) {
         return ZoneControlUtility.getUserPrefs(this.gameEngine.getGamePrefsModel(), this.gameEngine.getUserTeam(userId));
     }
@@ -46,6 +53,11 @@ public class ZoneControlServerImpl extends GameServer {
     }
 
     @Override
+    public void setUserDied(long userId) {
+        this.gameEngine.setUserDied(userId);
+    }
+
+    @Override
     public GamePacketModel getGamePacket(long userId, UserGameAttributes userAttributes) {
         return ZoneControlUtility.getUserPacket(this.gameEngine, userId, userAttributes);
     }
@@ -55,10 +67,7 @@ public class ZoneControlServerImpl extends GameServer {
         return this.gameEngine.getGameResultModel();
     }
 
-    @Override
-    public void updateGame(float deltaTime) {
-        this.gameEngine.update(deltaTime);
-    }
+    // Getters
 
     @Override
     public GameEngine getGameEngine() { return this.gameEngine; }

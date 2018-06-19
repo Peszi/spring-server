@@ -56,6 +56,12 @@ public class GameRestController {
         return ResponseEntity.ok("User is ready!");
     }
 
+    @PostMapping("/dead")
+    public ResponseEntity<?> setUserDied(@AuthenticationPrincipal UserData userData) {
+        this.gameService.setUserDied(userData.getId());
+        return ResponseEntity.ok("User is dead!");
+    }
+
     @PostMapping("/update")
     public ResponseEntity<GamePacketModel> getGameData(@AuthenticationPrincipal UserData userData, @RequestBody(required = false) UserGameAttributes userGameAttributes) {
         return ResponseEntity.ok(this.gameService.getGamePacket(userData.getId(), userGameAttributes));

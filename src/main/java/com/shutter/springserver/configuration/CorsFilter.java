@@ -26,8 +26,6 @@ public class CorsFilter implements Filter {
         final HttpServletRequest request = (HttpServletRequest) req;
         if (!request.getMethod().equals("OPTIONS")) {
             chain.doFilter(req, res);
-        } else {
-            // do not continue with filter chain for options requests
         }
     }
 

@@ -22,6 +22,7 @@ public abstract class GameServer {
     public abstract GameUsersModel getGameUsers();
     public abstract ZonesLocationModel getZonesLocation(long userId);
     public abstract void setUserReady(long userId);
+    public abstract void setUserDied(long userId);
     public abstract GamePacketModel getGamePacket(long userId, UserGameAttributes userGameAttributes);
     public abstract GameResultModel getGameResult(long userId);
     public abstract GameEngine getGameEngine();

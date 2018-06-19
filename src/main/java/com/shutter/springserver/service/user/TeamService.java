@@ -1,4 +1,4 @@
-package com.shutter.springserver.service;
+package com.shutter.springserver.service.user;
 
 import com.shutter.springserver.model.Room;
 import com.shutter.springserver.model.Team;

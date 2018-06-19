@@ -12,12 +12,11 @@ import com.shutter.springserver.model.ModeZoneControl;
 import com.shutter.springserver.model.Room;
 import com.shutter.springserver.model.Team;
 import com.shutter.springserver.model.User;
-import com.shutter.springserver.service.TeamService;
+import com.shutter.springserver.service.user.TeamService;
 import com.shutter.springserver.service.user.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service

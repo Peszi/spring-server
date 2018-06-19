@@ -59,6 +59,10 @@ public class GameEngine { // Dynamic game data
         GameLogic.updateGameStatus(this);
     }
 
+    public void setUserDied(Long userId) {
+        this.getUserTeam(userId).getUserById(userId).setAlive(false);
+    }
+
     public GameTeamData getUserTeam(Long userId) {
         final Integer teamIdx = this.usersMap.get(userId);
         if (teamIdx != null) { return this.teamsDataList.get(teamIdx); }
