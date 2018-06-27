@@ -5,6 +5,7 @@ import com.shutter.springserver.game.dto.GamePrefsModel;
 import com.shutter.springserver.game.dto.GameUsersModel;
 import com.shutter.springserver.game.dto.ZonesLocationModel;
 import com.shutter.springserver.game.dto.utility.GameResultModel;
+import com.shutter.springserver.key.GameType;
 import com.shutter.springserver.key.UserGameAttributes;
 import com.shutter.springserver.game.dto.GamePacketModel;
 import com.shutter.springserver.exception.BadRequestException;
@@ -111,10 +112,10 @@ public class GameServiceImpl implements GameService {
 
     private void setupGame(Room room, GameEventListener gameListener) {
         GameServer gameServer = null;
-        switch (room.getGameType()) {
-            case BATTLE_ROYAL:
+        switch (room.getGameMode()) {
+            case 0:
                 gameServer = new ZoneControlServerImpl(); break;
-            case ZONE_CONTROL:
+            case 1:
                 gameServer = new ZoneControlServerImpl(); break;
         }
         if (gameServer == null)

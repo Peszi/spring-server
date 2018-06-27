@@ -1,6 +1,7 @@
 package com.shutter.springserver.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.google.common.base.Objects;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -38,7 +39,7 @@ public class User {
     private Team team;
 
     public boolean hasTeam() {
-        return (this.team != null) ? true : false;
+        return (this.team != null);
     }
 
     @Override
@@ -46,12 +47,8 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id != null ? id.equals(user.id) : user.id == null;
+        return Objects.equal(id, user.id) &&
+                Objects.equal(name, user.name) &&
+                Objects.equal(email, user.email);
     }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
-    }
-
 }

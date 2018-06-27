@@ -41,19 +41,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.addFilterBefore(this.corsFilter, ChannelProcessingFilter.class);
+//        http.addFilterBefore(this.corsFilter, ChannelProcessingFilter.class);
         http.authorizeRequests()
                 .anyRequest()
                     .denyAll()
                 .and()
                   .formLogin().disable();
-
-
 //        http.authorizeRequests()
-//                .antMatchers("/login").permitAll()
+//                .antMatchers("/login").denyAll()
 //                .anyRequest().authenticated()
 //                .and()
 //                .formLogin().permitAll();
+
 
 //        http.authorizeRequests().antMatchers("/oauth/authorize").authenticated()
 //                .and()

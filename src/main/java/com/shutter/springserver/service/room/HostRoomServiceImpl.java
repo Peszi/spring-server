@@ -82,7 +82,7 @@ public class HostRoomServiceImpl implements HostRoomService {
         Room room = this.roomService.validateAndGetByHost(this.userService.validateAndGetUser(userData));
         this.roomService.validateNotInGame(room);
         room.getMainZone().setZoneData(gameAttributes);
-        room.setGameType(GameType.fromInteger(gameAttributes.getGameMode()));
+        room.setGameMode(GameType.fromInteger(gameAttributes.getGameMode()));
         this.roomService.save(room);
     }
 
@@ -90,7 +90,7 @@ public class HostRoomServiceImpl implements HostRoomService {
     public void changeGameMode(UserData userData, GameType gameType) {
         Room room = this.roomService.validateAndGetByHost(this.userService.validateAndGetUser(userData));
         this.roomService.validateNotInGame(room);
-        room.setGameType(gameType);
+        room.setGameMode(gameType);
         this.roomService.save(room);
     }
 
@@ -110,8 +110,8 @@ public class HostRoomServiceImpl implements HostRoomService {
     public void changeZoneControlData(UserData userData, ZoneControlAttributes zoneControlData) {
         Room room = this.roomService.validateAndGetByHost(this.userService.validateAndGetUser(userData));
         this.roomService.validateNotInGame(room);
-        if (room.getGameType() != GameType.ZONE_CONTROL)
-            throw new BadRequestException("Wrong game mode " + room.getGameType().name() + "!");
+        if (room.getGameMode() != GameType.ZONE_CONTROL.ordinal())
+            throw new BadRequestException("Wrong game mode " + room.getGameMode() + "!");
         room.getZoneControl().setData(zoneControlData);
         this.roomService.save(room);
     }

@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "modes_zone_control")
+@Table(name = "zc_mode")
 public class ModeZoneControl {
 
     @Id

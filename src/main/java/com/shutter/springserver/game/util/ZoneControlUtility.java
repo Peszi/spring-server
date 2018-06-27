@@ -75,7 +75,7 @@ public class ZoneControlUtility {
         final int zoneAngleStep = 360 / teamsCount;
         for (int i = 0; i < teamsCount; i++) {
             final LatLng zoneLocation = SphericalUtil
-                    .computeOffset(room.getMainZone().getLocation(), room.getMainZone().getZoneRadius(), zoneAngleStep * i + zonesOffset);
+                    .computeOffset(room.getMainZone().getLocation(), room.getMainZone().getRadius(), zoneAngleStep * i + zonesOffset);
             gameEngine.getTeamsDataList().get(i)
                     .setResp(new ZoneModel(zoneLocation.latitude, zoneLocation.longitude, ZoneControlConstants.RESP_RADIUS));
         }

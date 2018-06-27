@@ -30,7 +30,7 @@ public class Team {
     private Set<User> users = new HashSet<>();
 
     public boolean hasRoom() {
-        return (this.room != null) ? true : false;
+        return (this.room != null);
     }
 
     public boolean hasUsers() {

@@ -12,8 +12,8 @@ public class ZoneModel extends LocationModel {
     private int radius;
 
     public ZoneModel(Zone zone) {
-        super(zone.getZoneLatitude(), zone.getZoneLongitude());
-        this.radius = zone.getZoneRadius();
+        super(zone.getLat(), zone.getLng());
+        this.radius = zone.getRadius();
     }
 
     public ZoneModel(double lat, double lng, int radius) {

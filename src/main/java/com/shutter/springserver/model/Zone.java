@@ -17,30 +17,30 @@ public class Zone {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double zoneLongitude;
-    private double zoneLatitude;
-    private int zoneRadius;
+    private double lng;
+    private double lat;
+    private int radius;
 
     @PrePersist
     public void init() {
-        this.zoneRadius = RoomConstants.DEFAULT_ZONE_RADIUS;
-        this.zoneLatitude = 49.824814d;
-        this.zoneLongitude = 19.046022d;
+        this.radius = RoomConstants.DEFAULT_ZONE_RADIUS;
+        this.lat = 49.824814d;
+        this.lng = 19.046022d;
     }
 
     public void setZoneData(ZoneAttribute zoneData) {
-        this.zoneLongitude = zoneData.getZoneLng();
-        this.zoneLatitude = zoneData.getZoneLat();
-        this.zoneRadius = zoneData.getZoneRadius();
+        this.lng = zoneData.getZoneLng();
+        this.lat = zoneData.getZoneLat();
+        this.radius = zoneData.getZoneRadius();
     }
 
     public void setZoneData(GameAttributes gameAttributes) {
-        this.zoneLongitude = gameAttributes.getZoneLng();
-        this.zoneLatitude = gameAttributes.getZoneLat();
-        this.zoneRadius = gameAttributes.getZoneRadius();
+        this.lng = gameAttributes.getZoneLng();
+        this.lat = gameAttributes.getZoneLat();
+        this.radius = gameAttributes.getZoneRadius();
     }
 
     public LatLng getLocation() {
-        return new LatLng(this.zoneLatitude, this.zoneLongitude);
+        return new LatLng(this.lat, this.lng);
     }
 }

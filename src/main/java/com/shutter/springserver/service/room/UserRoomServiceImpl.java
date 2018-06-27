@@ -44,7 +44,7 @@ public class UserRoomServiceImpl implements UserRoomService {
         room.setHost(user);
         room.setIsStarted(false);
         room.getMainZone();
-        room.setGameType(GameType.ZONE_CONTROL); // TODO tmp
+        room.setGameMode(GameType.ZONE_CONTROL); // TODO tmp
         room.setZoneControl(new ModeZoneControl());
         Team team = new Team();
         team.setAlias("Alpha");

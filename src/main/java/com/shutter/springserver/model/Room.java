@@ -25,7 +25,8 @@ public class Room {
     private Boolean isStarted;
 
     @Enumerated(EnumType.ORDINAL)
-    private GameType gameType;
+    @Column(name = "game_type")
+    private GameType gameMode;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "zone_id")
@@ -68,7 +69,7 @@ public class Room {
     }
 
     public int getGameMode() {
-        return this.gameType.ordinal();
+        return this.gameMode.ordinal();
     }
 
     public String getCreatedDate() {

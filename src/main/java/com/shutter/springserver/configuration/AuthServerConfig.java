@@ -62,7 +62,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 //                .withClient("webClientId")
 //                    .authorizedGrantTypes("implicit")
 //                    .scopes("read", "write")
-//                    .autoApprove(true)
+//                    .autoApprove(true);
 //                    .and()
                 .withClient(this.clientId)
                     .secret(this.passwordEncoder.encode(this.clientSecret))

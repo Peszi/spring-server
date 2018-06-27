@@ -19,9 +19,9 @@ public interface RoomMapper {
             @Mapping(source = "host.name", target = "hostName"),
             @Mapping(source = "isStarted", target = "started"),
             @Mapping(source = "createdDate", target = "createdAt"),
-            @Mapping(source = "mainZone.zoneLatitude", target = "zoneLat"),
-            @Mapping(source = "mainZone.zoneLongitude", target = "zoneLng"),
-            @Mapping(source = "mainZone.zoneRadius", target = "zoneRadius")
+            @Mapping(source = "mainZone.lat", target = "zoneLat"),
+            @Mapping(source = "mainZone.lng", target = "zoneLng"),
+            @Mapping(source = "mainZone.radius", target = "zoneRadius")
     })
     RoomDTO roomToRoomDTO(Room room);
 
@@ -32,9 +32,9 @@ public interface RoomMapper {
             @Mapping(source = "host.name", target = "hostName"),
             @Mapping(source = "isStarted", target = "started"),
             @Mapping(source = "createdDate", target = "createdAt"),
-            @Mapping(source = "mainZone.zoneLatitude", target = "zoneLat"),
-            @Mapping(source = "mainZone.zoneLongitude", target = "zoneLng"),
-            @Mapping(source = "mainZone.zoneRadius", target = "zoneRadius"),
+            @Mapping(source = "mainZone.lat", target = "zoneLat"),
+            @Mapping(source = "mainZone.lng", target = "zoneLng"),
+            @Mapping(source = "mainZone.radius", target = "zoneRadius"),
             @Mapping(source = "teams", target = "teamsList")
     })
     FullRoomDTO roomToFullRoomDTO(Room room);
