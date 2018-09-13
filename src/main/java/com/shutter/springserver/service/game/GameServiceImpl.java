@@ -26,8 +26,8 @@ import java.util.Map;
 @Service
 public class GameServiceImpl implements GameService {
 
-    private Map<Long, Long> usersList;
-    private Map<Long, GameServer> gamesList;
+    private Map<Integer, Integer> usersList;
+    private Map<Integer, GameServer> gamesList;
 
     private long lastTime;
 
@@ -46,60 +46,60 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void removeGame(long roomId) {
+    public void removeGame(int roomId) {
         if (!this.gamesList.containsKey(roomId))
             throw new NotFoundException("Game");
         this.gamesList.remove(roomId);
-        for (Long user : this.usersList.keySet())
+        for (Integer user : this.usersList.keySet())
             this.usersList.remove(user);
     }
 
     @Override
-    public GamePrefsModel getGamePrefs(long userId, long roomId) {
+    public GamePrefsModel getGamePrefs(int userId, int roomId) {
         GameServer gameServer = this.getGameServer(roomId);
         return gameServer.getGamePrefs(userId);
     }
 
     @Override
-    public GameUsersModel getGameUsers(long userId, long roomId) {
+    public GameUsersModel getGameUsers(int userId, int roomId) {
         return this.getGameServer(roomId).getGameUsers();
     }
 
     @Override
-    public ZonesLocationModel getZonesLocation(long userId, long roomId) {
+    public ZonesLocationModel getZonesLocation(int userId, int roomId) {
         GameServer gameServer = this.getGameServer(roomId);
         return gameServer.getZonesLocation(userId);
     }
 
     @Override
-    public void setUserReady(long userId, long roomId) {
+    public void setUserReady(int userId, int roomId) {
         this.getGameServer(roomId).setUserReady(userId);
     }
 
     @Override
-    public void setUserDied(long userId, long roomId) {
+    public void setUserDied(int userId, int roomId) {
         this.getGameServer(roomId).setUserDied(userId);
     }
 
     @Override
-    public GamePacketModel getGamePacket(long userId, long roomId, UserGameAttributes userData) {
+    public GamePacketModel getGamePacket(int userId, int roomId, UserGameAttributes userData) {
         GameServer gameServer = this.getGameServer(roomId);
         return gameServer.getGamePacket(userId, userData);
     }
 
     @Override
-    public GameResultModel getGameResult(long userId, long roomId) {
+    public GameResultModel getGameResult(int userId, int roomId) {
         GameServer gameServer = this.getGameServer(roomId);
         return gameServer.getGameResult(userId);
     }
 
     @Override
-    public Long getGameId(long userId) {
+    public Integer getGameId(int userId) {
         return this.usersList.get(userId);
     }
 
     @Override
-    public GameServer getGame(long gameId) {
+    public GameServer getGame(int gameId) {
         return this.gamesList.get(gameId);
     }
 
@@ -125,20 +125,20 @@ public class GameServiceImpl implements GameService {
         this.gamesList.put(room.getId(), gameServer);
     }
 
-    private void setupUsers(List<Team> roomTeams, long roomId) {
+    private void setupUsers(List<Team> roomTeams, int roomId) {
         for (Team team : roomTeams)
             for (User user : team.getUsers())
                 this.usersList.put(user.getId(), roomId);
     }
 
-    private GameServer getGameServer(Long gameId) {
+    private GameServer getGameServer(int gameId) {
         GameServer gameServer = this.gamesList.get(gameId);
         if (gameServer == null)
             throw new NotFoundException("Game");
         return gameServer;
     }
 
-    private boolean isGameFinished(long roomId) {
+    private boolean isGameFinished(int roomId) {
         final GameServer gameServer = this.gamesList.get(roomId);
         return (gameServer != null && gameServer.getGameEngine() != null && gameServer.getGameEngine().getGamePacketModel().isFinished());
     }

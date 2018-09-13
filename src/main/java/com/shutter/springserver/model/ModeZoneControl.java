@@ -15,7 +15,7 @@ public class ModeZoneControl {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
-    private Long id;
+    private Integer id;
 
     private int pointsLimit;
     private int timeLimit;

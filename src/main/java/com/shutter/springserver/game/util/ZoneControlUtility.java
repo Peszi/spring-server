@@ -26,8 +26,8 @@ public class ZoneControlUtility {
     public static GamePrefsModel initPrefs(Room room) {
         GamePrefsModel prefs = new GamePrefsModel();
         prefs.setLocation(new ZoneModel(room.getMainZone()));
-        prefs.setLimits(new GameLimitsModel(room.getZoneControl().getPointsLimit(), room.getZoneControl().getTimeLimit()));
-        prefs.setZones(new CptZonePrefsModel(room.getZoneControl().getZoneCapacity(), ZoneControlConstants.CAPTURE_ZONE_RADIUS));
+        prefs.setLimits(new GameLimitsModel(room.getZcMode().getPointsLimit(), room.getZcMode().getTimeLimit()));
+        prefs.setZones(new CptZonePrefsModel(room.getZcMode().getZoneCapacity(), ZoneControlConstants.CAPTURE_ZONE_RADIUS));
         prefs.setUsers(ZoneControlUtility.initUsers(room));
         return prefs;
     }
@@ -59,7 +59,7 @@ public class ZoneControlUtility {
         GameEngine gameEngine = new GameEngine();
         for (int i = 0; i < room.getTeams().size(); i++) {
             Team team = room.getTeams().get(i);
-            GameTeamData teamData = new GameTeamData(team.getAlias(), room.getZoneControl().getPointsLimit());
+            GameTeamData teamData = new GameTeamData(team.getAlias(), room.getZcMode().getPointsLimit());
             for (User user : team.getUsers()) {
                 teamData.addUser(user);
                 gameEngine.addUser(user.getId(), i);

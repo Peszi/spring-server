@@ -12,11 +12,11 @@ public interface ManageGameService {
     void startGame(UserData userData);
     void finishGame(UserData userData);
 
-    GamePrefsModel getGamePrefs(long userId);
-    GameUsersModel getGameUsers(long userId);
-    ZonesLocationModel getZonesLocation(long userId);
-    void setUserReady(long userId);
-    void setUserDied(long userId);
-    GamePacketModel getGamePacket(long userId, UserGameAttributes userGameAttributes);
-    GameResultModel getGameResult(long userId);
+    GamePrefsModel getGamePrefs(int userId);
+    GameUsersModel getGameUsers(int userId);
+    ZonesLocationModel getZonesLocation(int userId);
+    void setUserReady(int userId);
+    void setUserDied(int userId);
+    GamePacketModel getGamePacket(int userId, UserGameAttributes userGameAttributes);
+    GameResultModel getGameResult(int userId);
 }

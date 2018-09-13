@@ -3,6 +3,7 @@ package com.shutter.springserver.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.google.common.base.Objects;
 import lombok.Data;
+import lombok.NonNull;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(unique = true)
     private String name;
@@ -23,7 +24,7 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    private String password;
+    public String password;
     private String token;
 
     private boolean active;

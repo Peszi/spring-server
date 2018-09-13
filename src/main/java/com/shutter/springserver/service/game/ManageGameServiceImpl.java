@@ -46,64 +46,64 @@ public class ManageGameServiceImpl implements ManageGameService, GameEventListen
     }
 
     @Override
-    public GamePrefsModel getGamePrefs(long userId) {
-        final Long gameId = this.getUserGameId(userId);
+    public GamePrefsModel getGamePrefs(int userId) {
+        final Integer gameId = this.getUserGameId(userId);
         return this.gameService.getGamePrefs(userId, gameId);
     }
 
     @Override
-    public GameUsersModel getGameUsers(long userId) {
-        final Long gameId = this.getUserGameId(userId);
+    public GameUsersModel getGameUsers(int userId) {
+        final Integer gameId = this.getUserGameId(userId);
         return this.gameService.getGameUsers(userId, gameId);
     }
 
     @Override
-    public ZonesLocationModel getZonesLocation(long userId) {
-        final Long gameId = this.getUserGameId(userId);
+    public ZonesLocationModel getZonesLocation(int userId) {
+        final Integer gameId = this.getUserGameId(userId);
         return this.gameService.getZonesLocation(userId, gameId);
     }
 
     @Override
-    public void setUserReady(long userId) {
-        final Long gameId = this.getUserGameId(userId);
+    public void setUserReady(int userId) {
+        final Integer gameId = this.getUserGameId(userId);
         this.gameService.setUserReady(userId, gameId);
     }
 
     @Override
-    public void setUserDied(long userId) {
-        final Long gameId = this.getUserGameId(userId);
+    public void setUserDied(int userId) {
+        final Integer gameId = this.getUserGameId(userId);
         this.gameService.setUserDied(userId, gameId);
     }
 
     @Override
-    public GamePacketModel getGamePacket(long userId, UserGameAttributes userGameAttributes) {
-        final Long gameId = this.getUserGameId(userId);
+    public GamePacketModel getGamePacket(int userId, UserGameAttributes userGameAttributes) {
+        final Integer gameId = this.getUserGameId(userId);
         return this.gameService.getGamePacket(userId, gameId, userGameAttributes);
     }
 
     @Override
-    public GameResultModel getGameResult(long userId) {
-        final Long gameId = this.getUserGameId(userId);
+    public GameResultModel getGameResult(int userId) {
+        final Integer gameId = this.getUserGameId(userId);
         return this.gameService.getGameResult(userId, gameId);
     }
 
     @Override
-    public void onGameFinished(long roomId) {
+    public void onGameFinished(int roomId) {
         Room room = this.roomService.validateAndGetById(roomId);
-        room.setIsStarted(false);
+        room.setStarted(false);
         this.roomService.save(room);
     }
 
     private void startGame(User user) {
         Room room = this.roomService.validateAndGetByHost(user);
         this.roomService.removeEmptyTeams(room);
-        room.setIsStarted(true);
+        room.setStarted(true);
         this.roomService.save(room);
         this.gameService.createGame(room, this);
     }
 
-    private Long getUserGameId(long userId) {
-        Long roomId = this.gameService.getGameId(userId);
+    private Integer getUserGameId(int userId) {
+        Integer roomId = this.gameService.getGameId(userId);
         if (roomId == null) {// if game crushed last time
 //            this.restartGame(userId);
 //            throw new BadRequestException("Game is restarted...");
@@ -112,7 +112,7 @@ public class ManageGameServiceImpl implements ManageGameService, GameEventListen
         return roomId;
     }
 
-    private void restartGame(Long userId) {
+    private void restartGame(Integer userId) {
         this.startGame(this.userService.validateAndGetUserById(userId));
     }
 

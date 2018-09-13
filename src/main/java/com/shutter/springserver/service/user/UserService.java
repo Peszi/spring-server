@@ -7,5 +7,5 @@ public interface UserService {
     void save(User user);
     void validateInTeam(User user);
     User validateAndGetUser(UserData userData);
-    User validateAndGetUserById(long userId);
+    User validateAndGetUserById(int userId);
 }

@@ -26,7 +26,7 @@ public class RoomRestController {
     }
 
     @PostMapping("/room/team/{teamId}")
-    public ResponseEntity<String> changeTeam(@AuthenticationPrincipal UserData userData, @PathVariable long teamId) {
+    public ResponseEntity<String> changeTeam(@AuthenticationPrincipal UserData userData, @PathVariable int teamId) {
         this.userRoomService.changeTeam(userData, teamId);
         return ResponseEntity.ok("User succesfully changed the room!");
     }
@@ -47,7 +47,7 @@ public class RoomRestController {
     }
 
     @PostMapping("/rooms/{roomId}")
-    public ResponseEntity<RoomDTO> joinRoom(@PathVariable("roomId") long roomId, @AuthenticationPrincipal UserData userData) { // TODO check game alive
+    public ResponseEntity<RoomDTO> joinRoom(@PathVariable("roomId") int roomId, @AuthenticationPrincipal UserData userData) { // TODO check game alive
         return ResponseEntity.ok(this.userRoomService.joinRoom(userData, roomId));
     }
 

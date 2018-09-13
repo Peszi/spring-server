@@ -15,30 +15,28 @@ public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @OneToOne
     @JoinColumn(name = "host_id")
     private User host;
 
-    @Column(name = "game_started")
-    private Boolean isStarted;
+    private Boolean started;
 
     @Enumerated(EnumType.ORDINAL)
-    @Column(name = "game_type")
-    private GameType gameMode;
+    private GameType mode;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "zone_id")
-    private Zone mainZone;
+    private Zone zone;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "zone_control_id", referencedColumnName = "id")
-    private ModeZoneControl zoneControl;
+    @JoinColumn(name = "zc_mode_id", referencedColumnName = "id")
+    private ModeZoneControl zcMode;
 
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
-    private Date createdAt;
+    private Date created;
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("id ASC")
@@ -63,18 +61,18 @@ public class Room {
     }
 
     public Zone getMainZone() {
-        if (this.mainZone == null)
-            this.mainZone = new Zone();
-        return this.mainZone;
+        if (this.zone == null)
+            this.zone = new Zone();
+        return this.zone;
     }
 
     public int getGameMode() {
-        return this.gameMode.ordinal();
+        return this.mode.ordinal();
     }
 
     public String getCreatedDate() {
-        if (this.createdAt != null)
-            return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(this.createdAt);
+        if (this.created != null)
+            return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(this.created);
         return "no date";
     }
 

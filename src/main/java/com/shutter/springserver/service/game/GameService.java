@@ -11,17 +11,17 @@ import com.shutter.springserver.model.Room;
 
 public interface GameService {
     void createGame(Room room, GameEventListener eventListener);
-    void removeGame(long roomId);
+    void removeGame(int roomId);
 
-    GamePrefsModel getGamePrefs(long userId, long roomId);
-    GameUsersModel getGameUsers(long userId, long roomId);
-    ZonesLocationModel getZonesLocation(long userId, long roomId);
-    void setUserReady(long userId, long roomId);
-    void setUserDied(long userId, long roomId);
-    GamePacketModel getGamePacket(long userId, long roomId, UserGameAttributes userData);
-    GameResultModel getGameResult(long userId, long roomId);
+    GamePrefsModel getGamePrefs(int userId, int roomId);
+    GameUsersModel getGameUsers(int userId, int roomId);
+    ZonesLocationModel getZonesLocation(int userId, int roomId);
+    void setUserReady(int userId, int roomId);
+    void setUserDied(int userId, int roomId);
+    GamePacketModel getGamePacket(int userId, int roomId, UserGameAttributes userData);
+    GameResultModel getGameResult(int userId, int roomId);
 
     // utility
-    Long getGameId(long userId);
-    GameServer getGame(long gameId); // TODO depreciated
+    Integer getGameId(int userId);
+    GameServer getGame(int gameId); // TODO depreciated
 }

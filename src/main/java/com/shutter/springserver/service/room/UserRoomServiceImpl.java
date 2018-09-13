@@ -42,10 +42,10 @@ public class UserRoomServiceImpl implements UserRoomService {
             throw new AlreadyExistsException("Room");
         Room room = new Room();
         room.setHost(user);
-        room.setIsStarted(false);
+        room.setStarted(false);
         room.getMainZone();
-        room.setGameMode(GameType.ZONE_CONTROL); // TODO tmp
-        room.setZoneControl(new ModeZoneControl());
+        room.setMode(GameType.ZONE_CONTROL); // TODO tmp
+        room.setZcMode(new ModeZoneControl());
         Team team = new Team();
         team.setAlias("Alpha");
         team.addUser(user);
@@ -57,7 +57,7 @@ public class UserRoomServiceImpl implements UserRoomService {
 
     @Transactional
     @Override
-    public void changeTeam(UserData userData, long teamId) {
+    public void changeTeam(UserData userData, int teamId) {
         final User user = this.userService.validateAndGetUser(userData);
         this.userService.validateInTeam(user);
         this.roomService.validateNotInGame(user.getTeam().getRoom());
@@ -75,7 +75,7 @@ public class UserRoomServiceImpl implements UserRoomService {
 
     @Transactional
     @Override
-    public RoomDTO joinRoom(UserData userData, long roomId) {
+    public RoomDTO joinRoom(UserData userData, int roomId) {
         final User user = this.userService.validateAndGetUser(userData);
         if (user.hasTeam()) {
             if (user.getTeam().getRoom().getId() == roomId)
@@ -114,7 +114,7 @@ public class UserRoomServiceImpl implements UserRoomService {
     public ModeZoneControl getZoneControl(UserData userData) {
         final User user = this.userService.validateAndGetUser(userData);
         this.userService.validateInTeam(user);
-        return user.getTeam().getRoom().getZoneControl();
+        return user.getTeam().getRoom().getZcMode();
     }
 
     @Transactional

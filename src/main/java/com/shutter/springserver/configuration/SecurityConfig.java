@@ -25,42 +25,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailsService userDetailsService;
 
-    @Autowired
-    private CorsFilter corsFilter;
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
 
     @Override
-    @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
-
-    @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.addFilterBefore(this.corsFilter, ChannelProcessingFilter.class);
         http.authorizeRequests()
                 .anyRequest()
                     .denyAll()
                 .and()
-                  .formLogin().disable();
-//        http.authorizeRequests()
-//                .antMatchers("/login").denyAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin().permitAll();
+                    .formLogin()
+                .disable();
+    }
 
-
-//        http.authorizeRequests().antMatchers("/oauth/authorize").authenticated()
-//                .and()
-//                    .authorizeRequests().anyRequest().permitAll()
-//                .and()
-//                    .formLogin().loginPage("/login").permitAll()
-//                .and()
-//                    .csrf().disable();
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
     @Bean

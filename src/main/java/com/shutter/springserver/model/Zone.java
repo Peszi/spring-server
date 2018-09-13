@@ -15,7 +15,7 @@ public class Zone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private double lng;
     private double lat;

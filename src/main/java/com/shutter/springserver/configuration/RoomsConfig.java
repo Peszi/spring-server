@@ -18,8 +18,8 @@ public class RoomsConfig {
     @PostConstruct
     public void init() {
         for (Room room : this.roomRepository.findAll())
-            if (room.getIsStarted()) {
-                room.setIsStarted(false);
+            if (room.getStarted()) {
+                room.setStarted(false);
                 this.roomRepository.save(room);
             }
     }

@@ -6,11 +6,9 @@ import com.shutter.springserver.game.dto.GamePrefsModel;
 import com.shutter.springserver.exception.ServerFailureException;
 import com.shutter.springserver.game.dto.GameUsersModel;
 import com.shutter.springserver.game.dto.utility.GameResultModel;
-import com.shutter.springserver.game.dto.utility.GameTeamModel;
 import com.shutter.springserver.game.model.GameTeamData;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
 
@@ -20,8 +18,8 @@ public class GameEngine { // Dynamic game data
 
     private GamePrefsModel gamePrefsModel; // const game utility
 
-    private long roomId;
-    private Map<Long, Integer> usersMap; // Global User ID, Local Team ID
+    private int roomId;
+    private Map<Integer, Integer> usersMap; // Global User ID, Local Team ID
     private List<GameTeamData> teamsDataList; // Game Team Data (local team ID)
 
     private CaptureZonesManager zonesManager;
@@ -46,7 +44,7 @@ public class GameEngine { // Dynamic game data
 
     // Users / Teams
 
-    public void addUser(Long userId, Integer teamId) {
+    public void addUser(Integer userId, Integer teamId) {
         this.usersMap.put(userId, teamId);
     }
 

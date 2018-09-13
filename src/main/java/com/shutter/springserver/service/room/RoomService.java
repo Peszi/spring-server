@@ -11,7 +11,7 @@ public interface RoomService {
     void delete(Room room);
     void validateNotInGame(Room room);
     Room validateAndGetByHost(User user);
-    Room validateAndGetById(long roomId);
+    Room validateAndGetById(int roomId);
     void removeEmptyTeams(Room room);
     Optional<Room> getRoom(User user);
     List<Room> getAllRooms();

@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User validateAndGetUserById(long userId) {
+    public User validateAndGetUserById(int userId) {
         return this.userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User " + userId));
     }
 }

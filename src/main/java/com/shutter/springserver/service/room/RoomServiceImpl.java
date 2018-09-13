@@ -35,7 +35,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public void validateNotInGame(Room room) {
-        if (room.getIsStarted())
+        if (room.getStarted())
             throw new BadRequestException("Game is started!");
     }
 
@@ -48,7 +48,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Room validateAndGetById(long roomId) {
+    public Room validateAndGetById(int roomId) {
         Optional<Room> room = this.roomRepository.findById(roomId);
         if (!room.isPresent())
             throw new NotFoundException("Room");
